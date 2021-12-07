@@ -1,0 +1,63 @@
+$PBExportHeader$d_acmp_constants.srd
+release 7;
+datawindow(units=0 timer_interval=0 color=80269524 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=128 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=92 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=beginyear dbname="BeginYear" )
+ column=(type=long updatewhereclause=yes name=beginmonth dbname="BeginMonth" values="1	1/4	4/7	7/10	10/" )
+ column=(type=long updatewhereclause=yes name=endyear dbname="EndYear" )
+ column=(type=long updatewhereclause=yes name=endmonth dbname="EndMonth" values="3	3/6	6/9	9/12	12/" )
+ column=(type=decimal(4) update=yes updatewhereclause=yes name=bonus2percent dbname="AMCPConstants.Bonus2Percent" )
+ column=(type=decimal(4) update=yes updatewhereclause=yes name=rmbonuspercent dbname="AMCPConstants.RMBonusPercent" )
+ column=(type=decimal(4) update=yes updatewhereclause=yes name=bonuspayment1 dbname="AMCPConstants.BonusPayment1" )
+ column=(type=decimal(4) update=yes updatewhereclause=yes name=bonuspayment2 dbname="AMCPConstants.BonusPayment2" )
+ column=(type=char(255) update=yes updatewhereclause=yes name=comment dbname="AMCPConstants.Comment" )
+ column=(type=long updatewhereclause=yes name=bonus2percentpercent dbname="Bonus2PercentPercent" )
+ column=(type=long updatewhereclause=yes name=rmbonuspercentpercent dbname="RMBonusPercentPercent" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=beginyearmonth dbname="AMCPConstants.BeginYearMonth" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=endyearmonth dbname="AMCPConstants.EndYearMonth" )
+ retrieve="  SELECT ( dbo.AMCPConstants.BeginYearMonth / 100 ) as BeginYear,   
+			dbo.AMCPConstants.BeginYearMonth - ( ( dbo.AMCPConstants.BeginYearMonth / 100  ) * 100 )   as BeginMonth,  
+         ( dbo.AMCPConstants.EndYearMonth / 100 ) as EndYear,   
+			dbo.AMCPConstants.EndYearMonth - ( ( dbo.AMCPConstants.EndYearMonth / 100  ) * 100 )   as EndMonth,  
+         dbo.AMCPConstants.Bonus2Percent,   
+         dbo.AMCPConstants.RMBonusPercent,   
+         dbo.AMCPConstants.BonusPayment1,   
+         dbo.AMCPConstants.BonusPayment2,   
+         dbo.AMCPConstants.Comment,
+			convert ( integer, (dbo.AMCPConstants.Bonus2Percent * 100 ) ) as Bonus2PercentPercent, 
+			convert ( integer, (dbo.AMCPConstants.RMBonusPercent * 100 ) ) as RMBonusPercentPercent,
+			dbo.AMCPConstants.BeginYearMonth,   
+         dbo.AMCPConstants.EndYearMonth   
+    FROM dbo.AMCPConstants
+ORDER BY	dbo.AMCPConstants.BeginYearMonth DESC   
+" update="AMCPConstants" updatewhere=0 updatekeyinplace=no  sort="beginyearmonth D " )
+text(band=header alignment="2" text="Begin
+Year" border="0" color="0" x="110" y="12" height="112" width="165"  name=beginyear_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Begin
+Month" border="0" color="0" x="283" y="12" height="112" width="165"  name=beginmonth_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="End
+Month" border="0" color="0" x="663" y="12" height="112" width="165"  name=endmonth_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="End
+Year" border="0" color="0" x="489" y="12" height="112" width="165"  name=endyear_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Bonus 2
+Percent" border="0" color="0" x="859" y="12" height="112" width="251"  name=bonus2percent_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Regional Mgr
+Bonus Percent" border="0" color="0" x="1120" y="12" height="112" width="389"  name=rmbonuspercent_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Bonus
+Payment 1" border="0" color="0" x="1522" y="12" height="112" width="279"  name=bonuspayment1_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Bonus
+Payment 2" border="0" color="0" x="1801" y="12" height="112" width="283"  name=bonuspayment2_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=10 border="5" color="0" x="110" y="12" height="64" width="165" format="[General]"  name=beginyear  tag=" Beginning Calendar Year of the date range." edit.limit=0 edit.case=any edit.autoselect=yes edit.required=yes edit.nilisnull=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=3 alignment="1" tabsequence=30 border="5" color="0" x="489" y="12" height="64" width="165" format="[General]"  name=endyear  tag="   Ending Calendar Year of the date range." edit.limit=0 edit.case=any edit.autoselect=yes edit.required=yes edit.nilisnull=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=7 alignment="1" tabsequence=70 border="5" color="0" x="1541" y="12" height="64" width="242" format="$#,##0;[RED]($#,##0)"  name=bonuspayment1  tag=" Account Manager's Bonus Payment if the Bonus 1 Target is met but the Bonus 2 Target is not met." editmask.mask="###,###" editmask.focusrectangle=no  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=8 alignment="1" tabsequence=80 border="5" color="0" x="1824" y="12" height="64" width="242" format="$#,##0;[RED]($#,##0)"  name=bonuspayment2  tag=" Account Manager's Bonus Payment if the Bonus 2 Target is met." editmask.mask="###,###" editmask.focusrectangle=no  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=10 alignment="1" tabsequence=50 border="5" color="0" x="905" y="12" height="64" width="165" format="[general]"  name=bonus2percentpercent edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=11 alignment="1" tabsequence=60 border="5" color="0" x="1230" y="12" height="64" width="169" format="[general]"  name=rmbonuspercentpercent edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=2 alignment="1" tabsequence=20 border="5" color="0" x="297" y="12" height="64" width="165" format="[General]"  name=beginmonth  tag="  Beginning Calendar Month of the date range." ddlb.limit=0 ddlb.allowedit=no ddlb.case=any ddlb.nilisnull=yes ddlb.useasborder=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=4 alignment="1" tabsequence=40 border="5" color="0" x="672" y="12" height="64" width="165" format="[General]"  name=endmonth  tag=" Ending Calendar Month of the date range." ddlb.limit=0 ddlb.allowedit=no ddlb.case=any ddlb.nilisnull=yes ddlb.useasborder=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )
+ 

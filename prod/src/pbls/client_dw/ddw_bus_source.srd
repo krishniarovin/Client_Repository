@@ -1,0 +1,18 @@
+$PBExportHeader$ddw_bus_source.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=74 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=classidnum dbname="ClassIDNum" )
+ column=(type=char(12) updatewhereclause=yes name=classcode dbname="ClassCode" )
+ column=(type=long updatewhereclause=yes name=classnum dbname="ClassNum" )
+ column=(type=char(115) updatewhereclause=yes name=classdesc dbname="ClassDesc" )
+ column=(type=datetime updatewhereclause=yes name=endeffdate dbname="EndEffDate" )
+ retrieve="SELECT  Classification.ClassIDNum ,          Classification.ClassCode , Classification.ClassNum ,LTRIM((IsNull(Classification.ClassCode,'') + IsNull(convert(varchar(10),Classification.ClassNum),'')+ ' - ' + Classification.ClassDesc)) ClassDesc,           Classification.EndEffDate     
+        FROM Classification ,           ClassificationXref ,           ClassificationColumn ,           ClassificationGroup     
+        WHERE ( Classification.ClassIDNum *= ClassificationXref.ClassIDNumChild) and          ( Classification.ClassGrpIDNum = ClassificationColumn.ClassGrpIDNum ) and          ( ClassificationColumn.ClassGrpIDNum = ClassificationGroup.ClassGrpIDNum )
+        GROUP BY Classification.ClassIDNum ,           Classification.ClassCode ,           Classification.ClassNum ,           Classification.ClassDesc ,           Classification.EndEffDate  "  sort="classnum A " )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="8388608" x="5957" y="0" height="54" width="2300" format="[general]"  name=classdesc edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="8388608~tif(  endeffdate  <= DateTime(Today()), 255, 8388608 )" x="15" y="6" height="58" width="1167" format="[general]" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes") 

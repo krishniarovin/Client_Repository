@@ -1,0 +1,50 @@
+$PBExportHeader$d_search_client_selected.srd
+release 7;
+datawindow(units=0 timer_interval=0 color=80269524 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=172 color="536870912" )
+table(column=(type=char(7) updatewhereclause=yes name=client_clntid dbname="Client.ClntID" )
+ column=(type=char(25) updatewhereclause=yes name=officetype_officetypedesc dbname="OfficeType.OfficeTypeDesc" )
+ column=(type=char(120) updatewhereclause=yes name=person_persfullname dbname="Person.PersFullName" )
+ column=(type=char(30) updatewhereclause=yes name=person_perslastname dbname="Person.PersLastName" )
+ column=(type=char(90) updatewhereclause=yes name=classification_classdesc dbname="Classification.ClassDesc" )
+ column=(type=char(60) updatewhereclause=yes name=company_compshortname dbname="Company.CompShortName" )
+ column=(type=char(20) updatewhereclause=yes name=phhmanager_phonenbr dbname="PHHManager.PhoneNbr" )
+ column=(type=char(20) updatewhereclause=yes name=phhmanager_faxnbr dbname="PHHManager.FaxNbr" )
+ column=(type=datetime updatewhereclause=yes name=client_bgneffdate dbname="Client.BgnEffDate" )
+ column=(type=datetime updatewhereclause=yes name=client_endeffdate dbname="Client.EndEffDate" )
+ column=(type=char(20) updatewhereclause=yes name=clientphone_phonenbr dbname="ClientPhone.PhoneNbr" )
+ retrieve="  SELECT dbo.Client.ClntID,   
+         dbo.OfficeType.OfficeTypeDesc,   
+         dbo.Person.PersFullName,   
+         dbo.Person.PersLastName,   
+         dbo.Classification.ClassDesc,   
+         dbo.Company.CompShortName,   
+         dbo.PHHManager.PhoneNbr,   
+         dbo.PHHManager.FaxNbr,   
+         dbo.Client.BgnEffDate,   
+         dbo.Client.EndEffDate,
+			dbo.ClientPhone.PhoneNbr   
+    FROM dbo.Client,   
+         dbo.Person,   
+         dbo.OfficeType,   
+         dbo.BusSrcXRef,   
+         dbo.Classification,   
+         dbo.Company,   
+         dbo.ClientBusContact,   
+         dbo.PHHManager,
+			dbo.ClientPhone  
+" )
+text(band=detail alignment="0" text="Selected Client" border="0" color="0" x="27" y="12" height="56" width="411"  name=t_1  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="2" tabsequence=32766 border="5" color="0" x="837" y="16" height="60" width="265" format="[general]"  name=client_clntid edit.limit=7 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="5" color="0" x="1687" y="16" height="60" width="905" format="[general]"  name=company_compshortname edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="2" tabsequence=32766 border="5" color="0" x="837" y="92" height="60" width="265" format="[general]"  name=officetype_officetypedesc edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="5" color="0" x="1687" y="92" height="60" width="905" format="[general]"  name=person_persfullname edit.limit=120 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Client ID:" border="0" color="0" x="494" y="16" height="56" width="325"  name=client_clntid_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Client Short Name:" border="0" color="0" x="1179" y="16" height="56" width="485"  name=company_compshortname_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Office Type:" border="0" color="0" x="494" y="92" height="56" width="325"  name=officetype_officetypedesc_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Account Manager:" border="0" color="0" x="1179" y="92" height="56" width="462"  name=person_persfullname_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )
+ 

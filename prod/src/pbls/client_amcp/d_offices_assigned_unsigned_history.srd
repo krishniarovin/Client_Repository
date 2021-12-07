@@ -1,0 +1,93 @@
+$PBExportHeader$d_offices_assigned_unsigned_history.srd
+release 7;
+datawindow(units=0 timer_interval=60000 color=16777215 processing=1 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=184 color="79741120" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="553648127" )
+table(column=(type=datetime updatewhereclause=yes name=office_begineffdate dbname="Office.BeginEffDate" )
+ column=(type=datetime updatewhereclause=yes name=office_endeffdate dbname="Office.EndEffDate" )
+ column=(type=char(3) updatewhereclause=yes name=office_brand dbname="Office.Brand" )
+ column=(type=char(2) updatewhereclause=yes name=office_state dbname="Office.State" )
+ column=(type=char(2) updatewhereclause=yes name=office_region dbname="Office.Region" )
+ column=(type=char(40) updatewhereclause=yes name=office_city dbname="Office.City" )
+ column=(type=char(11) updatewhereclause=yes name=office_zip dbname="Office.Zip" )
+ column=(type=char(60) updatewhereclause=yes name=office_officename dbname="Office.OfficeName" )
+ column=(type=long updatewhereclause=yes name=office_officeidnum dbname="Office.OfficeIDNum" )
+ column=(type=char(10) updatewhereclause=yes name=office_franchisenum dbname="Office.FranchiseNum" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=officeacctmanager_officeidnum dbname="OfficeAcctManager.OfficeIDNum" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=officeacctmanager_persidnum dbname="OfficeAcctManager.PersIDNum" )
+ column=(type=datetime update=yes updatewhereclause=yes key=yes name=officeacctmanager_begineffdate dbname="OfficeAcctManager.BeginEffDate" )
+ column=(type=datetime update=yes updatewhereclause=yes name=officeacctmanager_endeffdate dbname="OfficeAcctManager.EndEffDate" )
+ column=(type=long updatewhereclause=yes name=cc_saved dbname="cc_saved" )
+ retrieve="  SELECT dbo.Office.BeginEffDate,   
+         dbo.Office.EndEffDate,
+			dbo.Office.Brand,      
+         dbo.Office.State,   
+         dbo.Office.Region,   
+         dbo.Office.City,   
+         dbo.Office.Zip,   
+         dbo.Office.OfficeName,
+			dbo.Office.OfficeIDNum,   
+         dbo.Office.FranchiseNum,
+			dbo.OfficeAcctManager.OfficeIDNum,   
+         dbo.OfficeAcctManager.PersIDNum,   
+         dbo.OfficeAcctManager.BeginEffDate,   
+         dbo.OfficeAcctManager.EndEffDate,
+			1 as cc_saved   
+    FROM dbo.Office,   
+         dbo.OfficeAcctManager  
+   WHERE dbo.Office.OfficeIDNum = dbo.OfficeAcctManager.OfficeIDNum  
+	AND   dbo.OfficeAcctManager.PersIDNum = :PersIDNum
+" update="dbo.OfficeAcctManager" updatewhere=0 updatekeyinplace=no arguments=(("PersIDNum", number)) )
+text(band=header alignment="2" text="Assignment
+Effective
+Begin" border="6" color="0" x="9" y="8" height="168" width="311"  name=officeacctmanager_begineffdate_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Assignment
+Effective
+End" border="6" color="0" x="329" y="8" height="168" width="320"  name=officeacctmanager_endeffdate_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Franchise
+Number
+Part 1" border="6" color="0" x="658" y="8" height="168" width="274"  name=franchise_number_part_1_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Franchise
+Number
+Part 2" border="6" color="0" x="942" y="8" height="168" width="270"  name=franchise_number_part_2_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="
+
+Brand" border="6" color="0" x="1221" y="8" height="168" width="160"  name=office_brand_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="
+
+State" border="6" color="0" x="1390" y="8" height="168" width="146"  name=office_state_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="
+
+Region" border="6" color="0" x="1545" y="8" height="168" width="197"  name=office_region_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="
+
+City" border="6" color="0" x="1751" y="8" height="168" width="503"  name=office_city_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="
+
+Zip" border="6" color="0" x="2263" y="8" height="168" width="197"  name=office_zip_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="
+
+Office Name" border="6" color="0" x="2469" y="8" height="168" width="933"  name=office_officename_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Office
+Effective
+Start" border="6" color="0" x="3410" y="8" height="168" width="256"  name=t_2  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Office
+Effective
+End" border="6" color="0" x="3675" y="8" height="168" width="256"  name=t_1  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="1" expression="left( office_franchisenum ,6)"border="0" color="0~tif(date( officeacctmanager_endeffdate ) < today () or date(office_endeffdate) < today (),RGB(250,0,0),RGB(0,0,0))" x="658" y="4" height="60" width="274" format="[GENERAL]"  name=franchise_number_part_1  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0~tif(date( officeacctmanager_endeffdate ) < today () or date(office_endeffdate) < today (),RGB(250,0,0),RGB(0,0,0))" x="3675" y="4" height="60" width="256" format="mm/dd/yyyy"  name=office_endeffdate edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="0~tif(date( officeacctmanager_endeffdate ) < today () or date(office_endeffdate) < today (),RGB(250,0,0),RGB(0,0,0))" x="1751" y="4" height="60" width="503" format="[general]"  name=office_city  tag=" " edit.limit=40 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="0" color="0~tif(date( officeacctmanager_endeffdate ) < today () or date(office_endeffdate) < today (),RGB(250,0,0),RGB(0,0,0))" x="2263" y="4" height="60" width="197" format="[general]"  name=office_zip  tag=" " edit.limit=11 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="0" color="0~tif(date( officeacctmanager_endeffdate ) < today () or date(office_endeffdate) < today (),RGB(250,0,0),RGB(0,0,0))" x="2469" y="4" height="60" width="933" format="[general]"  name=office_officename  tag=" " edit.limit=60 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="0~tif(date( officeacctmanager_endeffdate ) < today () or date(office_endeffdate) < today (),RGB(250,0,0),RGB(0,0,0))" x="1390" y="4" height="60" width="146" format="[general]"  name=office_state  tag=" " edit.limit=2 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="0~tif(date( officeacctmanager_endeffdate ) < today () or date(office_endeffdate) < today (),RGB(250,0,0),RGB(0,0,0))" x="1545" y="4" height="60" width="197" format="[general]"  name=office_region  tag=" " edit.limit=2 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="0~tif(date( officeacctmanager_endeffdate ) < today () or date(office_endeffdate) < today (),RGB(250,0,0),RGB(0,0,0))" x="1221" y="4" height="60" width="160" format="[general]"  name=office_brand  tag=" " edit.limit=3 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="mid( office_franchisenum ,7,5)"border="0" color="0~tif(date( officeacctmanager_endeffdate ) < today (),RGB(250,0,0),RGB(0,0,0))" x="942" y="4" height="60" width="270" format="[GENERAL]"  name=franchise_number_part_2  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0~tif(date( officeacctmanager_endeffdate ) < today () or date(office_endeffdate) < today (),RGB(250,0,0),RGB(0,0,0))" x="3410" y="4" height="60" width="256" format="mm/dd/yyyy"  name=office_begineffdate edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=13 alignment="0" tabsequence=10 border="0" color="0~tif(date( officeacctmanager_endeffdate ) < today () or date(office_endeffdate) < today (),RGB(250,0,0),RGB(0,0,0))" x="9" y="4" height="60" width="311" format="mm/dd/yyyy" protect="0~tif(((year( date(  officeacctmanager_begineffdate  )) * 100) + month (date(  officeacctmanager_begineffdate  ))< (year(today()) * 100) + month(today())) and cc_saved=1,1,0 )"  name=officeacctmanager_begineffdate edit.name="MM/DD/YYYY" editmask.mask="mm/dd/yyyy" editmask.focusrectangle=no  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="16777215~tif(((year( date(  officeacctmanager_begineffdate  )) * 100) + month (date(  officeacctmanager_begineffdate  ))< (year(today()) * 100) + month(today())) and cc_saved=1,RGB(192,192,192),RGB(250,250,250) )" )
+column(band=detail id=14 alignment="0" tabsequence=20 border="0" color="0~tif(date( officeacctmanager_endeffdate ) < today () or date(office_endeffdate) < today (),RGB(250,0,0),RGB(0,0,0))" x="334" y="4" height="60" width="315" format="mm/dd/yyyy" protect="0~tif(((year( date(  officeacctmanager_endeffdate  )) * 100) + month (date(  officeacctmanager_endeffdate  ))< (year(today()) * 100) + month(today())) and cc_saved=1,1,0 )"  name=officeacctmanager_endeffdate edit.name="MM/DD/YYYY" editmask.mask="mm/dd/yyyy" editmask.focusrectangle=no  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="16777215~tif(((year( date(  officeacctmanager_endeffdate  )) * 100) + month (date(  officeacctmanager_endeffdate  ))< (year(today()) * 100) + month(today()) and cc_saved=1) ,RGB(192,192,192),RGB(250,250,250) )" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )
+ 

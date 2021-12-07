@@ -1,0 +1,23 @@
+$PBExportHeader$d_amcp_reports_acctmgrrpt_classification.srd
+release 7;
+datawindow(units=0 timer_interval=0 color=79741120 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=72 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=68 color="536870912" )
+table(column=(type=long update=yes updatewhereclause=yes key=yes name=classidnum dbname="Classification.ClassIDNum" )
+ column=(type=long update=yes updatewhereclause=yes name=classgrpidnum dbname="Classification.ClassGrpIDNum" )
+ column=(type=char(90) update=yes updatewhereclause=yes name=classdesc dbname="Classification.ClassDesc" )
+ column=(type=datetime update=yes updatewhereclause=yes name=bgneffdate dbname="Classification.BgnEffDate" )
+ column=(type=datetime update=yes updatewhereclause=yes name=endeffdate dbname="Classification.EndEffDate" )
+ column=(type=number update=yes updatewhereclause=yes name=amcprptexcluded dbname="Classification.AMCPRptExcluded" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"dbo.Classification~" ) COLUMN(NAME=~"dbo.Classification.ClassIDNum~") COLUMN(NAME=~"dbo.Classification.ClassGrpIDNum~") COLUMN(NAME=~"dbo.Classification.ClassDesc~") COLUMN(NAME=~"dbo.Classification.BgnEffDate~") COLUMN(NAME=~"dbo.Classification.EndEffDate~") COLUMN(NAME=~"dbo.Classification.AMCPRptExcluded~")WHERE(    EXP1 =~"dbo.Classification.ClassGrpIDNum~"   OP =~"=~"    EXP2 =~"24~" ) ) " update="dbo.Classification" updatewhere=1 updatekeyinplace=no  sort="classidnum A " )
+button(band=header text="Delete"filename=""action="0" border="0" color="0" x="1115" y="4" height="68" width="315" vtextalign="0" htextalign="0"  name=b_delete  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+button(band=header text="Add"filename=""action="0" border="0" color="0" x="782" y="4" height="68" width="315" vtextalign="0" htextalign="0"  name=b_add  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="1" text="Group ID" border="0" color="0" x="155" y="8" height="56" width="215"  name=classidnum_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Description" border="0" color="0" x="384" y="8" height="56" width="489"  name=classdesc_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="5" color="0" x="160" y="4" height="56" width="197" format="[general]"  name=classidnum edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=10 border="5" color="0" x="384" y="4" height="56" width="1179" format="[general]"  name=classdesc edit.limit=90 edit.case=any edit.autoselect=yes edit.required=yes edit.nilisnull=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )
+ 

@@ -1,0 +1,103 @@
+$PBExportHeader$d_amcp_rpt_offices_newly_signed.srd
+release 7;
+datawindow(units=0 timer_interval=60000 color=16777215 processing=1 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=324 color="16777215" )
+summary(height=0 color="536870912" )
+footer(height=68 color="536870912" )
+detail(height=76 color="536870912" )
+table(column=(type=datetime updatewhereclause=yes name=office_begineffdate dbname="Office.BeginEffDate" )
+ column=(type=datetime updatewhereclause=yes name=office_endeffdate dbname="Office.EndEffDate" )
+ column=(type=char(3) updatewhereclause=yes name=office_brand dbname="Office.Brand" )
+ column=(type=datetime updatewhereclause=yes name=clntfranchise_begineffdate dbname="ClntFranchise.BeginEffDate" )
+ column=(type=datetime updatewhereclause=yes name=clntfranchise_endeffdate dbname="ClntFranchise.EndEffDate" )
+ column=(type=char(7) updatewhereclause=yes name=clntfranchise_clntid dbname="ClntFranchise.ClntID" )
+ column=(type=datetime updatewhereclause=yes name=assignmentbegineffdate dbname="ClientBusContact.AssignmentBeginEffDate" )
+ column=(type=datetime updatewhereclause=yes name=assignmentendeffdate dbname="ClientBusContact.AssignmentEndEffDate" )
+ column=(type=char(30) updatewhereclause=yes name=person_acctmgrfirstname dbname="AcctMgrFirstName" )
+ column=(type=char(30) updatewhereclause=yes name=person_acctmgrlastname dbname="AcctMgrLastName" )
+ column=(type=char(120) updatewhereclause=yes name=person_acctmgrfullname dbname="AcctMgrFullName" )
+ column=(type=char(20) updatewhereclause=yes name=phhmanager_phonenbr dbname="PhoneNbr" )
+ column=(type=char(20) updatewhereclause=yes name=phhmanager_faxnbr dbname="FaxNbr" )
+ column=(type=long updatewhereclause=yes name=acctmanager_id dbname="PersIDNum" )
+ column=(type=char(10) updatewhereclause=yes name=office_franchisenum dbname="Office.FranchiseNum" )
+ column=(type=char(60) updatewhereclause=yes name=office_officename dbname="Office.OfficeName" )
+ retrieve="  SELECT dbo.Office.BeginEffDate,   
+         dbo.Office.EndEffDate,   
+         dbo.Office.Brand, 
+			dbo.ClntFranchise.BeginEffDate,
+			dbo.ClntFranchise.EndEffDate,  
+         dbo.ClntFranchise.ClntID,   
+         dbo.ClientBusContact.EffDate as AssignmentBeginEffDate,   
+         dbo.ClientBusContact.ExpDate as AssignmentEndEffDate,   
+         Person_a.PersFirstName as AcctMgrFirstName,   
+         Person_a.PersLastName as AcctMgrLastName,   
+         Person_a.PersFullName as AcctMgrFullName,   
+         PHHManager_a.PhoneNbr,   
+         PHHManager_a.FaxNbr, 
+         PHHManager_a.PersIDNum,
+			dbo.Office.FranchiseNum,
+			dbo.Office.OfficeName    
+    FROM dbo.Office,   
+         dbo.ClntFranchise,   
+         dbo.Client,   
+         dbo.ClientBusContact,   
+         dbo.Person Person_a,   
+         dbo.PHHManager PHHManager_a
+   WHERE ( dbo.Office.FranchiseNum = dbo.ClntFranchise.ClntFranchiseNum ) and  
+         ( dbo.ClntFranchise.ClntID = dbo.Client.ClntID ) and  
+         ( dbo.Client.ClntID = dbo.ClientBusContact.ClntID ) and  
+         ( dbo.ClientBusContact.PersIDNum = Person_a.PersIDNum ) and  
+         ( Person_a.PersIDNum = PHHManager_a.PersIDNum ) and  
+         ( dbo.ClntFranchise.BeginEffDate >= :RptStartDate ) AND  
+         ( PHHManager_a.ClassIDNum = 1041 ) AND
+				PHHManager_a.BeginEffDate in
+				( SELECT Max ( BeginEffDate )
+					FROM PHHManager
+					WHERE	PersIDNum = PHHManager_a.PersIDNum AND
+							BeginEffDate <> EndEffDate AND
+							BeginEffDate <= GetDate () )   
+" arguments=(("RptStartDate", datetime))  sort="assignmentbegineffdate D assignmentendeffdate D " )
+text(band=header alignment="2" text="
+Client
+ID" border="0" color="0" x="1851" y="140" height="168" width="247"  name=cf_clientid_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="
+
+Account Manager" border="0" color="0" x="2107" y="140" height="168" width="549"  name=t_3  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Office
+Effective
+Start" border="0" color="0" x="3333" y="140" height="168" width="256"  name=t_2  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Assignment
+Effective
+End" border="0" color="0" x="2999" y="140" height="168" width="320"  name=cf_endeffdate_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Franchise
+Number
+Part 2" border="0" color="0" x="283" y="140" height="168" width="251"  name=franchise_number_part_2_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Franchise
+Number
+Part 1" border="0" color="0" x="9" y="140" height="168" width="265"  name=franchise_number_part_1_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Office Name" border="0" color="0" x="544" y="252" height="56" width="736"  name=office_officename_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header alignment="2" expression="'Offices SIGNED Since ' + String ( Date ( RptStartDate ), 'mm/dd/yyyy')"border="0" color="0" x="544" y="8" height="188" width="736" format="[GENERAL]"  name=compute_4  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="Office
+Effective
+End" border="0" color="0" x="3598" y="140" height="168" width="256"  name=t_1  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="1" expression="left( office_franchisenum ,6)"border="0" color="0" x="9" y="8" height="60" width="265" format="[GENERAL]"  name=franchise_number_part_1  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="2" expression="string(   assignmentendeffdate ,'mm/dd/yyyy') "border="0" color="0~tif(date(office_endeffdate) < today (),RGB(250,0,0),RGB(0,0,0))" x="2999" y="8" height="60" width="320" format="[GENERAL]"  name=cf_endeffdate  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="2" expression="if(isnull( clntfranchise_clntid ),'UNSIGNED', clntfranchise_clntid )"border="0" color="0~tif(date(office_endeffdate) < today (),RGB(250,0,0),RGB(0,0,0))" x="1851" y="8" height="60" width="247" format="[GENERAL]"  name=cf_clientid  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="0" tabsequence=32766 border="0" color="0~tif(date(office_endeffdate) < today (),RGB(250,0,0),RGB(0,0,0))" x="2107" y="8" height="60" width="549" format="[general]"  name=person_acctmgrfullname edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="2" tabsequence=32766 border="0" color="0~tif(date(office_endeffdate) < today (),RGB(250,0,0),RGB(0,0,0))" x="3333" y="8" height="60" width="256" format="mm/dd/yyyy"  name=office_begineffdate edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="2" expression=" if(isnull(  assignmentbegineffdate ),'Unassigned',string(  assignmentbegineffdate ,'mm/dd/yyyy')) "border="0" color="0~tif(date(office_endeffdate) < today (),RGB(250,0,0),RGB(0,0,0))" x="2665" y="8" height="60" width="325" format="[GENERAL]"  name=cf_begineffdate  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="mid( office_franchisenum ,7,5)"border="0" color="0" x="283" y="8" height="60" width="251" format="[GENERAL]"  name=franchise_number_part_2  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=16 alignment="0" tabsequence=32766 border="0" color="0" x="544" y="8" height="60" width="736" format="[general]"  name=office_officename edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="2" tabsequence=32766 border="0" color="0~tif(date(office_endeffdate) < today (),RGB(250,0,0),RGB(0,0,0))" x="3598" y="8" height="60" width="256" format="mm/dd/yyyy"  name=office_endeffdate edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="0~tif(date(office_endeffdate) < today (),RGB(250,0,0),RGB(0,0,0))" x="1289" y="8" height="60" width="279" format="mm/dd/yyyy"  name=clntfranchise_begineffdate edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="0" x="1577" y="8" height="60" width="265" format="mm/dd/yyyy"  name=clntfranchise_endeffdate edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=footer alignment="0" expression="today()"border="0" color="0" x="9" y="4" height="56" width="265" format="mm/dd/yyyy"  name=date_1  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=footer alignment="1" expression="'Page ' + page() + ' of ' + pageCount()"border="0" color="0" x="3598" y="4" height="56" width="256" format="[general]"  name=page_1  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Assignment
+Effective
+Begin" border="0" color="0" x="2665" y="140" height="168" width="325"  name=cf_begineffdate_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="SIGNED Effective Start" border="0" color="0" x="1289" y="140" height="168" width="279"  name=clntfranchise_begineffdate_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="SIGNED Effective End" border="0" color="0" x="1577" y="140" height="168" width="265"  name=clntfranchise_endeffdate_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )
+ 

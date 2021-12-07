@@ -1,0 +1,37 @@
+$PBExportHeader$d_accountmanager_bcs_factors_comment.srd
+release 7;
+datawindow(units=0 timer_interval=0 color=80269524 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=576 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=beginyear dbname="BeginYear" )
+ column=(type=long updatewhereclause=yes name=beginmonth dbname="BeginMonth" )
+ column=(type=long updatewhereclause=yes name=endyear dbname="EndYear" )
+ column=(type=long updatewhereclause=yes name=endmonth dbname="EndMonth" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=bcsfactor dbname="AcctManagerBCSFactor.BCSFactor" )
+ column=(type=char(255) update=yes updatewhereclause=yes name=comment dbname="AcctManagerBCSFactor.Comment" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=persidnum dbname="AcctManagerBCSFactor.PersIDNum" )
+ column=(type=long updatewhereclause=yes name=bcsfactorpercent dbname="BCSFactorPercent" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=beginyearmonth dbname="AcctManagerBCSFactor.BeginYearMonth" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=endyearmonth dbname="AcctManagerBCSFactor.EndYearMonth" )
+ retrieve="SELECT  	( dbo.AcctManagerBCSFactor.BeginYearMonth / 100 ) as BeginYear,   
+		  	dbo.AcctManagerBCSFactor.BeginYearMonth - ( ( dbo.AcctManagerBCSFactor.BeginYearMonth / 100  ) * 100 ) as BeginMonth,  
+		  	( dbo.AcctManagerBCSFactor.EndYearMonth / 100 ) as EndYear,   
+		  	dbo.AcctManagerBCSFactor.EndYearMonth - ( ( dbo.AcctManagerBCSFactor.EndYearMonth / 100  ) * 100 ) as EndMonth,  
+		  	dbo.AcctManagerBCSFactor.BCSFactor ,
+		  	dbo.AcctManagerBCSFactor.Comment ,
+		  	dbo.AcctManagerBCSFactor.PersIDNum,
+		  	Convert ( Integer, dbo.AcctManagerBCSFactor.BCSFactor * 100 ) as BCSFactorPercent,
+			dbo.AcctManagerBCSFactor.BeginYearMonth,
+		  	dbo.AcctManagerBCSFactor.EndYearMonth    
+FROM 		dbo.AcctManagerBCSFactor      
+WHERE 	( dbo.AcctManagerBCSFactor.PersIDNum = :PersIDNum )  
+ORDER BY dbo.AcctManagerBCSFactor.BeginYearMonth DESC  " update="AcctManagerBCSFactor" updatewhere=0 updatekeyinplace=no arguments=(("PersIDNum", number))  sort="beginyearmonth D " )
+column(band=detail id=6 alignment="0" tabsequence=10 border="5" color="0" x="26" y="211" height="326" width="1349" format="[general]"  name=comment  tag=" User entered text describing the BCS Factor or changes to the BCS Factor." edit.limit=255 edit.case=any edit.autoselect=yes edit.nilisnull=yes edit.autovscroll=yes edit.vscrollbar=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=detail alignment="2" expression="string (  beginyear, '0000' ) + '/' + string ( beginmonth ,'00')"border="0" color="0" x="33" y="138" height="54" width="296" format="[GENERAL]"  name=cf_begin_yearmonth  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=detail alignment="2" text="Begin Year/Month" border="0" color="0" x="33" y="6" height="112" width="296"  name=cf_begin_yearmonth_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="2" expression="string (  endyear, '0000' ) + '/' + string ( endmonth ,'00')"border="0" color="0" x="366" y="138" height="54" width="296" format="[GENERAL]"  name=cf_end_yearmonth  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=detail alignment="2" text="End Year/Month" border="0" color="0" x="366" y="10" height="112" width="296"  name=cf_end_yearmonth_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )
+ 

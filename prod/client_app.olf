@@ -1,0 +1,26 @@
+.\src\pbls\client_app\*.sr?,.\src\build\client_app.pbl
+.\src\pbls\client_amcp\*.sr?,.\src\build\client_amcp.pbl,"AMCP.  New objects."
+.\src\pbls\client_amcp_reports\*.sr?,.\src\build\client_amcp_reports.pbl,"AMCP.  New objects."
+.\src\pbls\client_dw\*.sr?,.\src\build\client_dw.pbl
+.\src\pbls\client_func\*.sr?,.\src\build\client_func.pbl
+.\src\pbls\client_menu\*.sr?,.\src\build\client_menu.pbl
+.\src\pbls\client_reports\*.sr?,.\src\build\client_reports.pbl
+.\src\pbls\client_str\*.sr?,.\src\build\client_str.pbl
+.\src\pbls\client_uo\*.sr?,.\src\build\client_uo.pbl,"//!! Moved n_transaction to clnt_common.pbl"
+.\src\pbls\client_win\*.sr?,.\src\build\client_win.pbl
+.\src\pbls\clnt_common\*.sr?,.\src\build\clnt_common.pbl,"10/26/02.  New.  Objects common to client/clientinq applications."
+.\src\pbls\clnt_padlock\*.sr?,.\src\build\clnt_padlock.pbl,"10/26/02:  Migrated to PB 7."
+.\src\pbls\clnt_pfcapsrv\*.sr?,.\src\build\clnt_pfcapsrv.pbl,"10/26/02:  Migrated to PB 7."
+.\src\pbls\clnt_pfcdwsrv\*.sr?,.\src\build\clnt_pfcdwsrv.pbl,"10/26/02:  Migrated to PB 7."
+.\src\pbls\clnt_pfcmain\*.sr?,.\src\build\clnt_pfcmain.pbl,"10/26/02:  Migrated to PB 7."
+.\src\pbls\clnt_pfcutil\*.sr?,.\src\build\clnt_pfcutil.pbl,"10/26/02:  Migrated to PB 7."
+.\src\pbls\clnt_pfcwnsrv\*.sr?,.\src\build\clnt_pfcwnsrv.pbl,"10/26/02:  Migrated to PB 7."
+.\src\pbls\clnt_pfeapsrv\*.sr?,.\src\build\clnt_pfeapsrv.pbl,"10/26/02:  Migrated to PB 7."
+.\src\pbls\clnt_pfedwsrv\*.sr?,.\src\build\clnt_pfedwsrv.pbl,"10/26/02:  Migrated to PB 7."
+.\src\pbls\clnt_pfemain\*.sr?,.\src\build\clnt_pfemain.pbl,"10/26/02:  Migrated to PB 7."
+.\src\pbls\clnt_pfeutil\*.sr?,.\src\build\clnt_pfeutil.pbl,"10/26/02:  Migrated to PB 7."
+.\src\pbls\clnt_pfewnsrv\*.sr?,.\src\build\clnt_pfewnsrv.pbl,"10/26/02:  Migrated to PB 7."
+.\src\pbls\security\*.sr?,.\src\build\security.pbl
+.\src\pbls\testing\*.sr?,.\src\build\testing.pbl,"T06355"
+.\src\pbls\work\*.sr?,.\src\build\work.pbl
+.\src\pbls\work_trg\*.sr?,.\src\build\work_trg.pbl

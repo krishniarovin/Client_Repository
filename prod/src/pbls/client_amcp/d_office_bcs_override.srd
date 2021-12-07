@@ -1,0 +1,41 @@
+$PBExportHeader$d_office_bcs_override.srd
+release 7;
+datawindow(units=0 timer_interval=0 color=80269524 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=140 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=96 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=year dbname="Year" )
+ column=(type=long updatewhereclause=yes name=month dbname="Month" )
+ column=(type=long update=yes updatewhereclause=yes name=bcs dbname="OfficeBCS.BCS" )
+ column=(type=char(255) update=yes updatewhereclause=yes name=comment dbname="OfficeBCS.Comment" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=officeidnum dbname="OfficeBCS.OfficeIDNum" )
+ column=(type=datetime update=yes updatewhereclause=yes name=datemdfd dbname="OfficeBCS.DateMdfd" )
+ column=(type=long update=yes updatewhereclause=yes name=bcsytd dbname="OfficeBCS.BCSYTD" )
+ column=(type=long updatewhereclause=yes name=cc_saved dbname="cc_saved" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=yearmonth dbname="OfficeBCS.YearMonth" )
+ retrieve="  SELECT ( dbo.OfficeBCS.YearMonth / 100 ) as Year,   
+			dbo.OfficeBCS.YearMonth - ( ( dbo.OfficeBCS.YearMonth / 100  ) * 100 )   as Month,    
+         dbo.OfficeBCS.BCS,    
+         dbo.OfficeBCS.Comment,   
+         dbo.OfficeBCS.OfficeIDNum,
+			dbo.OfficeBCS.DateMdfd,
+			dbo.OfficeBCS.BCSYTD as BCSYTD,
+			1 as cc_saved,
+			dbo.OfficeBCS.YearMonth 
+    FROM dbo.OfficeBCS  
+   WHERE dbo.OfficeBCS.OfficeIDNum = :OfficeIDNum   
+ORDER BY dbo.OfficeBCS.YearMonth DESC
+" update="OfficeBCS" updatewhere=0 updatekeyinplace=no arguments=(("OfficeIDNum", number))  sort="year D month D " )
+text(band=header alignment="2" text="Month" border="0" color="0" x="297" y="76" height="56" width="165"  name=month_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Year" border="0" color="0" x="123" y="76" height="56" width="165"  name=year_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="YTD" border="0" color="0" x="777" y="76" height="56" width="169"  name=t_4  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="BCS" border="0" color="0" x="507" y="12" height="56" width="471"  name=bcs_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Monthly" border="0" color="0" x="517" y="76" height="56" width="219"  name=t_3  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=20 border="5" color="0" x="320" y="12" height="64" width="114" format="[General]" protect="0~tif(cc_saved=1,1,0)"  name=month  tag=" Calendar Month to which the amounts apply." edit.limit=0 edit.case=any edit.autoselect=yes edit.required=yes edit.nilisnull=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="16777215~tif(cc_saved=1,RGB(192,192,192),RGB(250,250,250))" )
+column(band=detail id=1 alignment="1" tabsequence=10 border="5" color="0" x="123" y="12" height="64" width="165" format="[General]" protect="0~tif(cc_saved=1,1,0)"  name=year  tag="Calendar Year to which the amounts apply." edit.limit=0 edit.case=any edit.autoselect=yes edit.required=yes edit.nilisnull=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="16777215~tif(cc_saved=1,RGB(192,192,192),RGB(250,250,250))" )
+column(band=detail id=3 alignment="1" tabsequence=30 border="5" color="0" x="507" y="12" height="64" width="219" format="[General]"  name=bcs  tag=" BCS (Buyer Controlled Sales) are the real estate sales for a Account Manager for the Year/Month.  For Brands Account Managers, this is the sum of BCS for Offices (Franchise Numbers) associated with the Account Manager.  For Non-Brands Account Managers," edit.limit=0 edit.case=any edit.autoselect=yes edit.nilisnull=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=7 alignment="1" tabsequence=32766 border="5" color="0" x="782" y="12" height="64" width="219" format="[general]"  name=bcsytd edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )
+ 

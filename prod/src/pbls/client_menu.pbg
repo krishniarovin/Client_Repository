@@ -1,0 +1,7 @@
+Save Format v3.0(19990112)
+@begin Libraries
+ "client_menu.pbl" "";
+@end;
+@begin Objects
+ "m_bussrc_license.srm" "client_menu.pbl";
+@end;

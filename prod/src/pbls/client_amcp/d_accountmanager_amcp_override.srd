@@ -1,0 +1,98 @@
+$PBExportHeader$d_accountmanager_amcp_override.srd
+release 7;
+datawindow(units=0 timer_interval=0 color=80269524 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=200 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=92 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=year dbname="Year" )
+ column=(type=long updatewhereclause=yes name=month dbname="Month" )
+ column=(type=long update=yes updatewhereclause=yes name=bcs dbname="AcctManagerAMCP.BCS" )
+ column=(type=long update=yes updatewhereclause=yes name=avgbcs3mth dbname="AcctManagerAMCP.AvgBCS3Mth" )
+ column=(type=long update=yes updatewhereclause=yes name=avgbcs6mth dbname="AcctManagerAMCP.AvgBCS6Mth" )
+ column=(type=long update=yes updatewhereclause=yes name=avgbcs9mth dbname="AcctManagerAMCP.AvgBCS9Mth" )
+ column=(type=long update=yes updatewhereclause=yes name=avgbcs12mth dbname="AcctManagerAMCP.AvgBCS12Mth" )
+ column=(type=long update=yes updatewhereclause=yes name=leadscreated dbname="AcctManagerAMCP.LeadsCreated" )
+ column=(type=long update=yes updatewhereclause=yes name=loansclosed dbname="AcctManagerAMCP.LoansClosed" )
+ column=(type=char(255) update=yes updatewhereclause=yes name=comment dbname="AcctManagerAMCP.Comment" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=persidnum dbname="AcctManagerAMCP.PersIDNum" )
+ column=(type=datetime update=yes updatewhereclause=yes name=datemdfd dbname="AcctManagerAMCP.DateMdfd" )
+ column=(type=long updatewhereclause=yes name=bcsytd dbname="BCSYTD" )
+ column=(type=long updatewhereclause=yes name=avgbcs3mthytd dbname="AvgBCS3MthYTD" )
+ column=(type=long updatewhereclause=yes name=avgbcs6mthytd dbname="AvgBCS6MthYTD" )
+ column=(type=long updatewhereclause=yes name=avgbcs9mthytd dbname="AvgBCS9MthYTD" )
+ column=(type=long updatewhereclause=yes name=avgbcs12mthytd dbname="AvgBCS12MthYTD" )
+ column=(type=long updatewhereclause=yes name=leadscreatedytd dbname="LeadsCreatedYTD" )
+ column=(type=long updatewhereclause=yes name=loansclosedytd dbname="LoansClosedYTD" )
+ column=(type=long updatewhereclause=yes name=cc_saved dbname="cc_saved" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=yearmonth dbname="AcctManagerAMCP.YearMonth" )
+ retrieve="  SELECT ( AcctManagerAMCP.YearMonth / 100 ) as Year,   
+       	AcctManagerAMCP.YearMonth - ( ( AcctManagerAMCP.YearMonth / 100  ) * 100 )   as Month,   
+         AcctManagerAMCP.BCS,   
+         AcctManagerAMCP.AvgBCS3Mth,  
+         AcctManagerAMCP.AvgBCS6Mth,   
+         AcctManagerAMCP.AvgBCS9Mth,   
+         AcctManagerAMCP.AvgBCS12Mth,    
+         AcctManagerAMCP.LeadsCreated,   
+         AcctManagerAMCP.LoansClosed,   
+         AcctManagerAMCP.Comment,   
+         AcctManagerAMCP.PersIDNum,
+			AcctManagerAMCP.DateMdfd,
+			0 as BCSYTD,
+			0 as AvgBCS3MthYTD,
+			0 as AvgBCS6MthYTD,
+			0 as AvgBCS9MthYTD,
+			0 as AvgBCS12MthYTD,
+			0 as LeadsCreatedYTD,
+			0 as LoansClosedYTD,
+			1 as cc_saved,
+   		AcctManagerAMCP.YearMonth
+    FROM AcctManagerAMCP  
+   WHERE AcctManagerAMCP.PersIDNum = :PersIDNum   
+ORDER BY AcctManagerAMCP.YearMonth DESC
+" update="AcctManagerAMCP" updatewhere=0 updatekeyinplace=no arguments=(("PersIDNum", number))  sort="year D month D " )
+text(band=header alignment="2" text="Year" border="0" color="0" x="123" y="144" height="52" width="165"  name=year_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Month" border="0" color="0" x="297" y="144" height="52" width="165"  name=month_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Mth" border="0" color="0" x="475" y="144" height="52" width="219"  name=t_3  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="YTD" border="0" color="0" x="713" y="144" height="52" width="105"  name=t_4  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Mth" border="0" color="0" x="850" y="144" height="52" width="215"  name=t_1  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="YTD" border="0" color="0" x="1102" y="144" height="52" width="105"  name=t_2  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Mth" border="0" color="0" x="1239" y="144" height="52" width="219"  name=month_loans_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="YTD" border="0" color="0" x="1490" y="144" height="52" width="101"  name=year_loans_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Mth" border="0" color="0" x="1623" y="144" height="52" width="219"  name=t_6  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="YTD" border="0" color="0" x="1879" y="144" height="52" width="105"  name=t_7  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Mth" border="0" color="0" x="2016" y="144" height="52" width="215"  name=t_9  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="YTD" border="0" color="0" x="2263" y="144" height="52" width="105"  name=t_10  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Mth" border="0" color="0" x="2400" y="144" height="52" width="215"  name=t_12  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="YTD" border="0" color="0" x="2647" y="144" height="52" width="105"  name=t_13  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Mth" border="0" color="0" x="2789" y="144" height="52" width="219"  name=t_15  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="YTD" border="0" color="0" x="3040" y="144" height="52" width="105"  name=t_16  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Average BCS" border="2" color="0" x="1618" y="8" height="56" width="1541"  name=t_17  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="BCS" border="2" color="0" x="475" y="80" height="52" width="352"  name=bcs_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Leads Created" border="2" color="0" x="846" y="80" height="52" width="370"  name=leadscreated_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Loans Closed" border="2" color="0" x="1234" y="80" height="52" width="361"  name=loansclosed_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="3 Mth" border="2" color="0" x="1618" y="76" height="56" width="361"  name=t_5  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="BCS, Leads and Closed Loans for Selected Account Manager" border="0" color="0" x="23" y="8" height="56" width="1554"  name=t_18  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="12 Mth" border="2" color="0" x="2798" y="76" height="56" width="361"  name=t_14  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="9 Mth" border="2" color="0" x="2405" y="76" height="56" width="361"  name=t_11  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="6 Mth" border="2" color="0" x="2011" y="76" height="56" width="361"  name=t_8  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=20 border="5" color="0" x="320" y="12" height="60" width="114" format="[General]" protect="0~tif(cc_saved=1,1,0)"  name=month  tag=" Calendar Month to which the amounts apply." edit.limit=0 edit.case=any edit.autoselect=yes edit.required=yes edit.nilisnull=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="16777215~tif(cc_saved =1,RGB(192,192,192),RGB(250,250,250))" )
+column(band=detail id=1 alignment="1" tabsequence=10 border="5" color="0" x="123" y="12" height="60" width="165" format="[General]" protect="0~tif(cc_saved=1,1,0)"  name=year  tag="Calendar Year to which the amounts apply." edit.limit=0 edit.case=any edit.autoselect=yes edit.required=yes edit.nilisnull=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="16777215~tif(cc_saved =1,RGB(192,192,192),RGB(250,250,250))" )
+column(band=detail id=13 alignment="1" tabsequence=32766 border="5" color="0" x="645" y="12" height="60" width="183" format="[general]"  name=bcsytd edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=18 alignment="1" tabsequence=32766 border="5" color="0" x="1033" y="12" height="60" width="183" format="[general]"  name=leadscreatedytd edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=19 alignment="1" tabsequence=32766 border="5" color="0" x="1413" y="12" height="60" width="183" format="[general]"  name=loansclosedytd edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=15 alignment="1" tabsequence=32766 border="5" color="0" x="2190" y="12" height="60" width="183" format="[general]"  name=avgbcs6mthytd edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=16 alignment="1" tabsequence=32766 border="5" color="0" x="2583" y="12" height="60" width="183" format="[general]"  name=avgbcs9mthytd edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=17 alignment="1" tabsequence=32766 border="5" color="0" x="2976" y="12" height="60" width="183" format="[general]"  name=avgbcs12mthytd edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=14 alignment="1" tabsequence=32766 border="5" color="0" x="1797" y="12" height="60" width="183" format="[general]"  name=avgbcs3mthytd edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=3 alignment="1" tabsequence=30 border="5" color="0" x="475" y="12" height="60" width="151" format="[General]"  name=bcs  tag=" BCS (Buyer Controlled Sales) are the real estate sales for a Account Manager for the Year/Month.  For Brands Account Managers, this is the sum of BCS for Offices (Franchise Numbers) associated with the Account Manager.  For Non-Brands Account Managers," edit.limit=0 edit.case=any edit.autoselect=yes edit.required=yes edit.nilisnull=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=8 alignment="1" tabsequence=40 border="5" color="0" x="846" y="12" height="60" width="151" format="[General]"  name=leadscreated  tag="Count of Tier 1 Leads created for this Account Manager during the Year/Month.  Lead Created Date is used to identify the Year/Month." edit.limit=0 edit.case=any edit.autoselect=yes edit.required=yes edit.nilisnull=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=9 alignment="1" tabsequence=50 border="5" color="0" x="1234" y="12" height="60" width="151" format="[General]"  name=loansclosed  tag=" Count of Tier 1 Loans Closed for this Account Manager during the Year/Month.  Settlement Journal Date is used to identify the Year/Month." edit.limit=0 edit.case=any edit.autoselect=yes edit.required=yes edit.nilisnull=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=4 alignment="1" tabsequence=60 border="5" color="0" x="1618" y="12" height="60" width="151" format="[general]"  name=avgbcs3mth edit.limit=0 edit.case=any edit.autoselect=yes edit.required=yes edit.nilisnull=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=5 alignment="1" tabsequence=70 border="5" color="0" x="2011" y="12" height="60" width="151" format="[general]"  name=avgbcs6mth edit.limit=0 edit.case=any edit.autoselect=yes edit.required=yes edit.nilisnull=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=6 alignment="1" tabsequence=80 border="5" color="0" x="2405" y="12" height="60" width="151" format="[general]"  name=avgbcs9mth edit.limit=0 edit.case=any edit.autoselect=yes edit.required=yes edit.nilisnull=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=7 alignment="1" tabsequence=90 border="5" color="0" x="2798" y="12" height="60" width="151" format="[general]"  name=avgbcs12mth edit.limit=0 edit.case=any edit.autoselect=yes edit.required=yes edit.nilisnull=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+button(band=detail text="Client Detail"filename=""action="0" border="1" color="0" x="3182" y="4" height="80" width="283" vtextalign="0" htextalign="0"  name=b_clientdetail  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )
+ 

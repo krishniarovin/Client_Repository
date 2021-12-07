@@ -1,0 +1,48 @@
+$PBExportHeader$d_accountmanager_bcs_factors.srd
+release 7;
+datawindow(units=0 timer_interval=0 color=80269524 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=124 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=92 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=beginyear dbname="BeginYear" )
+ column=(type=long updatewhereclause=yes name=beginmonth dbname="BeginMonth" )
+ column=(type=long updatewhereclause=yes name=endyear dbname="EndYear" initial="2099" )
+ column=(type=long updatewhereclause=yes name=endmonth dbname="EndMonth" initial="12" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=bcsfactor dbname="AcctManagerBCSFactor.BCSFactor" )
+ column=(type=char(255) update=yes updatewhereclause=yes name=comment dbname="AcctManagerBCSFactor.Comment" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=persidnum dbname="AcctManagerBCSFactor.PersIDNum" )
+ column=(type=long updatewhereclause=yes name=bcsfactorpercent dbname="BCSFactorPercent" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=beginyearmonth dbname="AcctManagerBCSFactor.BeginYearMonth" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=endyearmonth dbname="AcctManagerBCSFactor.EndYearMonth" )
+ retrieve="SELECT  	( dbo.AcctManagerBCSFactor.BeginYearMonth / 100 ) as BeginYear,   
+		  	dbo.AcctManagerBCSFactor.BeginYearMonth - ( ( dbo.AcctManagerBCSFactor.BeginYearMonth / 100  ) * 100 ) as BeginMonth,  
+		  	( dbo.AcctManagerBCSFactor.EndYearMonth / 100 ) as EndYear,   
+		  	dbo.AcctManagerBCSFactor.EndYearMonth - ( ( dbo.AcctManagerBCSFactor.EndYearMonth / 100  ) * 100 ) as EndMonth,  
+		  	dbo.AcctManagerBCSFactor.BCSFactor ,
+		  	dbo.AcctManagerBCSFactor.Comment ,
+		  	dbo.AcctManagerBCSFactor.PersIDNum,
+		  	Convert ( Integer, dbo.AcctManagerBCSFactor.BCSFactor * 100 ) as BCSFactorPercent,
+			dbo.AcctManagerBCSFactor.BeginYearMonth,
+		  	dbo.AcctManagerBCSFactor.EndYearMonth    
+FROM 		dbo.AcctManagerBCSFactor      
+WHERE 	( dbo.AcctManagerBCSFactor.PersIDNum = :PersIDNum )  
+ORDER BY dbo.AcctManagerBCSFactor.BeginYearMonth DESC " update="AcctManagerBCSFactor" updatewhere=0 updatekeyinplace=no arguments=(("PersIDNum", number))  sort="beginyearmonth D " )
+text(band=header alignment="2" text="Begin
+ Year" border="0" color="0" x="123" y="12" height="112" width="165"  name=beginyear_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Begin
+Month" border="0" color="0" x="293" y="12" height="112" width="187"  name=beginmonth_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="End
+Year" border="0" color="0" x="521" y="12" height="112" width="169"  name=endyear_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="End
+Month" border="0" color="0" x="695" y="12" height="112" width="187"  name=endmonth_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="BCS
+ Factor" border="0" color="0" x="873" y="12" height="112" width="297"  name=bcsfactorpercent_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=10 border="5" color="0" x="123" y="12" height="64" width="165" format="#"  name=beginyear  tag=" Each BCS Factor is effective within a Year/Month date range.  For this BCS Factor this is the Year for the first Year/Month of the date range." edit.limit=0 edit.case=any edit.autoselect=yes edit.required=yes edit.nilisnull=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=2 alignment="1" tabsequence=20 border="5" color="0" x="329" y="12" height="64" width="110" format="#"  name=beginmonth  tag="  Each BCS Factor is effective within a Year/Month date range.  For this BCS Factor this is the Month for the first Year/Month of the date range." edit.limit=0 edit.case=any edit.autoselect=yes edit.required=yes edit.nilisnull=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=3 alignment="1" tabsequence=30 border="5" color="0" x="521" y="12" height="64" width="169" format="#"  name=endyear  tag="   Each BCS Factor is effective within a Year/Month date range.  For this BCS Factor this is the Year for the last Year/Month of the date range." edit.limit=0 edit.case=any edit.autoselect=yes edit.required=yes edit.nilisnull=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=4 alignment="1" tabsequence=40 border="5" color="0" x="731" y="12" height="64" width="110" format="#"  name=endmonth  tag="    Each BCS Factor is effective within a Year/Month date range.  For this BCS Factor this is the Month for the last Year/Month of the date range." edit.limit=0 edit.case=any edit.autoselect=yes edit.required=yes edit.nilisnull=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=8 alignment="1" tabsequence=50 border="5" color="0" x="937" y="12" height="64" width="169" format="#"  name=bcsfactorpercent edit.limit=0 edit.case=any edit.autoselect=yes edit.required=yes edit.nilisnull=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )
+ 

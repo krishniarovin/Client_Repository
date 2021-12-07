@@ -1,0 +1,1764 @@
+$PBExportHeader$m_report_amcp.srm
+forward
+global type m_report_amcp from m_client
+end type
+type m_client1 from menu within m_add
+end type
+type m_fhanumber from menu within m_add
+end type
+type m_franchise from menu within m_add
+end type
+type m_address from menu within m_add
+end type
+type m_phhphonenumber from menu within m_add
+end type
+type m_marketaccessagreement from menu within m_add
+end type
+type m_licensesinfo from menu within m_add
+end type
+type m_businesscontact from menu within m_add
+end type
+type m_ibmclient from menu within m_add
+end type
+type m_dash1 from menu within m_add
+end type
+type m_contract from menu within m_add
+end type
+type m_commission from menu within m_add
+end type
+type m_fee from menu within m_add
+end type
+type m_dash2 from menu within m_add
+end type
+type m_contact from menu within m_add
+end type
+type m_phonefaxpager from menu within m_add
+end type
+type m_email from menu within m_add
+end type
+type m_dash3 from menu within m_add
+end type
+type m_wiretransferinstructions from menu within m_add
+end type
+type m_dash4 from menu within m_add
+end type
+type m_agents from menu within m_add
+end type
+type m_-1 from menu within m_add
+end type
+type m_landscapeeligibility from menu within m_add
+end type
+type m_add from m_client`m_add within m_edit
+m_client1 m_client1
+m_fhanumber m_fhanumber
+m_franchise m_franchise
+m_address m_address
+m_phhphonenumber m_phhphonenumber
+m_marketaccessagreement m_marketaccessagreement
+m_licensesinfo m_licensesinfo
+m_businesscontact m_businesscontact
+m_ibmclient m_ibmclient
+m_dash1 m_dash1
+m_contract m_contract
+m_commission m_commission
+m_fee m_fee
+m_dash2 m_dash2
+m_contact m_contact
+m_phonefaxpager m_phonefaxpager
+m_email m_email
+m_dash3 m_dash3
+m_wiretransferinstructions m_wiretransferinstructions
+m_dash4 m_dash4
+m_agents m_agents
+m_-1 m_-1
+m_landscapeeligibility m_landscapeeligibility
+end type
+type m_insertrow from menu within m_edit
+end type
+type m_edit from m_client`m_edit within m_report_amcp
+m_insertrow m_insertrow
+end type
+end forward
+
+global type m_report_amcp from m_client
+end type
+global m_report_amcp m_report_amcp
+
+on m_report_amcp.create
+m_report_amcp=this
+call super::create
+this.text = "m_report_amcp"
+end on
+
+on m_report_amcp.destroy
+call super::destroy
+end on
+
+type m_file from m_client`m_file within m_report_amcp
+end type
+
+on m_file.create
+call super::create
+end on
+
+on m_file.destroy
+call super::destroy
+end on
+
+type m_close from m_client`m_close within m_file
+end type
+
+on m_close.create
+call super::create
+this.visible = true
+end on
+
+on m_close.destroy
+call super::destroy
+end on
+
+type m_dash11 from m_client`m_dash11 within m_file
+end type
+
+on m_dash11.create
+call super::create
+end on
+
+on m_dash11.destroy
+call super::destroy
+end on
+
+type m_notes from m_client`m_notes within m_file
+end type
+
+on m_notes.create
+call super::create
+end on
+
+on m_notes.destroy
+call super::destroy
+end on
+
+type m_saveas from m_client`m_saveas within m_file
+end type
+
+on m_saveas.create
+call super::create
+this.visible = true
+end on
+
+on m_saveas.destroy
+call super::destroy
+end on
+
+type m_dash12 from m_client`m_dash12 within m_file
+end type
+
+on m_dash12.create
+call super::create
+this.visible = true
+end on
+
+on m_dash12.destroy
+call super::destroy
+end on
+
+type m_print from m_client`m_print within m_file
+end type
+
+on m_print.create
+call super::create
+this.visible = true
+this.toolbaritemvisible = true
+end on
+
+on m_print.destroy
+call super::destroy
+end on
+
+type m_printpreview from m_client`m_printpreview within m_file
+end type
+
+on m_printpreview.create
+call super::create
+this.visible = true
+end on
+
+on m_printpreview.destroy
+call super::destroy
+end on
+
+type m_pagesetup from m_client`m_pagesetup within m_file
+end type
+
+on m_pagesetup.create
+call super::create
+this.visible = true
+end on
+
+on m_pagesetup.destroy
+call super::destroy
+end on
+
+type m_printscreen from m_client`m_printscreen within m_file
+end type
+
+on m_printscreen.create
+call super::create
+this.toolbaritemvisible = false
+end on
+
+on m_printscreen.destroy
+call super::destroy
+end on
+
+type m_dash13 from m_client`m_dash13 within m_file
+end type
+
+on m_dash13.create
+call super::create
+this.visible = true
+end on
+
+on m_dash13.destroy
+call super::destroy
+end on
+
+type m_exit from m_client`m_exit within m_file
+end type
+
+on m_exit.create
+call super::create
+this.toolbaritemvisible = false
+end on
+
+on m_exit.destroy
+call super::destroy
+end on
+
+type m_options from m_client`m_options within m_report_amcp
+end type
+
+on m_options.create
+call super::create
+end on
+
+on m_options.destroy
+call super::destroy
+end on
+
+type m_addanewprospect from m_client`m_addanewprospect within m_options
+end type
+
+on m_addanewprospect.create
+call super::create
+this.enabled = false
+this.toolbaritemvisible = false
+end on
+
+on m_addanewprospect.destroy
+call super::destroy
+end on
+
+type m_directcompanylookup from m_client`m_directcompanylookup within m_options
+end type
+
+on m_directcompanylookup.create
+call super::create
+this.toolbaritemvisible = false
+end on
+
+on m_directcompanylookup.destroy
+call super::destroy
+end on
+
+type m_companyview from m_client`m_companyview within m_options
+end type
+
+on m_companyview.create
+call super::create
+end on
+
+on m_companyview.destroy
+call super::destroy
+end on
+
+type m_companybusinesssourcexrefmaintena from m_client`m_companybusinesssourcexrefmaintena within m_options
+end type
+
+on m_companybusinesssourcexrefmaintena.create
+call super::create
+end on
+
+on m_companybusinesssourcexrefmaintena.destroy
+call super::destroy
+end on
+
+type m_generatemailinglabels from m_client`m_generatemailinglabels within m_options
+end type
+
+on m_generatemailinglabels.create
+call super::create
+end on
+
+on m_generatemailinglabels.destroy
+call super::destroy
+end on
+
+type m_maintainsupportdata from m_client`m_maintainsupportdata within m_options
+end type
+
+on m_maintainsupportdata.create
+call super::create
+this.toolbaritemvisible = false
+end on
+
+on m_maintainsupportdata.destroy
+call super::destroy
+end on
+
+type m_classificationmaintenance from m_client`m_classificationmaintenance within m_maintainsupportdata
+end type
+
+on m_classificationmaintenance.create
+call super::create
+this.toolbaritemvisible = false
+end on
+
+on m_classificationmaintenance.destroy
+call super::destroy
+end on
+
+type m_areamaintenance from m_client`m_areamaintenance within m_maintainsupportdata
+end type
+
+on m_areamaintenance.create
+call super::create
+this.visible = false
+this.toolbaritemvisible = false
+end on
+
+on m_areamaintenance.destroy
+call super::destroy
+end on
+
+type m_tiermaintenance from m_client`m_tiermaintenance within m_maintainsupportdata
+end type
+
+on m_tiermaintenance.create
+call super::create
+this.toolbaritemvisible = false
+end on
+
+on m_tiermaintenance.destroy
+call super::destroy
+end on
+
+type m_managermaintenance from m_client`m_managermaintenance within m_maintainsupportdata
+end type
+
+on m_managermaintenance.create
+call super::create
+this.toolbaritemvisible = false
+end on
+
+on m_managermaintenance.destroy
+call super::destroy
+end on
+
+type m_messagemaintenance from m_client`m_messagemaintenance within m_maintainsupportdata
+end type
+
+on m_messagemaintenance.create
+call super::create
+end on
+
+on m_messagemaintenance.destroy
+call super::destroy
+end on
+
+type m_privatelabelmaintenance from m_client`m_privatelabelmaintenance within m_maintainsupportdata
+end type
+
+on m_privatelabelmaintenance.create
+call super::create
+end on
+
+on m_privatelabelmaintenance.destroy
+call super::destroy
+end on
+
+type m_agentmaintenance from m_client`m_agentmaintenance within m_maintainsupportdata
+end type
+
+on m_agentmaintenance.create
+call super::create
+end on
+
+on m_agentmaintenance.destroy
+call super::destroy
+end on
+
+type m_landscapeclients from m_client`m_landscapeclients within m_maintainsupportdata
+end type
+
+on m_landscapeclients.create
+call super::create
+end on
+
+on m_landscapeclients.destroy
+call super::destroy
+end on
+
+type m_paymaa from m_client`m_paymaa within m_maintainsupportdata
+end type
+
+on m_paymaa.create
+call super::create
+end on
+
+on m_paymaa.destroy
+call super::destroy
+end on
+
+type m_privatelabelfees from m_client`m_privatelabelfees within m_maintainsupportdata
+end type
+
+on m_privatelabelfees.create
+call super::create
+end on
+
+on m_privatelabelfees.destroy
+call super::destroy
+end on
+
+type m_businessconsultantmaintenance from m_client`m_businessconsultantmaintenance within m_maintainsupportdata
+end type
+
+on m_businessconsultantmaintenance.create
+call super::create
+end on
+
+on m_businessconsultantmaintenance.destroy
+call super::destroy
+end on
+
+type m_reports from m_client`m_reports within m_options
+end type
+
+on m_reports.create
+call super::create
+end on
+
+on m_reports.destroy
+call super::destroy
+end on
+
+type m_refresh from m_client`m_refresh within m_options
+end type
+
+on m_refresh.create
+call super::create
+end on
+
+on m_refresh.destroy
+call super::destroy
+end on
+
+type m_amcpmaintenance from m_client`m_amcpmaintenance within m_options
+end type
+
+on m_amcpmaintenance.create
+call super::create
+end on
+
+on m_amcpmaintenance.destroy
+call super::destroy
+end on
+
+type m_2 from m_client`m_2 within m_amcpmaintenance
+end type
+
+on m_2.create
+call super::create
+end on
+
+on m_2.destroy
+call super::destroy
+end on
+
+type m_clientamcpmaintenance from m_client`m_clientamcpmaintenance within m_amcpmaintenance
+end type
+
+on m_clientamcpmaintenance.create
+call super::create
+end on
+
+on m_clientamcpmaintenance.destroy
+call super::destroy
+end on
+
+type m_3 from m_client`m_3 within m_amcpmaintenance
+end type
+
+on m_3.create
+call super::create
+end on
+
+on m_3.destroy
+call super::destroy
+end on
+
+type m_amcp from m_client`m_amcp within m_report_amcp
+end type
+
+on m_amcp.create
+call super::create
+this.visible = true
+end on
+
+on m_amcp.destroy
+call super::destroy
+end on
+
+type m_accountmanagers from m_client`m_accountmanagers within m_amcp
+end type
+
+on m_accountmanagers.create
+call super::create
+end on
+
+on m_accountmanagers.destroy
+call super::destroy
+end on
+
+type m_1 from m_client`m_1 within m_amcp
+end type
+
+on m_1.create
+call super::create
+end on
+
+on m_1.destroy
+call super::destroy
+end on
+
+type m_officeamcpmaintenance from m_client`m_officeamcpmaintenance within m_amcp
+end type
+
+on m_officeamcpmaintenance.create
+call super::create
+end on
+
+on m_officeamcpmaintenance.destroy
+call super::destroy
+end on
+
+type m_amcpreports from m_client`m_amcpreports within m_amcp
+end type
+
+on m_amcpreports.create
+call super::create
+end on
+
+on m_amcpreports.destroy
+call super::destroy
+end on
+
+type m_edit from m_client`m_edit within m_report_amcp
+m_insertrow m_insertrow
+end type
+
+on m_edit.create
+call super::create
+this.visible = true
+this.m_insertrow=create m_insertrow
+this.Item[UpperBound(this.Item)+1]=this.m_insertrow
+end on
+
+on m_edit.destroy
+call super::destroy
+destroy(this.m_insertrow)
+end on
+
+type m_add from m_client`m_add within m_edit
+m_client1 m_client1
+m_fhanumber m_fhanumber
+m_franchise m_franchise
+m_address m_address
+m_phhphonenumber m_phhphonenumber
+m_marketaccessagreement m_marketaccessagreement
+m_licensesinfo m_licensesinfo
+m_businesscontact m_businesscontact
+m_ibmclient m_ibmclient
+m_dash1 m_dash1
+m_contract m_contract
+m_commission m_commission
+m_fee m_fee
+m_dash2 m_dash2
+m_contact m_contact
+m_phonefaxpager m_phonefaxpager
+m_email m_email
+m_dash3 m_dash3
+m_wiretransferinstructions m_wiretransferinstructions
+m_dash4 m_dash4
+m_agents m_agents
+m_-1 m_-1
+m_landscapeeligibility m_landscapeeligibility
+end type
+
+on m_add.create
+call super::create
+this.visible = false
+this.m_client1=create m_client1
+this.m_fhanumber=create m_fhanumber
+this.m_franchise=create m_franchise
+this.m_address=create m_address
+this.m_phhphonenumber=create m_phhphonenumber
+this.m_marketaccessagreement=create m_marketaccessagreement
+this.m_licensesinfo=create m_licensesinfo
+this.m_businesscontact=create m_businesscontact
+this.m_ibmclient=create m_ibmclient
+this.m_dash1=create m_dash1
+this.m_contract=create m_contract
+this.m_commission=create m_commission
+this.m_fee=create m_fee
+this.m_dash2=create m_dash2
+this.m_contact=create m_contact
+this.m_phonefaxpager=create m_phonefaxpager
+this.m_email=create m_email
+this.m_dash3=create m_dash3
+this.m_wiretransferinstructions=create m_wiretransferinstructions
+this.m_dash4=create m_dash4
+this.m_agents=create m_agents
+this.m_-1=create m_-1
+this.m_landscapeeligibility=create m_landscapeeligibility
+this.Item[UpperBound(this.Item)+1]=this.m_client1
+this.Item[UpperBound(this.Item)+1]=this.m_fhanumber
+this.Item[UpperBound(this.Item)+1]=this.m_franchise
+this.Item[UpperBound(this.Item)+1]=this.m_address
+this.Item[UpperBound(this.Item)+1]=this.m_phhphonenumber
+this.Item[UpperBound(this.Item)+1]=this.m_marketaccessagreement
+this.Item[UpperBound(this.Item)+1]=this.m_licensesinfo
+this.Item[UpperBound(this.Item)+1]=this.m_businesscontact
+this.Item[UpperBound(this.Item)+1]=this.m_ibmclient
+this.Item[UpperBound(this.Item)+1]=this.m_dash1
+this.Item[UpperBound(this.Item)+1]=this.m_contract
+this.Item[UpperBound(this.Item)+1]=this.m_commission
+this.Item[UpperBound(this.Item)+1]=this.m_fee
+this.Item[UpperBound(this.Item)+1]=this.m_dash2
+this.Item[UpperBound(this.Item)+1]=this.m_contact
+this.Item[UpperBound(this.Item)+1]=this.m_phonefaxpager
+this.Item[UpperBound(this.Item)+1]=this.m_email
+this.Item[UpperBound(this.Item)+1]=this.m_dash3
+this.Item[UpperBound(this.Item)+1]=this.m_wiretransferinstructions
+this.Item[UpperBound(this.Item)+1]=this.m_dash4
+this.Item[UpperBound(this.Item)+1]=this.m_agents
+this.Item[UpperBound(this.Item)+1]=this.m_-1
+this.Item[UpperBound(this.Item)+1]=this.m_landscapeeligibility
+end on
+
+on m_add.destroy
+call super::destroy
+destroy(this.m_client1)
+destroy(this.m_fhanumber)
+destroy(this.m_franchise)
+destroy(this.m_address)
+destroy(this.m_phhphonenumber)
+destroy(this.m_marketaccessagreement)
+destroy(this.m_licensesinfo)
+destroy(this.m_businesscontact)
+destroy(this.m_ibmclient)
+destroy(this.m_dash1)
+destroy(this.m_contract)
+destroy(this.m_commission)
+destroy(this.m_fee)
+destroy(this.m_dash2)
+destroy(this.m_contact)
+destroy(this.m_phonefaxpager)
+destroy(this.m_email)
+destroy(this.m_dash3)
+destroy(this.m_wiretransferinstructions)
+destroy(this.m_dash4)
+destroy(this.m_agents)
+destroy(this.m_-1)
+destroy(this.m_landscapeeligibility)
+end on
+
+event m_add::clicked;return
+end event
+
+type m_save from m_client`m_save within m_edit
+end type
+
+on m_save.create
+call super::create
+this.toolbaritemvisible = true
+end on
+
+on m_save.destroy
+call super::destroy
+end on
+
+type m_delete from m_client`m_delete within m_edit
+end type
+
+on m_delete.create
+call super::create
+this.toolbaritemvisible = true
+end on
+
+on m_delete.destroy
+call super::destroy
+end on
+
+event m_delete::clicked;//////////////////////////////////////////////////////////////////////////////
+//
+//	Description:	OVERRIDE the ancestor script.
+//	
+//
+//////////////////////////////////////////////////////////////////////////////
+//	
+//	Revision History
+//	AMCP	LANelson	10/26/2002	Trigger the dw control event.
+//
+//////////////////////////////////////////////////////////////////////////////
+
+of_SendMessage('pfc_deleterow')
+end event
+
+type m_undelete from m_client`m_undelete within m_edit
+end type
+
+on m_undelete.create
+call super::create
+this.visible = false
+end on
+
+on m_undelete.destroy
+call super::destroy
+end on
+
+type m_- from m_client`m_- within m_edit
+end type
+
+on m_-.create
+call super::create
+this.visible = false
+end on
+
+on m_-.destroy
+call super::destroy
+end on
+
+type m_undo from m_client`m_undo within m_edit
+end type
+
+on m_undo.create
+call super::create
+end on
+
+on m_undo.destroy
+call super::destroy
+end on
+
+type m_cut from m_client`m_cut within m_edit
+end type
+
+on m_cut.create
+call super::create
+this.visible = false
+end on
+
+on m_cut.destroy
+call super::destroy
+end on
+
+type m_copy from m_client`m_copy within m_edit
+end type
+
+on m_copy.create
+call super::create
+this.visible = false
+end on
+
+on m_copy.destroy
+call super::destroy
+end on
+
+type m_paste from m_client`m_paste within m_edit
+end type
+
+on m_paste.create
+call super::create
+this.visible = false
+end on
+
+on m_paste.destroy
+call super::destroy
+end on
+
+type m_clear from m_client`m_clear within m_edit
+end type
+
+on m_clear.create
+call super::create
+this.visible = false
+end on
+
+on m_clear.destroy
+call super::destroy
+end on
+
+type m_dash22 from m_client`m_dash22 within m_edit
+end type
+
+on m_dash22.create
+call super::create
+this.visible = false
+end on
+
+on m_dash22.destroy
+call super::destroy
+end on
+
+type m_selectall from m_client`m_selectall within m_edit
+end type
+
+on m_selectall.create
+call super::create
+this.visible = false
+end on
+
+on m_selectall.destroy
+call super::destroy
+end on
+
+type m_dash23 from m_client`m_dash23 within m_edit
+end type
+
+on m_dash23.create
+call super::create
+this.visible = false
+end on
+
+on m_dash23.destroy
+call super::destroy
+end on
+
+type m_find from m_client`m_find within m_edit
+end type
+
+on m_find.create
+call super::create
+this.visible = false
+end on
+
+on m_find.destroy
+call super::destroy
+end on
+
+type m_replace from m_client`m_replace within m_edit
+end type
+
+on m_replace.create
+call super::create
+this.visible = false
+end on
+
+on m_replace.destroy
+call super::destroy
+end on
+
+type m_view from m_client`m_view within m_report_amcp
+end type
+
+on m_view.create
+call super::create
+this.visible = true
+end on
+
+on m_view.destroy
+call super::destroy
+end on
+
+type m_ruler from m_client`m_ruler within m_view
+end type
+
+on m_ruler.create
+call super::create
+this.visible = false
+end on
+
+on m_ruler.destroy
+call super::destroy
+end on
+
+type m_dash321 from m_client`m_dash321 within m_view
+end type
+
+on m_dash321.create
+call super::create
+this.visible = false
+end on
+
+on m_dash321.destroy
+call super::destroy
+end on
+
+type m_clearcriteria from m_client`m_clearcriteria within m_view
+end type
+
+on m_clearcriteria.create
+call super::create
+this.visible = true
+end on
+
+on m_clearcriteria.destroy
+call super::destroy
+end on
+
+event m_clearcriteria::clicked;of_sendmessage("ue_clearcriteria")
+end event
+
+type m_dash31 from m_client`m_dash31 within m_view
+end type
+
+on m_dash31.create
+call super::create
+this.visible = false
+end on
+
+on m_dash31.destroy
+call super::destroy
+end on
+
+type m_largeicon from m_client`m_largeicon within m_view
+end type
+
+on m_largeicon.create
+call super::create
+end on
+
+on m_largeicon.destroy
+call super::destroy
+end on
+
+type m_smallicons from m_client`m_smallicons within m_view
+end type
+
+on m_smallicons.create
+call super::create
+end on
+
+on m_smallicons.destroy
+call super::destroy
+end on
+
+type m_list from m_client`m_list within m_view
+end type
+
+on m_list.create
+call super::create
+end on
+
+on m_list.destroy
+call super::destroy
+end on
+
+type m_details from m_client`m_details within m_view
+end type
+
+on m_details.create
+call super::create
+end on
+
+on m_details.destroy
+call super::destroy
+end on
+
+type m_dash32 from m_client`m_dash32 within m_view
+end type
+
+on m_dash32.create
+call super::create
+end on
+
+on m_dash32.destroy
+call super::destroy
+end on
+
+type m_arrangeicons from m_client`m_arrangeicons within m_view
+end type
+
+on m_arrangeicons.create
+call super::create
+end on
+
+on m_arrangeicons.destroy
+call super::destroy
+end on
+
+type m_by1 from m_client`m_by1 within m_arrangeicons
+end type
+
+on m_by1.create
+call super::create
+end on
+
+on m_by1.destroy
+call super::destroy
+end on
+
+type m_dash33 from m_client`m_dash33 within m_arrangeicons
+end type
+
+on m_dash33.create
+call super::create
+end on
+
+on m_dash33.destroy
+call super::destroy
+end on
+
+type m_autoarrange from m_client`m_autoarrange within m_arrangeicons
+end type
+
+on m_autoarrange.create
+call super::create
+end on
+
+on m_autoarrange.destroy
+call super::destroy
+end on
+
+type m_dash34 from m_client`m_dash34 within m_view
+end type
+
+on m_dash34.create
+call super::create
+end on
+
+on m_dash34.destroy
+call super::destroy
+end on
+
+type m_first from m_client`m_first within m_view
+end type
+
+on m_first.create
+call super::create
+this.visible = false
+end on
+
+on m_first.destroy
+call super::destroy
+end on
+
+type m_nextpage from m_client`m_nextpage within m_view
+end type
+
+on m_nextpage.create
+call super::create
+this.visible = false
+end on
+
+on m_nextpage.destroy
+call super::destroy
+end on
+
+type m_priorpage from m_client`m_priorpage within m_view
+end type
+
+on m_priorpage.create
+call super::create
+this.visible = false
+end on
+
+on m_priorpage.destroy
+call super::destroy
+end on
+
+type m_lastpage from m_client`m_lastpage within m_view
+end type
+
+on m_lastpage.create
+call super::create
+this.visible = false
+end on
+
+on m_lastpage.destroy
+call super::destroy
+end on
+
+type m_dash35 from m_client`m_dash35 within m_view
+end type
+
+on m_dash35.create
+call super::create
+end on
+
+on m_dash35.destroy
+call super::destroy
+end on
+
+type m_sort from m_client`m_sort within m_view
+end type
+
+on m_sort.create
+call super::create
+end on
+
+on m_sort.destroy
+call super::destroy
+end on
+
+type m_filter from m_client`m_filter within m_view
+end type
+
+on m_filter.create
+call super::create
+end on
+
+on m_filter.destroy
+call super::destroy
+end on
+
+type m_dash36 from m_client`m_dash36 within m_view
+end type
+
+on m_dash36.create
+call super::create
+this.visible = false
+end on
+
+on m_dash36.destroy
+call super::destroy
+end on
+
+type m_zoom from m_client`m_zoom within m_view
+end type
+
+on m_zoom.create
+call super::create
+this.visible = false
+end on
+
+on m_zoom.destroy
+call super::destroy
+end on
+
+type m_insert from m_client`m_insert within m_report_amcp
+end type
+
+on m_insert.create
+call super::create
+end on
+
+on m_insert.destroy
+call super::destroy
+end on
+
+type m_insertfile from m_client`m_insertfile within m_insert
+end type
+
+on m_insertfile.create
+call super::create
+end on
+
+on m_insertfile.destroy
+call super::destroy
+end on
+
+type m_picture from m_client`m_picture within m_insert
+end type
+
+on m_picture.create
+call super::create
+end on
+
+on m_picture.destroy
+call super::destroy
+end on
+
+type m_dash41 from m_client`m_dash41 within m_insert
+end type
+
+on m_dash41.create
+call super::create
+end on
+
+on m_dash41.destroy
+call super::destroy
+end on
+
+type m_object from m_client`m_object within m_insert
+end type
+
+on m_object.create
+call super::create
+end on
+
+on m_object.destroy
+call super::destroy
+end on
+
+type m_tools from m_client`m_tools within m_report_amcp
+end type
+
+on m_tools.create
+call super::create
+end on
+
+on m_tools.destroy
+call super::destroy
+end on
+
+type m_toolbars from m_client`m_toolbars within m_tools
+end type
+
+on m_toolbars.create
+call super::create
+end on
+
+on m_toolbars.destroy
+call super::destroy
+end on
+
+type m_window from m_client`m_window within m_report_amcp
+end type
+
+on m_window.create
+call super::create
+end on
+
+on m_window.destroy
+call super::destroy
+end on
+
+type m_cascade from m_client`m_cascade within m_window
+end type
+
+on m_cascade.create
+call super::create
+end on
+
+on m_cascade.destroy
+call super::destroy
+end on
+
+type m_tilehorizontal from m_client`m_tilehorizontal within m_window
+end type
+
+on m_tilehorizontal.create
+call super::create
+end on
+
+on m_tilehorizontal.destroy
+call super::destroy
+end on
+
+type m_tilevertical from m_client`m_tilevertical within m_window
+end type
+
+on m_tilevertical.create
+call super::create
+end on
+
+on m_tilevertical.destroy
+call super::destroy
+end on
+
+type m_layer from m_client`m_layer within m_window
+end type
+
+on m_layer.create
+call super::create
+end on
+
+on m_layer.destroy
+call super::destroy
+end on
+
+type m_dash51 from m_client`m_dash51 within m_window
+end type
+
+on m_dash51.create
+call super::create
+end on
+
+on m_dash51.destroy
+call super::destroy
+end on
+
+type m_minimizeall from m_client`m_minimizeall within m_window
+end type
+
+on m_minimizeall.create
+call super::create
+end on
+
+on m_minimizeall.destroy
+call super::destroy
+end on
+
+type m_undoarrange from m_client`m_undoarrange within m_window
+end type
+
+on m_undoarrange.create
+call super::create
+end on
+
+on m_undoarrange.destroy
+call super::destroy
+end on
+
+type m_help from m_client`m_help within m_report_amcp
+end type
+
+on m_help.create
+call super::create
+end on
+
+on m_help.destroy
+call super::destroy
+end on
+
+type m_helptopics from m_client`m_helptopics within m_help
+end type
+
+on m_helptopics.create
+call super::create
+end on
+
+on m_helptopics.destroy
+call super::destroy
+end on
+
+type m_dash61 from m_client`m_dash61 within m_help
+end type
+
+on m_dash61.create
+call super::create
+end on
+
+on m_dash61.destroy
+call super::destroy
+end on
+
+type m_about from m_client`m_about within m_help
+end type
+
+on m_about.create
+call super::create
+end on
+
+on m_about.destroy
+call super::destroy
+end on
+
+type m_client1 from menu within m_add
+end type
+
+on m_client1.create
+call super::create
+this.text = "C&lient"
+end on
+
+event clicked;w_update_company.ii_add_option = 1
+
+w_update_company.Event pfe_add()
+end event
+
+on m_client1.destroy
+call super::destroy
+end on
+
+type m_fhanumber from menu within m_add
+end type
+
+event clicked;w_update_company.ii_add_option = 23
+
+w_update_company.Event pfe_add()
+end event
+
+on m_fhanumber.create
+call super::create
+this.text = "FHA Number"
+end on
+
+on m_fhanumber.destroy
+call super::destroy
+end on
+
+type m_franchise from menu within m_add
+end type
+
+event clicked;w_update_company.ii_add_option = 22
+
+w_update_company.Event pfe_add()
+end event
+
+on m_franchise.create
+call super::create
+this.text = "Franchise"
+end on
+
+on m_franchise.destroy
+call super::destroy
+end on
+
+type m_address from menu within m_add
+end type
+
+on m_address.create
+call super::create
+this.text = "&Address"
+end on
+
+event clicked;w_update_company.ii_add_option = 2
+
+w_update_company.Event pfe_add()
+end event
+
+on m_address.destroy
+call super::destroy
+end on
+
+type m_phhphonenumber from menu within m_add
+end type
+
+on m_phhphonenumber.create
+call super::create
+this.text = "&PHH Phone Number"
+end on
+
+event clicked;w_update_company.ii_add_option = 3
+
+w_update_company.Event pfe_add()
+end event
+
+on m_phhphonenumber.destroy
+call super::destroy
+end on
+
+type m_marketaccessagreement from menu within m_add
+end type
+
+on m_marketaccessagreement.create
+call super::create
+this.text = "&Market Access Agreement"
+end on
+
+event clicked;w_update_company.ii_add_option = 4
+
+w_update_company.Event pfe_add()
+end event
+
+on m_marketaccessagreement.destroy
+call super::destroy
+end on
+
+type m_licensesinfo from menu within m_add
+end type
+
+on m_licensesinfo.create
+call super::create
+this.text = "L&icenses Info."
+end on
+
+event clicked;// Added by Eugene Potakh 7/15/1998.
+w_update_company.ii_add_option = 12
+
+w_update_company.Event pfe_add()
+// End of add 7/15/1998.
+end event
+
+on m_licensesinfo.destroy
+call super::destroy
+end on
+
+type m_businesscontact from menu within m_add
+end type
+
+event clicked;// Added by Eugene Potakh 8/6/1998.
+w_update_company.ii_add_option = 13
+
+w_update_company.Event pfe_add()
+// End of add 8/6/1998.
+end event
+
+on m_businesscontact.create
+call super::create
+this.text = "&Business Contact"
+end on
+
+on m_businesscontact.destroy
+call super::destroy
+end on
+
+type m_ibmclient from menu within m_add
+end type
+
+event clicked;// Added by Allwyn Pinto 04/01/1999.
+w_update_company.ii_add_option = 15
+
+w_update_company.Event pfe_add()
+// End of add 04/01/1999.
+end event
+
+on m_ibmclient.create
+call super::create
+this.text = "IBM &Client"
+end on
+
+on m_ibmclient.destroy
+call super::destroy
+end on
+
+type m_dash1 from menu within m_add
+end type
+
+on m_dash1.create
+call super::create
+this.text = "-"
+end on
+
+on m_dash1.destroy
+call super::destroy
+end on
+
+type m_contract from menu within m_add
+end type
+
+on m_contract.create
+call super::create
+this.text = "Con&tract"
+end on
+
+event clicked;w_update_company.ii_add_option = 5
+
+w_update_company.Event pfe_add()
+end event
+
+on m_contract.destroy
+call super::destroy
+end on
+
+type m_commission from menu within m_add
+end type
+
+on m_commission.create
+call super::create
+this.text = "Co&mmission"
+end on
+
+event clicked;w_update_company.ii_add_option = 6
+
+w_update_company.Event pfe_add()
+end event
+
+on m_commission.destroy
+call super::destroy
+end on
+
+type m_fee from menu within m_add
+end type
+
+on m_fee.create
+call super::create
+this.text = "&Fee"
+end on
+
+event clicked;w_update_company.ii_add_option = 7
+
+w_update_company.Event pfe_add()
+end event
+
+on m_fee.destroy
+call super::destroy
+end on
+
+type m_dash2 from menu within m_add
+end type
+
+on m_dash2.create
+call super::create
+this.text = "-"
+end on
+
+on m_dash2.destroy
+call super::destroy
+end on
+
+type m_contact from menu within m_add
+end type
+
+on m_contact.create
+call super::create
+this.text = "C&ontact"
+end on
+
+event clicked;w_update_company.ii_add_option = 8
+
+w_update_company.Event pfe_add()
+end event
+
+on m_contact.destroy
+call super::destroy
+end on
+
+type m_phonefaxpager from menu within m_add
+end type
+
+on m_phonefaxpager.create
+call super::create
+this.text = "P&hone, Fax, Pager"
+end on
+
+event clicked;w_update_company.ii_add_option = 9
+
+w_update_company.Event pfe_add()
+end event
+
+on m_phonefaxpager.destroy
+call super::destroy
+end on
+
+type m_email from menu within m_add
+end type
+
+on m_email.create
+call super::create
+this.text = "&Email"
+end on
+
+event clicked;w_update_company.ii_add_option = 10
+
+w_update_company.Event pfe_add()
+end event
+
+on m_email.destroy
+call super::destroy
+end on
+
+type m_dash3 from menu within m_add
+end type
+
+on m_dash3.create
+call super::create
+this.text = "-"
+end on
+
+on m_dash3.destroy
+call super::destroy
+end on
+
+type m_wiretransferinstructions from menu within m_add
+end type
+
+event clicked;w_update_company.ii_add_option = 11
+
+w_update_company.Event pfe_add()
+end event
+
+on m_wiretransferinstructions.create
+call super::create
+this.text = "&Wire Transfer Instructions"
+end on
+
+on m_wiretransferinstructions.destroy
+call super::destroy
+end on
+
+type m_dash4 from menu within m_add
+end type
+
+on m_dash4.create
+call super::create
+this.text = "-"
+end on
+
+on m_dash4.destroy
+call super::destroy
+end on
+
+type m_agents from menu within m_add
+end type
+
+event clicked;w_update_company.ii_add_option = 16
+
+w_update_company.Event pfe_add()
+end event
+
+on m_agents.create
+call super::create
+this.text = "Agents"
+end on
+
+on m_agents.destroy
+call super::destroy
+end on
+
+type m_-1 from menu within m_add
+end type
+
+on m_-1.create
+call super::create
+this.text = "-"
+end on
+
+on m_-1.destroy
+call super::destroy
+end on
+
+type m_landscapeeligibility from menu within m_add
+end type
+
+on m_landscapeeligibility.create
+call super::create
+this.text = "Land&Scape Eligibility"
+end on
+
+event clicked;// Added by Allwyn Pinto 04/01/1999.
+w_update_company.ii_add_option = 20
+
+w_update_company.Event pfe_add()
+// End of add 04/01/1999.
+end event
+
+on m_landscapeeligibility.destroy
+call super::destroy
+end on
+
+type m_insertrow from menu within m_edit
+end type
+
+on m_insertrow.create
+call super::create
+this.text = "&Insert Row"
+this.toolbaritemname = "Insert!"
+this.toolbaritemtext = "Add Row"
+this.shifttoright = true
+end on
+
+on m_insertrow.destroy
+call super::destroy
+end on
+
+event clicked;//////////////////////////////////////////////////////////////////////////////
+//
+//	Description:  Trigger the pfc_event on the parent window.
+//
+//////////////////////////////////////////////////////////////////////////////
+//	
+//	Revision History
+//	AMCP	LANelson	10/26/2002	New.
+//
+//////////////////////////////////////////////////////////////////////////////
+
+of_SendMessage ("pfc_insertrow")
+
+
+end event
+

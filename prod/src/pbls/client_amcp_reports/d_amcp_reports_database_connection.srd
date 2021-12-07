@@ -1,0 +1,37 @@
+$PBExportHeader$d_amcp_reports_database_connection.srd
+release 7;
+datawindow(units=0 timer_interval=0 color=79741120 processing=1 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=76 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=88 color="536870912" )
+table(column=(type=char(30) update=yes updatewhereclause=yes key=yes name=columnname dbname="CCRControl.ColumnName" )
+ column=(type=char(30) update=yes updatewhereclause=yes key=yes name=columnvalue dbname="CCRControl.ColumnValue" )
+ column=(type=char(30) update=yes updatewhereclause=yes name=columndescription dbname="CCRControl.ColumnDescription" )
+ column=(type=char(255) update=yes updatewhereclause=yes name=comments dbname="CCRControl.Comments" )
+ column=(type=char(30) update=yes updatewhereclause=yes name=initialcolumnvalue dbname="CCRControl.InitialColumnValue" )
+ column=(type=char(255) update=yes updatewhereclause=yes name=initialcolumndescription dbname="CCRControl.InitialColumnDescription" )
+ retrieve="  SELECT dbo.CCRControl.ColumnName,   
+         dbo.CCRControl.ColumnValue,   
+         dbo.CCRControl.ColumnDescription,   
+         dbo.CCRControl.Comments,   
+         dbo.CCRControl.InitialColumnValue,   
+         dbo.CCRControl.InitialColumnDescription  
+    FROM dbo.CCRControl  
+   WHERE dbo.CCRControl.ColumnName = :ColumnName    
+" update="dbo.CCRControl" updatewhere=1 updatekeyinplace=no arguments=(("ColumnName", string)) )
+text(band=header alignment="2" text="ColumnName" border="0" color="0" x="9" y="8" height="60" width="709"  name=columnname_t  font.face="Arial" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="ColumnValue" border="0" color="0" x="727" y="8" height="60" width="709"  name=columnvalue_t  font.face="Arial" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="ColumnDescription" border="0" color="0" x="1445" y="8" height="60" width="709"  name=columndescription_t  font.face="Arial" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Comments" border="0" color="0" x="2162" y="8" height="60" width="2743"  name=comments_t  font.face="Arial" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="InitialColumnValue" border="0" color="0" x="4914" y="8" height="60" width="599"  name=initialcolumnvalue_t  font.face="Arial" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="InitialColumnDescription" border="0" color="0" x="5522" y="8" height="60" width="4718"  name=initialcolumndescription_t  font.face="Arial" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="2" tabsequence=10 border="0" color="0" x="9" y="8" height="72" width="709" format="[general]"  name=columnname  tag="Control row identifier." edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="2" tabsequence=20 border="0" color="0" x="727" y="8" height="72" width="709" format="[general]"  name=columnvalue  tag="Control row value." edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="2" tabsequence=30 border="0" color="0" x="1445" y="8" height="72" width="709" format="[general]"  name=columndescription  tag="Control row description.  If the ColumnValue field is too short, this field may also contain data related to the control row." edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="2" tabsequence=40 border="0" color="0" x="2162" y="8" height="72" width="2743" format="[general]"  name=comments  tag="Typically instructions for setting/resetting values for this control row.  Should also describe how the control is used by the application." edit.limit=255 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=50 border="0" color="0" x="4914" y="8" height="60" width="599" format="[general]"  name=initialcolumnvalue  tag="Allows users to save the initial value for ColumnValue when making a temporary change." edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=60 border="0" color="0" x="5522" y="8" height="60" width="4718" format="[general]"  name=initialcolumndescription  tag="Allows users to save the initial value for ColumnDescription when making a temporary change." edit.limit=255 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )
+ 

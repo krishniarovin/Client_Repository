@@ -1,0 +1,11 @@
+FTPCORP
+PHHFTP
+rem bin
+rem quote MODE C
+quote SITE RECFM=FB
+quote SITE LRECL=240
+quote SITE BLOCKSIZE=23520
+quote SITE PRIMARY=10 SECONDARY=5 CYL
+put DeskRentcontrol.txt 'PMILP.MUSM.AP.DESKFEE.CONTROL(+1)' 
+put DeskRentbatch.txt 'PMILP.MUSM.AP.DESKFEE.TRANS(+1)'  
+quit

@@ -1,0 +1,11 @@
+$PBExportHeader$dddw_select_officetype.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=80 color="536870912" )
+table(column=(type=char(25) update=yes updatewhereclause=yes name=officetypedesc dbname="OfficeType.OfficeTypeDesc" )
+ column=(type=decimal(0) update=yes updatewhereclause=yes key=yes identity=yes name=officetypecd dbname="OfficeType.OfficeTypeCd" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"dbo.OfficeType~" ) COLUMN(NAME=~"dbo.OfficeType.OfficeTypeDesc~") COLUMN(NAME=~"dbo.OfficeType.OfficeTypeCd~")) " update="dbo.OfficeType" updatewhere=1 updatekeyinplace=no )
+column(band=detail id=1 alignment="0" tabsequence=10 border="0" color="8388608" x="5" y="4" height="72" width="594" format="[general]"  name=officetypedesc edit.limit=25 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes") 

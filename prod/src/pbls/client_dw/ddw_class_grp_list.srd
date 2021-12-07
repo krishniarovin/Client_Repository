@@ -1,0 +1,11 @@
+$PBExportHeader$ddw_class_grp_list.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=112 color="536870912" )
+table(column=(type=char(90) updatewhereclause=yes name=classgrpdesc dbname="ClassificationGroup.ClassGrpDesc" )
+ column=(type=long updatewhereclause=yes key=yes name=classgrpidnum dbname="ClassificationGroup.ClassGrpIDNum" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"dbo.ClassificationGroup~" ) COLUMN(NAME=~"dbo.ClassificationGroup.ClassGrpDesc~") COLUMN(NAME=~"dbo.ClassificationGroup.ClassGrpIDNum~")) " update="dbo.ClassificationGroup" updatewhere=0 updatekeyinplace=no  sort="classgrpdesc A " )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="8388608" x="14" y="8" height="64" width="1806" format="[general]"  name=classgrpdesc edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes") 

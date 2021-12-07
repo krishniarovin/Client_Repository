@@ -1,0 +1,44 @@
+$PBExportHeader$d_client_amcp_override_comment.srd
+release 7;
+datawindow(units=0 timer_interval=0 color=80269524 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=748 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=year dbname="Year" )
+ column=(type=long updatewhereclause=yes name=month dbname="Month" )
+ column=(type=long updatewhereclause=yes name=bcs dbname="ClientAMCP.BCS" )
+ column=(type=long updatewhereclause=yes name=leadscreated dbname="ClientAMCP.LeadsCreated" )
+ column=(type=long updatewhereclause=yes name=loansclosed dbname="ClientAMCP.LoansClosed" )
+ column=(type=char(255) updatewhereclause=yes name=comment dbname="ClientAMCP.Comment" )
+ column=(type=char(10) updatewhereclause=yes name=clntid dbname="ClientAMCP.ClntID" )
+ column=(type=datetime updatewhereclause=yes name=datemdfd dbname="ClientAMCP.DateMdfd" )
+ column=(type=long updatewhereclause=yes name=bcsytd dbname="BCSYTD" )
+ column=(type=long updatewhereclause=yes name=leadscreatedytd dbname="LeadsCreatedYTD" )
+ column=(type=long updatewhereclause=yes name=loansclosedytd dbname="LoansClosedYTD" )
+ column=(type=long updatewhereclause=yes name=cc_saved dbname="cc_saved" )
+ column=(type=long updatewhereclause=yes name=yearmonth dbname="ClientAMCP.YearMonth" )
+ retrieve="  SELECT ( dbo.ClientAMCP.YearMonth / 100 ) as Year,   
+			dbo.ClientAMCP.YearMonth - ( ( dbo.ClientAMCP.YearMonth / 100  ) * 100 )   as Month,   
+         dbo.ClientAMCP.BCS,   
+         dbo.ClientAMCP.LeadsCreated,   
+         dbo.ClientAMCP.LoansClosed,   
+         dbo.ClientAMCP.Comment,   
+         dbo.ClientAMCP.ClntID,
+			dbo.ClientAMCP.DateMdfd,
+			0 as BCSYTD,
+			0 as LeadsCreatedYTD,
+			0 as LoansClosedYTD,
+			1 as cc_saved,
+			dbo.ClientAMCP.YearMonth    
+    FROM dbo.ClientAMCP  
+   WHERE dbo.ClientAMCP.ClntID = :ClntID   
+ORDER BY dbo.ClientAMCP.YearMonth DESC  
+" arguments=(("ClntID", string))  sort="year D month D " )
+column(band=detail id=6 alignment="0" tabsequence=10 border="5" color="0" x="50" y="172" height="544" width="1143" format="[general]"  name=comment  tag=" User entered text describing rationale for user entry of Non-Brands BCS or user entered change to Leads Created or Loans Closed values." edit.limit=255 edit.case=any edit.autoselect=yes edit.nilisnull=yes edit.autovscroll=yes edit.vscrollbar=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=detail alignment="0" expression="string (  year, '0000' ) + '/' + string ( month ,'00')"border="0" color="0" x="64" y="92" height="52" width="302" format="[GENERAL]"  name=cf_yearmonth  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="0" color="0" x="448" y="92" height="56" width="393" format="mm/dd/yyyy"  name=datemdfd  tag=" " edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="2" text="Year/Month" border="0" color="0" x="64" y="12" height="56" width="302"  name=year_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="2" text="Last Modified on" border="0" color="0" x="434" y="12" height="56" width="425"  name=datemdfd_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )
+ 

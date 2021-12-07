@@ -1,0 +1,44 @@
+$PBExportHeader$d_acmp_constants_comment.srd
+release 7;
+datawindow(units=0 timer_interval=0 color=80269524 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=723 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=beginyear dbname="BeginYear" )
+ column=(type=long updatewhereclause=yes name=beginmonth dbname="BeginMonth" )
+ column=(type=long updatewhereclause=yes name=endyear dbname="EndYear" )
+ column=(type=long updatewhereclause=yes name=endmonth dbname="EndMonth" )
+ column=(type=decimal(4) updatewhereclause=yes name=bonus2percent dbname="AMCPConstants.Bonus2Percent" )
+ column=(type=decimal(4) updatewhereclause=yes name=rmbonuspercent dbname="AMCPConstants.RMBonusPercent" )
+ column=(type=decimal(4) updatewhereclause=yes name=bonuspayment1 dbname="AMCPConstants.BonusPayment1" )
+ column=(type=decimal(4) updatewhereclause=yes name=bonuspayment2 dbname="AMCPConstants.BonusPayment2" )
+ column=(type=char(255) updatewhereclause=yes name=comment dbname="AMCPConstants.Comment" )
+ column=(type=long updatewhereclause=yes name=bonus2percentpercent dbname="Bonus2PercentPercent" )
+ column=(type=long updatewhereclause=yes name=rmbonuspercentpercent dbname="RMBonusPercentPercent" )
+ column=(type=long updatewhereclause=yes name=beginyearmonth dbname="AMCPConstants.BeginYearMonth" )
+ column=(type=long updatewhereclause=yes name=endyearmonth dbname="AMCPConstants.EndYearMonth" )
+ retrieve="  SELECT ( dbo.AMCPConstants.BeginYearMonth / 100 ) as BeginYear,   
+			dbo.AMCPConstants.BeginYearMonth - ( ( dbo.AMCPConstants.BeginYearMonth / 100  ) * 100 )   as BeginMonth,  
+         ( dbo.AMCPConstants.EndYearMonth / 100 ) as EndYear,   
+			dbo.AMCPConstants.EndYearMonth - ( ( dbo.AMCPConstants.EndYearMonth / 100  ) * 100 )   as EndMonth,  
+         dbo.AMCPConstants.Bonus2Percent,   
+         dbo.AMCPConstants.RMBonusPercent,   
+         dbo.AMCPConstants.BonusPayment1,   
+         dbo.AMCPConstants.BonusPayment2,   
+         dbo.AMCPConstants.Comment,
+			convert ( integer, (dbo.AMCPConstants.Bonus2Percent * 100 ) ) as Bonus2PercentPercent, 
+			convert ( integer, (dbo.AMCPConstants.RMBonusPercent * 100 ) ) as RMBonusPercentPercent,
+			dbo.AMCPConstants.BeginYearMonth,   
+         dbo.AMCPConstants.EndYearMonth   
+    FROM dbo.AMCPConstants
+ORDER BY	dbo.AMCPConstants.BeginYearMonth DESC   
+ 
+"  sort="beginyearmonth D " )
+column(band=detail id=9 alignment="0" tabsequence=10 border="5" color="0" x="40" y="221" height="480" width="1050" format="[general]"  name=comment  tag=" User entered text describing entry of or changes to the AMCP Constants." edit.limit=255 edit.case=any edit.autoselect=yes edit.nilisnull=yes edit.autovscroll=yes edit.vscrollbar=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=detail alignment="2" expression="string (  beginyear, '0000' ) + '/' + string ( beginmonth ,'00')"border="0" color="0" x="37" y="138" height="54" width="296" format="[GENERAL]"  name=cf_begin_yearmonth  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=detail alignment="2" expression="string (  endyear, '0000' ) + '/' + string ( endmonth ,'00')"border="0" color="0" x="366" y="138" height="54" width="296" format="[GENERAL]"  name=cf_end_yearmonth  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=detail alignment="2" text="End Year/Month" border="0" color="0" x="366" y="10" height="106" width="296"  name=cf_end_yearmonth_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="2" text="Begin Year/Month" border="0" color="0" x="33" y="10" height="106" width="296"  name=cf_begin_yearmonth_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )
+ 

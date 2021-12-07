@@ -1,0 +1,125 @@
+alter table Agent add PMOCTypeCd varchar(15) null, AgencyTeam varchar(40)    null
+
+alter table Person add PersOffPhone varchar(21) null, PersOffExt   varchar(8) null
+
+
+CREATE TABLE dbo.Code 
+
+(
+
+    CodeType  varchar(15) NOT NULL,
+
+    CodeValue varchar(15) NOT NULL,
+
+    CodeDesc  varchar(30) NOT NULL,
+
+    DateCrtd  ud_date     NOT NULL,
+
+    UserCrtd  ud_user_id  NOT NULL,
+
+    DateMdfd  ud_date     NOT NULL,
+
+    UserMdfd  ud_user_id  NOT NULL,
+
+    CONSTRAINT XPKCode
+
+    PRIMARY KEY CLUSTERED (CodeType,CodeValue)
+
+)
+
+LOCK ALLPAGES
+
+go
+
+GRANT DELETE ON dbo.Code TO CCRRole
+
+go
+
+GRANT INSERT ON dbo.Code TO CCRRole
+
+go
+
+GRANT SELECT ON dbo.Code TO CCRRole
+
+go
+
+GRANT UPDATE ON dbo.Code TO CCRRole
+
+go
+
+GRANT SELECT ON Code to CCRReadROle
+
+go
+
+IF OBJECT_ID('dbo.Code') IS NOT NULL
+
+    PRINT '<<< CREATED TABLE dbo.Code >>>'
+
+ELSE
+
+    PRINT '<<< FAILED CREATING TABLE dbo.Code >>>'
+
+go
+
+ 
+
+--3)Populating code
+
+INSERT INTO Code VALUES (
+	'PREFCONTACT',
+	'1OP',
+	'Office Phone/ext',
+	getdate(),
+	'InapurM',
+	getdate(),
+	'InapurM')
+INSERT INTO Code VALUES (
+	'PREFCONTACT',
+	'2HO',
+	'Home Office',
+	getdate(),
+	'InapurM',
+	getdate(),
+	'InapurM')
+INSERT INTO Code VALUES (
+	'PREFCONTACT',
+	'3CP',
+	'Cell Phone',
+	getdate(),
+	'InapurM',
+	getdate(),
+	'InapurM')
+INSERT INTO Code VALUES (
+	'PREFCONTACT',
+	'4PP',
+	'Pager/PIN',
+	getdate(),
+	'InapurM',
+	getdate(),
+	'InapurM')
+INSERT INTO Code VALUES (
+	'PREFCONTACT',
+	'5EM',
+	'E-mail',
+	getdate(),
+	'InapurM',
+	getdate(),
+	'InapurM')
+INSERT INTO Code VALUES (
+	'PREFCONTACT',
+	'6FX',
+	'Fax',
+	getdate(),
+	'InapurM',
+	getdate(),
+	'InapurM')
+INSERT INTO Code VALUES (
+	'PREFCONTACT',
+	'7OT',
+	'Other',
+	getdate(),
+	'InapurM',
+	getdate(),
+	'InapurM')
+
+

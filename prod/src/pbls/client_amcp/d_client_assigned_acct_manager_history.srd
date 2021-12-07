@@ -1,0 +1,52 @@
+$PBExportHeader$d_client_assigned_acct_manager_history.srd
+release 7;
+datawindow(units=0 timer_interval=60000 color=16777215 processing=1 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=188 color="80269524" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=64 color="536870912" )
+table(column=(type=char(7) updatewhereclause=yes name=clientid dbname="Client.ClntID" )
+ column=(type=char(120) updatewhereclause=yes name=am_persfullname dbname="PersFullName" )
+ column=(type=char(30) updatewhereclause=yes name=am_perslastname dbname="PersLastName" )
+ column=(type=char(20) updatewhereclause=yes name=am_phone dbname="PHHManager.PhoneNbr" )
+ column=(type=char(20) updatewhereclause=yes name=am_fax dbname="PHHManager.FaxNbr" )
+ column=(type=datetime updatewhereclause=yes name=client_begineffdate dbname="Client.BgnEffDate" )
+ column=(type=datetime updatewhereclause=yes name=client_endeffdate dbname="Client.EndEffDate" )
+ column=(type=char(120) updatewhereclause=yes name=rm_persfullname dbname="PersFullName" )
+ column=(type=char(30) updatewhereclause=yes name=rm_perslastname dbname="PersLastName" )
+ column=(type=datetime updatewhereclause=yes name=clientbuscontact_effdate dbname="ClientBusContact.EffDate" )
+ column=(type=datetime updatewhereclause=yes name=clientbuscontact_expdate dbname="ClientBusContact.ExpDate" )
+ column=(type=datetime updatewhereclause=yes name=phhmanager_begineffdate dbname="PHHManager.BeginEffDate" )
+ column=(type=datetime updatewhereclause=yes name=phhmanager_endeffdate dbname="PHHManager.EndEffDate" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"dbo.Client~" )  TABLE(NAME=~"dbo.Person~" ALIAS=~"Person_a~" )  TABLE(NAME=~"dbo.ClientBusContact~" )  TABLE(NAME=~"dbo.PHHManager~" )  TABLE(NAME=~"dbo.Person~" ALIAS=~"Person_b~" ) COLUMN(NAME=~"dbo.Client.ClntID~") COLUMN(NAME=~"Person_a.PersFullName~") COLUMN(NAME=~"Person_a.PersLastName~") COLUMN(NAME=~"dbo.PHHManager.PhoneNbr~") COLUMN(NAME=~"dbo.PHHManager.FaxNbr~") COLUMN(NAME=~"dbo.Client.BgnEffDate~") COLUMN(NAME=~"dbo.Client.EndEffDate~") COLUMN(NAME=~"Person_b.PersFullName~") COLUMN(NAME=~"Person_b.PersLastName~") COLUMN(NAME=~"dbo.ClientBusContact.EffDate~") COLUMN(NAME=~"dbo.ClientBusContact.ExpDate~") COLUMN(NAME=~"dbo.PHHManager.BeginEffDate~") COLUMN(NAME=~"dbo.PHHManager.EndEffDate~")    JOIN (LEFT=~"dbo.ClientBusContact.PersIDNum~"    OP =~"=~"RIGHT=~"dbo.PHHManager.PersIDNum~" )    JOIN (LEFT=~"dbo.PHHManager.PersIDNum~"    OP =~"=~"RIGHT=~"Person_a.PersIDNum~" )    JOIN (LEFT=~"dbo.Client.ClntID~"    OP =~"=~"RIGHT=~"dbo.ClientBusContact.ClntID~" )    JOIN (LEFT=~"dbo.PHHManager.PersIDNumParent~"    OP =~"=~"RIGHT=~"Person_b.PersIDNum~" )WHERE(    EXP1 =~"dbo.Client.ClntID~"   OP =~"=~"    EXP2 =~":ClntID~"    LOGIC =~"and~" ) WHERE(    EXP1 =~"dbo.PHHManager.ClassIDNum~"   OP =~"=~"    EXP2 =~"1041~" ) ) ARG(NAME = ~"ClntID~" TYPE = string) " arguments=(("ClntID", string)) )
+text(band=header alignment="2" text="Assignment
+Effective
+Begin" border="6" color="0" x="9" y="12" height="168" width="357"  name=sginment_begineffdate_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="Assignment
+Effective
+End" border="6" color="0" x="375" y="12" height="168" width="320"  name=assginment_endeffdate_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="
+
+Account Manager Name" border="6" color="0" x="704" y="12" height="168" width="736"  name=am_persfullname_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="Account
+Manager
+Phone" border="6" color="0" x="1449" y="12" height="168" width="421"  name=am_phone_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="Account
+Manager
+Fax" border="6" color="0" x="1879" y="12" height="168" width="352"  name=am_fax_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="
+
+Regional Manager Name" border="6" color="0" x="2240" y="12" height="168" width="759"  name=rm_persfullname_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="Manager Effective Date" border="6" color="0" x="3008" y="12" height="168" width="302"  name=phhmanager_begineffdate_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="Manager Expiration Date" border="6" color="0" x="3319" y="12" height="168" width="320"  name=phhmanager_endeffdate_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=detail alignment="2" expression="string (  clientbuscontact_effdate  ,'mm/dd/yyyy')"border="0" color="0~tif(date(  clientbuscontact_expdate )<=today(),RGB(250,0,0),RGB(0,0,0))" x="9" y="4" height="56" width="357" format="[GENERAL]"  name=compute_1  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0~tif(date(  clientbuscontact_expdate )<=today(),RGB(250,0,0),RGB(0,0,0))" x="704" y="4" height="56" width="736" format="[general]"  name=am_persfullname edit.limit=120 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=detail alignment="2" expression="string( clientbuscontact_expdate ,'mm/dd/yyyy')"border="0" color="0~tif(date(  clientbuscontact_expdate )<=today(),RGB(250,0,0),RGB(0,0,0))" x="375" y="4" height="56" width="320" format="[GENERAL]"  name=assginment_endeffdate  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=4 alignment="2" tabsequence=32766 border="0" color="0~tif(date(  clientbuscontact_expdate )<=today(),RGB(250,0,0),RGB(0,0,0))" x="1449" y="4" height="56" width="421" format="(@@@) @@@-@@@@"  name=am_phone edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=5 alignment="2" tabsequence=32766 border="0" color="0~tif(date(  clientbuscontact_expdate )<=today(),RGB(250,0,0),RGB(0,0,0))" x="1879" y="4" height="56" width="352" format="(@@@) @@@-@@@@"  name=am_fax edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="0" color="0~tif(date(  clientbuscontact_expdate )<=today(),RGB(250,0,0),RGB(0,0,0))" x="2240" y="4" height="56" width="759" format="[general]"  name=rm_persfullname edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=12 alignment="2" tabsequence=32766 border="0" color="0~tif(date(  clientbuscontact_expdate )<=today(),RGB(250,0,0),RGB(0,0,0))" x="3008" y="4" height="56" width="302" format="mm/dd/yyyy"  name=phhmanager_begineffdate edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=13 alignment="2" tabsequence=32766 border="0" color="0~tif(date(  clientbuscontact_expdate )<=today(),RGB(250,0,0),RGB(0,0,0))" x="3319" y="4" height="56" width="320" format="mm/dd/yyyy"  name=phhmanager_endeffdate edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )
+ 

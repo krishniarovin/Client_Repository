@@ -1,0 +1,21 @@
+$PBExportHeader$d_amcp_reports_acctmgrrpt_group.srd
+release 7;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=132 color="79741120" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=68 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=amcpreportgroup_classidnum dbname="AMCPReportGroup.ClassIDNum" )
+ column=(type=long updatewhereclause=yes name=am_id dbname="AMCPReportGroup.PersIDNum" )
+ column=(type=char(30) updatewhereclause=yes name=am_lastname dbname="Person.PersLastName" )
+ column=(type=char(30) updatewhereclause=yes name=am_firstname dbname="Person.PersFirstName" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"dbo.AMCPReportGroup~" )  TABLE(NAME=~"dbo.Person~" ) COLUMN(NAME=~"dbo.AMCPReportGroup.ClassIDNum~") COLUMN(NAME=~"dbo.AMCPReportGroup.PersIDNum~") COLUMN(NAME=~"dbo.Person.PersLastName~") COLUMN(NAME=~"dbo.Person.PersFirstName~")    JOIN (LEFT=~"dbo.AMCPReportGroup.PersIDNum~"    OP =~"=~"RIGHT=~"dbo.Person.PersIDNum~" )WHERE(    EXP1 =~"dbo.AMCPReportGroup.ClassIDNum~"   OP =~"=~"    EXP2 =~":ClassIDNum~" ) ) ARG(NAME = ~"ClassIDNum~" TYPE = number) " arguments=(("ClassIDNum", number))  sort="am_lastname A am_firstname A am_id A " )
+text(band=header alignment="2" text="Acct Mgr
+ID" border="6" color="0" x="14" y="8" height="112" width="311"  name=am_id_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="0" x="87" y="4" height="60" width="165" format="[General]"  name=am_id  tag=" Uniquely identifies an Account Manager belonging to this Report Group." edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression=" am_lastname + ', ' +  am_firstname "border="0" color="0" x="343" y="8" height="56" width="1083" format="[GENERAL]"  name=cf_am_name  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Account Manager
+Name" border="6" color="0" x="343" y="8" height="112" width="1083"  name=cf_am_name_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )
+ 

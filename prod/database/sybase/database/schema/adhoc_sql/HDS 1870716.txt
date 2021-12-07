@@ -1,0 +1,117 @@
+/***********************************HDS# 1870716*******************************************/
+
+update PHHManager
+set PhoneNbr = '4845509069'
+where PersIDNum = 941031;
+
+update PHHManager
+set PhoneNbr = '8433678348'
+where PersIDNum = 931237;
+
+update PHHManager
+set PhoneNbr = '8642300629'
+where PersIDNum = 188807;
+
+update PHHManager
+set PhoneNbr = '7043694590'
+where PersIDNum = 749160;
+
+update PHHManager
+set PhoneNbr = '5023106114'
+where PersIDNum = 949056;
+
+update PHHManager
+set PhoneNbr = '5012566898'
+where PersIDNum = 909788;
+
+update PHHManager
+set PhoneNbr = '6623469379'
+where PersIDNum = 948028;
+
+update PHHManager
+set PhoneNbr = '8434525278'
+where PersIDNum = 931236;
+
+update PHHManager
+set PhoneNbr = '8049866247'
+where PersIDNum = 749075;
+
+update PHHManager
+set PhoneNbr = '4792836954'
+where PersIDNum = 948027;
+
+update PHHManager
+set PhoneNbr = '8044335505'
+where PersIDNum = 194459;
+
+update PHHManager
+set PhoneNbr = '9012389026'
+where PersIDNum = 57506;
+
+update PHHManager
+set PhoneNbr = '3377811125'
+where PersIDNum = 746906;
+
+update PHHManager
+set PhoneNbr = '5047048569'
+where PersIDNum = 726073;
+
+update PHHManager
+set PhoneNbr = '3524551434'
+where PersIDNum = 978839;
+
+update PHHManager
+set PhoneNbr = '7063728191'
+where PersIDNum = 893135;
+
+update PHHManager
+set PhoneNbr = '8034465756'
+where PersIDNum = 759071;
+
+update PHHManager
+set PhoneNbr = '2523140169'
+where PersIDNum = 892981;
+
+update PHHManager
+set PhoneNbr = '9104896918'
+where PersIDNum = 823855;
+
+update PHHManager
+set PhoneNbr = '9012389078'
+where PersIDNum = 747141;
+
+update PHHManager
+set PhoneNbr = '9012165497'
+where PersIDNum = 941454;
+
+update PHHManager
+set PhoneNbr = '2566421395'
+where PersIDNum = 742989;
+
+update PHHManager
+set PhoneNbr = '2108332026'
+where PersIDNum = 983952;
+
+update PHHManager
+set PhoneNbr = '7176732988'
+where PersIDNum = 983449;
+
+update PHHManager
+set PhoneNbr = '8635293597'
+where PersIDNum = 211332;
+
+update PHHManager
+set PhoneNbr = '5203901137'
+where PersIDNum = 983681;
+
+update PHHManager
+set PhoneNbr = '4344096274'
+where PersIDNum = 983951;
+
+update PHHManager
+set PhoneNbr = '2522592203'
+where PersIDNum = 983953;
+
+update PHHManager
+set PhoneNbr = '3525569232'
+where PersIDNum = 984057;

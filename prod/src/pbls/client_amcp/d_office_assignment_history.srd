@@ -1,0 +1,119 @@
+$PBExportHeader$d_office_assignment_history.srd
+release 7;
+datawindow(units=0 timer_interval=60000 color=16777215 processing=1 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=186 color="80269524" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=77 color="536870912" )
+table(column=(type=datetime updatewhereclause=yes name=office_begineffdate dbname="Office.BeginEffDate" )
+ column=(type=datetime updatewhereclause=yes name=office_endeffdate dbname="Office.EndEffDate" )
+ column=(type=char(3) updatewhereclause=yes name=office_brand dbname="Office.Brand" )
+ column=(type=char(7) updatewhereclause=yes name=clntfranchise_clntid dbname="ClntFranchise.ClntID" )
+ column=(type=datetime updatewhereclause=yes name=assignmentbegineffdate dbname="ClientBusContact.AssignmentBeginEffDate" )
+ column=(type=datetime updatewhereclause=yes name=assignmentendeffdate dbname="ClientBusContact.AssignmentEndEffDate" )
+ column=(type=char(30) updatewhereclause=yes name=person_acctmgrfirstname dbname="Person.AcctMgrFirstName" )
+ column=(type=char(30) updatewhereclause=yes name=person_acctmgrlastname dbname="Person.AcctMgrLastName" )
+ column=(type=char(120) updatewhereclause=yes name=person_acctmgrfullname dbname="Person.AcctMgrFullName" )
+ column=(type=char(20) updatewhereclause=yes name=phhmanager_phonenbr dbname="PHHManager.PhoneNbr" )
+ column=(type=char(20) updatewhereclause=yes name=phhmanager_faxnbr dbname="PHHManager.FaxNbr" )
+ column=(type=char(30) updatewhereclause=yes name=person_rmfirstname dbname="Person.RMFirstName" )
+ column=(type=char(30) updatewhereclause=yes name=person_rmlastname dbname="Person.RMLastName" )
+ column=(type=char(120) updatewhereclause=yes name=person_rmfullname dbname="Person.RMFullName" )
+ column=(type=long updatewhereclause=yes name=acctmanager_id dbname="PHHManager.PersIDNum" )
+ retrieve="  SELECT dbo.Office.BeginEffDate,   
+         dbo.Office.EndEffDate,   
+         dbo.Office.Brand,   
+         dbo.ClntFranchise.ClntID,   
+         dbo.ClientBusContact.EffDate as AssignmentBeginEffDate,   
+         dbo.ClientBusContact.ExpDate as AssignmentEndEffDate,   
+         Person_a.PersFirstName as AcctMgrFirstName,   
+         Person_a.PersLastName as AcctMgrLastName,   
+         Person_a.PersFullName as AcctMgrFullName,   
+         PHHManager_a.PhoneNbr,   
+         PHHManager_a.FaxNbr,   
+         Person_b.PersFirstName as RMFirstName,   
+         Person_b.PersLastName as RMLastName,   
+         Person_b.PersFullName as RMFullName,   
+         PHHManager_a.PersIDNum  
+    FROM dbo.Office,   
+         dbo.ClntFranchise,   
+         dbo.Client,   
+         dbo.ClientBusContact,   
+         dbo.Person Person_a,   
+         dbo.PHHManager PHHManager_a,   
+         dbo.Person Person_b
+   WHERE ( dbo.Office.FranchiseNum = dbo.ClntFranchise.ClntFranchiseNum ) and  
+         ( dbo.ClntFranchise.ClntID = dbo.Client.ClntID ) and  
+         ( dbo.Client.ClntID = dbo.ClientBusContact.ClntID ) and  
+         ( dbo.ClientBusContact.PersIDNum = Person_a.PersIDNum ) and  
+         ( Person_a.PersIDNum = PHHManager_a.PersIDNum ) and  
+         ( PHHManager_a.PersIDNumParent = Person_b.PersIDNum ) and 
+         ( ( dbo.Office.OfficeIDNum = :OfficeIDNum ) AND  
+         ( PHHManager_a.ClassIDNum = 1041 ) )   
+UNION
+  SELECT dbo.Office.BeginEffDate,   
+         dbo.Office.EndEffDate,   
+         dbo.Office.Brand,   
+         null,   
+         dbo.OfficeAcctManager.BeginEffDate,   
+         dbo.OfficeAcctManager.EndEffDate,   
+         Person_a.PersFirstName as AcctMgrFirstName,   
+         Person_a.PersLastName as AcctMgrLastName,   
+         Person_a.PersFullName as AcctMgrFullName,   
+         PHHManager_a.PhoneNbr,   
+         PHHManager_a.FaxNbr,   
+         Person_b.PersFirstName as RMFirstName,   
+         Person_b.PersLastName as RMLastName,   
+         Person_b.PersFullName as RMFullName,   
+         PHHManager_a.PersIDNum  
+    FROM dbo.Office,   
+         dbo.OfficeAcctManager,  
+         dbo.Person Person_a,   
+         dbo.PHHManager PHHManager_a,   
+         dbo.Person Person_b 
+   WHERE ( dbo.Office.OfficeIDNum = dbo.OfficeAcctManager.OfficeIDNum ) and
+         ( dbo.OfficeAcctManager.PersIDNum = Person_a.PersIDNum ) and  
+         ( Person_a.PersIDNum = PHHManager_a.PersIDNum ) and  
+         ( PHHManager_a.PersIDNumParent = Person_b.PersIDNum ) and 
+         ( ( dbo.Office.OfficeIDNum = :OfficeIDNum ) AND  
+         ( PHHManager_a.ClassIDNum = 1041 ) )  
+" arguments=(("OfficeIDNum", number))  sort="assignmentbegineffdate D assignmentendeffdate D " )
+text(band=header alignment="2" text="Assignment
+Effective
+Begin" border="6" color="0" x="7" y="10" height="166" width="325"  name=cf_begineffdate_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Assignment
+Effective
+End" border="6" color="0" x="340" y="10" height="166" width="322"  name=cf_endeffdate_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="
+Client
+ID" border="6" color="0" x="669" y="10" height="166" width="249"  name=cf_clientid_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="
+
+Account Manager" border="6" color="0" x="925" y="10" height="166" width="706"  name=t_3  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="
+
+Regional Manager" border="6" color="0" x="1638" y="10" height="166" width="794"  name=t_6  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Account
+Manager
+Phone" border="6" color="0" x="2439" y="10" height="166" width="351"  name=t_4  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Account
+Manager
+Fax" border="6" color="0" x="2798" y="10" height="166" width="333"  name=t_5  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Office
+Effective
+Start" border="6" color="0" x="3138" y="10" height="166" width="256"  name=t_2  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Office
+Effective
+End" border="6" color="0" x="3401" y="10" height="166" width="256"  name=t_1  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="2" expression=" if(isnull(  assignmentbegineffdate ),'Unassigned',string(  assignmentbegineffdate ,'mm/dd/yyyy')) "border="0" color="0~tif(date(office_endeffdate) <= today (),RGB(250,0,0),RGB(0,0,0))" x="7" y="9" height="58" width="325" format="[GENERAL]"  name=cf_begineffdate  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="2" expression="string(   assignmentendeffdate ,'mm/dd/yyyy') "border="0" color="0~tif(date(office_endeffdate) <= today (),RGB(250,0,0),RGB(0,0,0))" x="340" y="9" height="58" width="318" format="[GENERAL]"  name=cf_endeffdate  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="2" expression="if(isnull( clntfranchise_clntid ),'UNSIGNED', clntfranchise_clntid )"border="0" color="0~tif(date(office_endeffdate) <= today (),RGB(250,0,0),RGB(0,0,0))" x="669" y="9" height="58" width="245" format="[GENERAL]"  name=cf_clientid  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="0" color="0~tif(date(office_endeffdate) <= today (),RGB(250,0,0),RGB(0,0,0))" x="925" y="9" height="58" width="702" format="[general]"  name=person_acctmgrfullname edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=14 alignment="0" tabsequence=32766 border="0" color="0~tif(date(office_endeffdate) <= today (),RGB(250,0,0),RGB(0,0,0))" x="1638" y="9" height="58" width="794" format="[general]"  name=person_rmfullname edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="2" tabsequence=32766 border="0" color="0~tif(date(office_endeffdate) <= today (),RGB(250,0,0),RGB(0,0,0))" x="2439" y="9" height="58" width="351" format="(@@@) @@@-@@@@"  name=phhmanager_phonenbr edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="2" tabsequence=32766 border="0" color="0~tif(date(office_endeffdate) <= today (),RGB(250,0,0),RGB(0,0,0))" x="2798" y="9" height="58" width="333" format="(@@@) @@@-@@@@"  name=phhmanager_faxnbr edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="2" tabsequence=32766 border="0" color="0~tif(date(office_endeffdate) <= today (),RGB(250,0,0),RGB(0,0,0))" x="3138" y="9" height="58" width="256" format="mm/dd/yyyy"  name=office_begineffdate edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="2" tabsequence=32766 border="0" color="0~tif(date(office_endeffdate) <= today (),RGB(250,0,0),RGB(0,0,0))" x="3401" y="9" height="58" width="256" format="mm/dd/yyyy"  name=office_endeffdate edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )
+ 

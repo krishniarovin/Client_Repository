@@ -1,0 +1,49 @@
+$PBExportHeader$d_search_office_criteria.srd
+release 7;
+datawindow(units=0 timer_interval=0 color=79741120 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=252 color="536870912" )
+table(column=(type=char(3) updatewhereclause=yes name=office_brand dbname="Office.Brand" )
+ column=(type=char(10) updatewhereclause=yes name=office_franchisenum dbname="Office.FranchiseNum" )
+ column=(type=char(2) updatewhereclause=yes name=office_state dbname="Office.State" )
+ column=(type=char(2) updatewhereclause=yes name=office_region dbname="Office.Region" )
+ column=(type=char(40) updatewhereclause=yes name=office_city dbname="Office.City" )
+ column=(type=char(11) updatewhereclause=yes name=office_zip dbname="Office.Zip" )
+ column=(type=char(60) updatewhereclause=yes name=office_officename dbname="Office.OfficeName" )
+ column=(type=char(15) updatewhereclause=yes name=office_primecontactfname dbname="Office.PrimeContactFName" )
+ column=(type=char(1) updatewhereclause=yes name=office_donotfax dbname="Office.DoNotFax" )
+ column=(type=char(7) updatewhereclause=yes name=clntfranchise_clntid dbname="ClntFranchise.ClntID" )
+ retrieve="SELECT  dbo.Office.Brand ,
+           dbo.Office.FranchiseNum ,
+           dbo.Office.State ,
+           dbo.Office.Region ,
+           dbo.Office.City ,
+           dbo.Office.Zip ,
+           dbo.Office.OfficeName ,
+           dbo.Office.PrimeContactFName ,
+           dbo.Office.DoNotFax ,
+           dbo.ClntFranchise.ClntID     
+        FROM dbo.Office ,
+           dbo.ClntFranchise      
+        WHERE ( dbo.Office.FranchiseNum = dbo.ClntFranchise.ClntFranchiseNum )  " )
+column(band=detail id=2 alignment="0" tabsequence=20 border="5" color="0" x="1166" y="12" height="64" width="416" format="[general]"  name=office_franchisenum edit.limit=0 edit.case=any edit.autoselect=yes edit.nilisnull=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=4 alignment="0" tabsequence=30 border="5" color="0" x="2373" y="12" height="64" width="101" format="[general]"  name=office_region edit.limit=2 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.nilisnull=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=1 alignment="0" tabsequence=10 border="5" color="0" x="370" y="12" height="64" width="242" format="[general]"  name=office_brand edit.limit=3 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.nilisnull=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=detail alignment="0" text="Franchise Number:" border="0" color="0" x="649" y="12" height="56" width="549"  name=office_compid_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Region:" border="0" color="0" x="2149" y="12" height="56" width="229"  name=office_region_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Brand:" border="0" color="0" x="23" y="12" height="56" width="229"  name=office_brand_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Client ID:" border="0" color="0" x="23" y="92" height="56" width="288"  name=clntfranchise_clntid_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="0" tabsequence=40 border="5" color="0" x="370" y="96" height="60" width="242" format="[general]"  name=clntfranchise_clntid edit.limit=7 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.nilisnull=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=detail alignment="0" text="City:" border="0" color="0" x="645" y="96" height="56" width="146"  name=office_city_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=50 border="5" color="0" x="782" y="96" height="60" width="1326" format="[general]"  name=office_city edit.limit=40 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.nilisnull=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=detail alignment="0" text="State:" border="0" color="0" x="2149" y="96" height="56" width="229"  name=office_state_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=60 border="5" color="0" x="2373" y="96" height="60" width="101" format="[general]"  name=office_state edit.limit=2 edit.case=upper edit.focusrectangle=no edit.autoselect=yes edit.nilisnull=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=detail alignment="1" text="Zip:" border="0" color="0" x="2487" y="96" height="56" width="101"  name=office_zip_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=70 border="5" color="0" x="2606" y="96" height="60" width="329" format="[general]"  name=office_zip edit.limit=11 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.nilisnull=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+button(band=detail text="Search"filename=""action="0" border="0" color="0" x="2999" y="76" height="96" width="256" vtextalign="0" htextalign="0"  name=b_search  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=detail alignment="0" text="Office Name:" border="0" color="0" x="23" y="176" height="56" width="334"  name=office_officename_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="0" tabsequence=80 border="5" color="0" x="370" y="176" height="60" width="1737" format="[general]"  name=office_officename edit.limit=60 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.nilisnull=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )
+ 

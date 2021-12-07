@@ -1,0 +1,55 @@
+
+INSERT INTO Classification VALUES (
+	1858,
+	16,
+	'RamaiaS',
+	'2-22-2005 14:35:17.500',
+	'RamaiaS',
+	'2-22-2005 14:35:17.500',
+	'2-16-2005 0:0:0.000',
+	'12-31-2099 0:0:0.000',
+	'MKTMGR',
+	6,
+	'Marketing Manager',
+	NULL,
+	NULL,
+	0);
+INSERT INTO Classification VALUES (
+	1859,
+	16,
+	'RamaiaS',
+	'2-22-2005 14:35:29.383',
+	'RamaiaS',
+	'2-22-2005 14:35:29.383',
+	'2-16-2005 0:0:0.000',
+	'12-31-2099 0:0:0.000',
+	'MTGADVIS',
+	6,
+	'Mortgage Advisor',
+	NULL,
+	NULL,
+	0);
+
+
+
+INSERT INTO dbo.ClassificationXref  
+         ( ClassIDNumParent,   
+           ClassIDNumChild,   
+           UserCrtd,   
+           DateCrtd )  
+  VALUES ( 1042,   
+           1858,   
+           '',   
+           getdate() )
+           
+           
+INSERT INTO dbo.ClassificationXref  
+         ( ClassIDNumParent,   
+           ClassIDNumChild,   
+           UserCrtd,   
+           DateCrtd )  
+  VALUES ( 1042,   
+           1859,   
+           '',   
+           getdate() )
+           

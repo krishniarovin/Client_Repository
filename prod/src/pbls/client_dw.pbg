@@ -1,0 +1,12 @@
+Save Format v3.0(19990112)
+@begin Libraries
+ "client_dw.pbl" "";
+@end;
+@begin Objects
+ "d_bussrcstate_license.srd" "client_dw.pbl";
+ "d_bus_src_license.srd" "client_dw.pbl";
+ "d_loan_type_license.srd" "client_dw.pbl";
+ "d_marketaccagr_paydate.srd" "client_dw.pbl";
+ "d_state_license.srd" "client_dw.pbl";
+ "d_search_mgr.srd" "client_dw.pbl";
+@end;

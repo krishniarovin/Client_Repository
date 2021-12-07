@@ -1,0 +1,67 @@
+$PBExportHeader$d_client_amcp_override_history.srd
+release 7;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=140 color="80269524" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=92 color="536870912"  height.autosize=yes)
+table(column=(type=long updatewhereclause=yes name=year dbname="Year" )
+ column=(type=long updatewhereclause=yes name=month dbname="Month" )
+ column=(type=datetime update=yes updatewhereclause=yes name=datemdfd dbname="DateMdfd" )
+ column=(type=long update=yes updatewhereclause=yes name=frombcs dbname="FromBCS" )
+ column=(type=long update=yes updatewhereclause=yes name=tobcs dbname="ToBCS" )
+ column=(type=long update=yes updatewhereclause=yes name=fromleadscreated dbname="FromLeadsCreated" )
+ column=(type=long update=yes updatewhereclause=yes name=toleadscreated dbname="ToLeadsCreated" )
+ column=(type=long update=yes updatewhereclause=yes name=fromloansclosed dbname="FromLoansClosed" )
+ column=(type=long update=yes updatewhereclause=yes name=toloansclosed dbname="ToLoansClosed" )
+ column=(type=char(255) update=yes updatewhereclause=yes name=comment dbname="Comment" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=sequencenum dbname="SequenceNum" )
+ column=(type=char(10) update=yes updatewhereclause=yes key=yes name=clntid dbname="ClntID" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=yearmonth dbname="YearMonth" )
+ column=(type=char(42) updatewhereclause=yes name=usermdfd_name dbname="usermdfd_name" )
+ retrieve="  SELECT ( ClientAMCPHistory.YearMonth / 100 ) as Year,   
+			ClientAMCPHistory.YearMonth - ( ( ClientAMCPHistory.YearMonth / 100  ) * 100 )   as Month,   
+         ClientAMCPHistory.DateMdfd,   
+         ClientAMCPHistory.FromBCS,   
+         ClientAMCPHistory.ToBCS,   
+         ClientAMCPHistory.FromLeadsCreated,   
+         ClientAMCPHistory.ToLeadsCreated,   
+         ClientAMCPHistory.FromLoansClosed,   
+         ClientAMCPHistory.ToLoansClosed,   
+         ClientAMCPHistory.Comment,   
+         ClientAMCPHistory.SequenceNum,   
+         ClientAMCPHistory.ClntID,
+			ClientAMCPHistory.YearMonth,
+			isnull ( pc_user_def.last_name, '' ) + ', ' + isnull ( pc_user_def.first_name, '' ) as usermdfd_name 
+    FROM ClientAMCPHistory,
+			pc_user_def     
+   WHERE ClientAMCPHistory.ClntID = :ClntID AND
+			pc_user_def.user_id  =* ClientAMCPHistory.UserMdfd
+" update="ClientAMCPHistory" updatewhere=0 updatekeyinplace=no arguments=(("ClntID", string))  sort="yearmonth D sequencenum D " )
+text(band=header alignment="2" text="Modified
+On" border="0" color="0" x="306" y="12" height="112" width="334"  name=usermdfd_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Year/Month" border="0" color="0" x="0" y="72" height="52" width="306"  name=cf_yearmonth_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="BCS" border="0" color="0" x="805" y="12" height="56" width="329"  name=frombcs_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="1" text="Leads Created" border="0" color="0" x="1189" y="12" height="56" width="462"  name=fromleadscreated_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="1" text="Loans Closed" border="0" color="0" x="1696" y="12" height="56" width="462"  name=fromloansclosed_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="1" text="From" border="0" color="0" x="759" y="76" height="52" width="133"  name=t_1  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="1" text="To" border="0" color="0" x="997" y="76" height="52" width="133"  name=t_2  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="1" text="From" border="0" color="0" x="1271" y="76" height="52" width="133"  name=t_3  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="1" text="To" border="0" color="0" x="1509" y="76" height="52" width="133"  name=t_4  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="1" text="From" border="0" color="0" x="1783" y="76" height="52" width="133"  name=t_5  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="1" text="To" border="0" color="0" x="2021" y="76" height="52" width="133"  name=t_6  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="0" color="0" x="210" y="12" height="64" width="425" format="mm/dd/yyyy hh:mm:ss"  name=datemdfd edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="string (  year , '0000') + '/' + string (month, '00')"border="0" color="0" x="14" y="12" height="64" width="178" format="[GENERAL]"  name=cf_yearmonth  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="0" color="0" x="672" y="12" height="64" width="219" format="[General]"  name=frombcs  tag="Original BCS (Buyer Controlled Sales) for the Year/Month." edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="0" color="0" x="910" y="12" height="64" width="219" format="[General]"  name=tobcs  tag="Modified BCS (Buyer Controlled Sales) entered by the user for the Year/Month." edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="1" tabsequence=32766 border="0" color="0" x="1184" y="12" height="64" width="219" format="[General]"  name=fromleadscreated  tag="Original count of Tier 1 Leads created for this Account Manager during the Year/Month.  Lead Created Date is used to identify the Year/Month." edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="1" tabsequence=32766 border="0" color="0" x="1422" y="12" height="64" width="219" format="[General]"  name=toleadscreated  tag="Modified count of Tier 1 Leads entered by the user for this Account Manager during the Year/Month." edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="1" tabsequence=32766 border="0" color="0" x="1696" y="12" height="64" width="219" format="[General]"  name=fromloansclosed  tag="Original count of Tier 1 Loans Closed for this Account Manager during the Year/Month." edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="1" tabsequence=32766 border="0" color="0" x="1934" y="12" height="64" width="219" format="[General]"  name=toloansclosed  tag="Modified count of Tier 1 Loans Closed entered by the user for this Account Manager during the Year/Month." edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="0" tabsequence=32766 border="0" color="0" x="2194" y="12" height="64" width="1088" format="[general]"  name=comment  tag=" User entered text describing rationale for user entered change to Leads Created or Loans Closed values." height.autosize=yes edit.limit=255 edit.case=any edit.autoselect=yes edit.nilisnull=yes edit.autovscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=14 alignment="0" tabsequence=0 border="0" color="0" x="3314" y="12" height="64" width="969"  name=usermdfd_name  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Comment" border="0" color="0" x="2190" y="76" height="52" width="1001"  name=comment_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Modified By" border="0" color="0" x="3314" y="72" height="56" width="969"  name=t_7  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )
+ 

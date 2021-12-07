@@ -1,0 +1,64 @@
+$PBExportHeader$d_search_accountmanager.srd
+release 7;
+datawindow(units=0 timer_interval=60000 color=16777215 processing=1 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=132 color="80269524" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=68 color="536870912" )
+table(column=(type=char(120) updatewhereclause=yes name=am_fullname dbname="PersFullName" )
+ column=(type=char(120) updatewhereclause=yes name=rm_fullname dbname="PersFullName" )
+ column=(type=char(100) updatewhereclause=yes name=area dbname="AreaDesc" )
+ column=(type=char(30) updatewhereclause=yes name=am_lastname dbname="PersLastName" )
+ column=(type=datetime updatewhereclause=yes name=am_endeffdate dbname="EndEffDate" )
+ column=(type=char(30) updatewhereclause=yes name=rm_lastname dbname="PersLastName" )
+ column=(type=long updatewhereclause=yes name=am_id dbname="PersIDNum" )
+ column=(type=char(20) updatewhereclause=yes name=am_phonenbr dbname="PhoneNbr" )
+ column=(type=char(20) updatewhereclause=yes name=am_faxnbr dbname="FaxNbr" )
+ column=(type=datetime updatewhereclause=yes name=am_begineffdate dbname="BeginEffDate" )
+ retrieve="  SELECT Person_a.PersFullName,   
+         Person_b.PersFullName,   
+         Area.AreaDesc,   
+         Person_a.PersLastName,   
+         PHHManager_a.EndEffDate,   
+         Person_b.PersLastName,   
+         PHHManager_a.PersIDNum,   
+         PHHManager_a.PhoneNbr,   
+         PHHManager_a.FaxNbr, 
+         PHHManager_a.BeginEffDate  
+    FROM Person Person_a,   
+         PHHManager PHHManager_a,   
+         Person Person_b, 
+         Area  
+   WHERE ( Person_a.PersIDNum = PHHManager_a.PersIDNum ) and  
+         ( PHHManager_a.PersIDNumParent = Person_b.PersIDNum ) and  
+         ( PHHManager_a.AreaIDNum = Area.AreaIDNum ) and  
+         ( ( PHHManager_a.ClassIDNum = 1041 ) AND  
+         ( Person_a.PersLastName like :acctmgr_perslastname ) AND  
+         ( Area.AreaDesc like :areadesc ) AND  
+         ( Person_b.PersLastName like :regionalmanager_perslastname ) )    
+" arguments=(("acctmgr_perslastname", string),("areadesc", string),("regionalmanager_perslastname", string))  sort="am_fullname A " )
+text(band=header alignment="2" text="Account Manager
+Name" border="6" color="0" x="9" y="12" height="112" width="658"  name=am_fullname_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Regional Manager
+Name" border="6" color="0" x="677" y="12" height="112" width="558"  name=rm_fullname_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="
+Area" border="6" color="0" x="1243" y="12" height="112" width="297"  name=area_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Account
+Manager ID" border="6" color="0" x="1550" y="12" height="112" width="311"  name=am_id_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="
+Phone" border="6" color="0" x="1870" y="12" height="112" width="453"  name=am_phonenbr_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="
+Fax" border="6" color="0" x="2331" y="12" height="112" width="453"  name=am_faxnbr_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Account Manager Start Date" border="6" color="0" x="2793" y="12" height="112" width="480"  name=am_begineffdate_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Account Manager End  Date" border="6" color="0" x="3282" y="12" height="112" width="471"  name=am_endeffdate_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0~tif(date( am_endeffdate) <=today(),RGB(250,0,0),RGB(0,0,0))" x="9" y="4" height="56" width="658" format="[general]"  name=am_fullname edit.limit=120 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="0~tif(date( am_endeffdate) <=today(),RGB(250,0,0),RGB(0,0,0))" x="1243" y="4" height="56" width="297" format="[general]"  name=area  tag=" " edit.limit=100 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="1" tabsequence=32766 border="0" color="0~tif(date( am_endeffdate) <=today(),RGB(250,0,0),RGB(0,0,0))" x="1550" y="4" height="56" width="311" format="[general]"  name=am_id edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=8 alignment="2" tabsequence=32766 border="0" color="0~tif(date( am_endeffdate) <=today(),RGB(250,0,0),RGB(0,0,0))" x="1870" y="4" height="56" width="453" format="(@@@) @@@-@@@@"  name=am_phonenbr edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="2" tabsequence=32766 border="0" color="0~tif(date( am_endeffdate) <=today(),RGB(250,0,0),RGB(0,0,0))" x="2331" y="4" height="56" width="453" format="(@@@) @@@-@@@@"  name=am_faxnbr edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0~tif(date( am_endeffdate) <=today(),RGB(250,0,0),RGB(0,0,0))" x="677" y="4" height="56" width="558" format="[general]"  name=rm_fullname edit.limit=120 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="2" tabsequence=32766 border="0" color="0~tif(date( am_endeffdate) <=today(),RGB(250,0,0),RGB(0,0,0))" x="2793" y="4" height="56" width="480" format="mm/dd/yyyy"  name=am_begineffdate edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="2" tabsequence=32766 border="0" color="0~tif(date( am_endeffdate) <=today(),RGB(250,0,0),RGB(0,0,0))" x="3282" y="4" height="56" width="471" format="mm/dd/yyyy"  name=am_endeffdate edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )
+ 

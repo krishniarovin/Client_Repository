@@ -1,0 +1,75 @@
+IF OBJECT_ID('proc_Client_Bus_Data') IS NOT NULL
+BEGIN
+    DROP PROCEDURE proc_Client_Bus_Data
+    IF OBJECT_ID('proc_Client_Bus_Data') IS NOT NULL
+        PRINT '<<< FAILED DROPPING PROCEDURE proc_Client_Bus_Data >>>'
+    ELSE
+        PRINT '<<< DROPPED PROCEDURE proc_Client_Bus_Data >>>'
+END
+go
+CREATE PROCEDURE proc_Client_Bus_Data
+/*********************************************************************************************
+** Name          : proc_Client_Bus_Data
+** Author    : CTS
+** Date       : 11/01/2006
+**Modify By   :
+**Modify On   :
+**
+** Purpose          : To extract Client ,Business source Data for TVM Project
+Modified By CTS on 12/01/2006 to Convert Clint id to Numeric
+*********************************************************************************************/
+@ProcNum    int = 0
+
+AS
+IF @ProcNum =1
+Begin
+       -- Retrieve the Client Information
+        -- Modified to Convert  Client ID to Numeric Field on 12/04/2006
+       SELECT Convert(Numeric,Client.ClntID),
+              Company.CompLegalName ,
+              Client.BgnEffDate,
+              Client.EndEffDate
+       FROM Client ,     Company
+       WHERE ( Client.CompIDNum = Company.CompIDNum )
+End
+
+IF @ProcNum =2
+Begin
+       -- Retrieve the BusCrc Information Information
+     SELECT  ClassNum ,
+           ClassDesc,
+           BgnEffDate,
+           EndEffDate
+        FROM Classification
+        Where ClassGrpIDNum = 3
+End
+IF @ProcNum =3
+Begin
+       -- Retrieve the BusCrc and Client AssocationInformation Information
+-- Modified to Convert  Client ID to Numeric Field
+SELECT Classification.ClassNum,
+         Convert(Numeric,Client.ClntID) 
+         Client.BgnEffDate,
+         Client.EndEffDate
+    FROM Client,
+         BusSrcXRef,
+         Classification
+   WHERE ( Client.ClntID = BusSrcXRef.ClntID ) and
+         ( BusSrcXRef.ClassIDNum = Classification.ClassIDNum )
+End
+
+
+IF @@error != 0
+    RETURN -1 -- NON FATAL ERROR
+
+/* Success */
+RETURN 0
+go
+IF OBJECT_ID('BardeVi.proc_Client_Bus_Data') IS NOT NULL
+    PRINT '<<< CREATED PROCEDURE BardeVi.proc_Client_Bus_Data >>>'
+ELSE
+    PRINT '<<< FAILED CREATING PROCEDURE BardeVi.proc_Client_Bus_Data >>>'
+go
+GRANT EXECUTE ON BardeVi.proc_Client_Bus_Data TO public
+go
+

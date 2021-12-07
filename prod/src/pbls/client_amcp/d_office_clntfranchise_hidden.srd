@@ -1,0 +1,36 @@
+$PBExportHeader$d_office_clntfranchise_hidden.srd
+release 7;
+datawindow(units=0 timer_interval=0 color=16777215 processing=1 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=80 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=92 color="536870912" )
+table(column=(type=char(7) update=yes updatewhereclause=yes key=yes name=clntid dbname="ClntFranchise.ClntID" )
+ column=(type=char(10) update=yes updatewhereclause=yes key=yes name=clntfranchisenum dbname="ClntFranchise.ClntFranchiseNum" )
+ column=(type=datetime update=yes updatewhereclause=yes name=begineffdate dbname="ClntFranchise.BeginEffDate" )
+ column=(type=datetime update=yes updatewhereclause=yes name=endeffdate dbname="ClntFranchise.EndEffDate" )
+ column=(type=decimal(0) updatewhereclause=yes name=client_officetypecd dbname="Client.OfficeTypeCd" )
+ retrieve="  SELECT dbo.ClntFranchise.ClntID,   
+         dbo.ClntFranchise.ClntFranchiseNum,   
+         dbo.ClntFranchise.BeginEffDate,   
+         dbo.ClntFranchise.EndEffDate,   
+         dbo.Client.OfficeTypeCd  
+    FROM dbo.ClntFranchise,   
+         dbo.Client  
+   WHERE ( dbo.ClntFranchise.ClntID = dbo.Client.ClntID ) and  
+         ( dbo.ClntFranchise.ClntFranchiseNum in ( :ClntFranchiseNum ) ) AND  
+         ( dbo.Client.OfficeTypeCd = 1 )
+" update="dbo.ClntFranchise" updatewhere=1 updatekeyinplace=no arguments=(("ClntFranchiseNum", stringlist)) )
+text(band=header alignment="2" text="Clntid" border="0" color="0" x="9" y="8" height="64" width="219"  name=clntid_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Clntfranchisenum" border="0" color="0" x="238" y="8" height="64" width="457"  name=clntfranchisenum_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Begineffdate" border="0" color="0" x="704" y="8" height="64" width="603"  name=begineffdate_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Endeffdate" border="0" color="0" x="1317" y="8" height="64" width="603"  name=endeffdate_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Client Officetypecd" border="0" color="0" x="1929" y="8" height="64" width="1152"  name=t_1  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=10 border="0" color="0" x="9" y="8" height="76" width="219" format="[general]"  name=clntid edit.limit=7 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=20 border="0" color="0" x="238" y="8" height="76" width="457" format="[general]"  name=clntfranchisenum edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=30 border="0" color="0" x="704" y="8" height="76" width="603" format="[shortdate] [time]"  name=begineffdate edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=40 border="0" color="0" x="1317" y="8" height="76" width="603" format="[shortdate] [time]"  name=endeffdate edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="0" x="1929" y="8" height="76" width="1152" format="[general]"  name=client_officetypecd edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )
+ 

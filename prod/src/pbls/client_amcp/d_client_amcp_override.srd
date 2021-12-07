@@ -1,0 +1,59 @@
+$PBExportHeader$d_client_amcp_override.srd
+release 7;
+datawindow(units=0 timer_interval=0 color=80269524 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=140 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=92 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=year dbname="Year" )
+ column=(type=long updatewhereclause=yes name=month dbname="Month" )
+ column=(type=long update=yes updatewhereclause=yes name=bcs dbname="ClientAMCP.BCS" )
+ column=(type=long update=yes updatewhereclause=yes name=leadscreated dbname="ClientAMCP.LeadsCreated" )
+ column=(type=long update=yes updatewhereclause=yes name=loansclosed dbname="ClientAMCP.LoansClosed" )
+ column=(type=char(255) update=yes updatewhereclause=yes name=comment dbname="ClientAMCP.Comment" )
+ column=(type=char(10) update=yes updatewhereclause=yes key=yes name=clntid dbname="ClientAMCP.ClntID" )
+ column=(type=datetime update=yes updatewhereclause=yes name=datemdfd dbname="ClientAMCP.DateMdfd" )
+ column=(type=long updatewhereclause=yes name=bcsytd dbname="BCSYTD" )
+ column=(type=long updatewhereclause=yes name=leadscreatedytd dbname="LeadsCreatedYTD" )
+ column=(type=long updatewhereclause=yes name=loansclosedytd dbname="LoansClosedYTD" )
+ column=(type=long updatewhereclause=yes name=cc_saved dbname="cc_saved" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=yearmonth dbname="ClientAMCP.YearMonth" )
+ retrieve="  SELECT ( dbo.ClientAMCP.YearMonth / 100 ) as Year,   
+			dbo.ClientAMCP.YearMonth - ( ( dbo.ClientAMCP.YearMonth / 100  ) * 100 )   as Month,   
+         dbo.ClientAMCP.BCS,   
+         dbo.ClientAMCP.LeadsCreated,   
+         dbo.ClientAMCP.LoansClosed,   
+         dbo.ClientAMCP.Comment,   
+         dbo.ClientAMCP.ClntID,
+			dbo.ClientAMCP.DateMdfd,
+			0 as BCSYTD,
+			0 as LeadsCreatedYTD,
+			0 as LoansClosedYTD,
+			1 as cc_saved,
+			dbo.ClientAMCP.YearMonth    
+    FROM dbo.ClientAMCP  
+   WHERE dbo.ClientAMCP.ClntID = :ClntID   
+ORDER BY dbo.ClientAMCP.YearMonth DESC
+" update="ClientAMCP" updatewhere=0 updatekeyinplace=no arguments=(("ClntID", string))  sort="year D month D " )
+text(band=header alignment="2" text="Loans Closed" border="0" color="0" x="1563" y="12" height="56" width="466"  name=loansclosed_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Month" border="0" color="0" x="297" y="76" height="56" width="165"  name=month_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Year" border="0" color="0" x="123" y="76" height="56" width="165"  name=year_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="YTD" border="0" color="0" x="1833" y="76" height="56" width="165"  name=year_loans_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="YTD" border="0" color="0" x="1307" y="76" height="56" width="165"  name=t_2  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="YTD" border="0" color="0" x="777" y="76" height="56" width="169"  name=t_4  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Leads Created" border="0" color="0" x="1033" y="12" height="56" width="471"  name=leadscreated_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="BCS" border="0" color="0" x="507" y="12" height="56" width="471"  name=bcs_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Monthly" border="0" color="0" x="517" y="76" height="56" width="219"  name=t_3  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Monthly" border="0" color="0" x="1042" y="76" height="56" width="219"  name=t_1  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Monthly" border="0" color="0" x="1563" y="76" height="56" width="219"  name=month_loans_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=20 border="5" color="0" x="320" y="12" height="64" width="114" format="[General]" protect="0~tif(cc_saved=1,1,0)"  name=month  tag=" Calendar Month to which the amounts apply." edit.limit=0 edit.case=any edit.autoselect=yes edit.required=yes edit.nilisnull=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="16777215~tif(cc_saved=1,RGB(192,192,192),RGB(250,250,250))" )
+column(band=detail id=1 alignment="1" tabsequence=10 border="5" color="0" x="123" y="12" height="64" width="165" format="[General]" protect="0~tif(cc_saved=1,1,0)"  name=year  tag="Calendar Year to which the amounts apply." edit.limit=0 edit.case=any edit.autoselect=yes edit.required=yes edit.nilisnull=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="16777215~tif(cc_saved=1,RGB(192,192,192),RGB(250,250,250))" )
+column(band=detail id=9 alignment="1" tabsequence=32766 border="5" color="0" x="754" y="12" height="64" width="219" format="[general]"  name=bcsytd edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=10 alignment="1" tabsequence=32766 border="5" color="0" x="1280" y="12" height="64" width="219" format="[general]"  name=leadscreatedytd edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=11 alignment="1" tabsequence=32766 border="5" color="0" x="1806" y="12" height="64" width="219" format="[general]"  name=loansclosedytd edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=3 alignment="1" tabsequence=30 border="5" color="0" x="507" y="12" height="64" width="219" format="[General]"  name=bcs  tag=" BCS (Buyer Controlled Sales) are the real estate sales for a Account Manager for the Year/Month.  For Brands Account Managers, this is the sum of BCS for Offices (Franchise Numbers) associated with the Account Manager.  For Non-Brands Account Managers," edit.limit=0 edit.case=any edit.autoselect=yes edit.nilisnull=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=4 alignment="1" tabsequence=40 border="5" color="0" x="1033" y="12" height="64" width="215" format="[General]"  name=leadscreated  tag="Count of Tier 1 Leads created for this Account Manager during the Year/Month.  Lead Created Date is used to identify the Year/Month." edit.limit=0 edit.case=any edit.autoselect=yes edit.nilisnull=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=5 alignment="1" tabsequence=50 border="5" color="0" x="1563" y="12" height="64" width="219" format="[General]"  name=loansclosed  tag=" Count of Tier 1 Loans Closed for this Account Manager during the Year/Month.  Settlement Journal Date is used to identify the Year/Month." edit.limit=0 edit.case=any edit.autoselect=yes edit.nilisnull=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )
+ 

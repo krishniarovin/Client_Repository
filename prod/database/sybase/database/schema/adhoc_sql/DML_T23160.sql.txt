@@ -1,0 +1,14 @@
+/*****************************T23160_Desk Rent***************************/
+
+insert into ClientReports 
+select max(ReportUniqNum) +1,'Desk Rent Request FTP','w_desk_rent_request_ftp','w_desk_rent_request_ftp',
+NULL,'Market Access','d_desk_rent_rqst_ftp',NULL,0,0,1,1,0,0,1,1,getdate(),user,getdate(),user
+from ClientReports;
+
+insert into Classification
+select max(ClassIDNum) +1,18,user,getdate(),user,getdate(),getdate(),'12-31-2099 0:0:0.000','MONTHLY',1,'Monthly','1',NULL,0,NULL
+from Classification;
+
+insert into Classification
+select max(ClassIDNum) +1,18,user,getdate(),user,getdate(),getdate(),'12-31-2099 0:0:0.000','DESK RENT',0,'Desk Rent','0',NULL,0,NULL
+from Classification;

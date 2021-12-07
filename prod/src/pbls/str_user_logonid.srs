@@ -1,0 +1,4 @@
+$PBExportHeader$str_user_logonid.srs
+global type str_user_logonid from structure
+	string		userid
+end type

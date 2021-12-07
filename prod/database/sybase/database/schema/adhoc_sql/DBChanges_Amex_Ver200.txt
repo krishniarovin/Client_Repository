@@ -1,0 +1,360 @@
+update dbo.FeeType
+set FeeTypeDesc = 'Private Label LPP'
+where FeeTypeCd = 'PRA'
+
+update dbo.FeeType
+set FeeTypeDesc = 'Private Label OAF'
+where FeeTypeCd = 'OAF'
+
+INSERT INTO dbo.FeeType (FeeTypeCd , FeeTypeDesc)
+values ('CAF' , 'Co-Branded OAF')
+
+INSERT INTO dbo.FeeType (FeeTypeCd , FeeTypeDesc)
+values ('CLP' , 'Co-Branded LPP')
+
+INSERT INTO dbo.FeeType (FeeTypeCd , FeeTypeDesc)
+values ('NNR' , 'Non-Note Rate')
+
+
+
+
+--CO-Branded OAF
+
+INSERT INTO 
+dbo.FeeProdXRef 
+(FeeTypeCd,
+ProdTypeCd)
+values
+('CAF',
+'01')
+
+INSERT INTO 
+dbo.FeeProdXRef 
+(FeeTypeCd,
+ProdTypeCd)
+values
+('CAF',
+'02')
+
+INSERT INTO 
+dbo.FeeProdXRef 
+(FeeTypeCd,
+ProdTypeCd)
+values
+('CAF',
+'03')
+
+INSERT INTO 
+dbo.FeeProdXRef 
+(FeeTypeCd,
+ProdTypeCd)
+values
+('CAF',
+'04')
+
+INSERT INTO 
+dbo.FeeProdXRef 
+(FeeTypeCd,
+ProdTypeCd)
+values
+('CAF',
+'05')
+
+INSERT INTO 
+dbo.FeeProdXRef 
+(FeeTypeCd,
+ProdTypeCd)
+values
+('CAF',
+'06')
+
+INSERT INTO 
+dbo.FeeProdXRef 
+(FeeTypeCd,
+ProdTypeCd)
+values
+('CAF',
+'07')
+
+INSERT INTO 
+dbo.FeeProdXRef 
+(FeeTypeCd,
+ProdTypeCd)
+values
+('CAF',
+'08')
+
+INSERT INTO 
+dbo.FeeProdXRef 
+(FeeTypeCd,
+ProdTypeCd)
+values
+('CAF',
+'09')
+
+
+INSERT INTO 
+dbo.FeeProdXRef 
+(FeeTypeCd,
+ProdTypeCd)
+values
+('CAF',
+'10')
+
+--CO-Branded LPP
+INSERT INTO 
+dbo.FeeProdXRef 
+(FeeTypeCd,
+ProdTypeCd)
+values
+('CLP',
+'01')
+
+INSERT INTO 
+dbo.FeeProdXRef 
+(FeeTypeCd,
+ProdTypeCd)
+values
+('CLP',
+'02')
+
+INSERT INTO 
+dbo.FeeProdXRef 
+(FeeTypeCd,
+ProdTypeCd)
+values
+('CLP',
+'03')
+
+INSERT INTO 
+dbo.FeeProdXRef 
+(FeeTypeCd,
+ProdTypeCd)
+values
+('CLP',
+'04')
+
+INSERT INTO 
+dbo.FeeProdXRef 
+(FeeTypeCd,
+ProdTypeCd)
+values
+('CLP',
+'05')
+
+INSERT INTO 
+dbo.FeeProdXRef 
+(FeeTypeCd,
+ProdTypeCd)
+values
+('CLP',
+'06')
+
+INSERT INTO 
+dbo.FeeProdXRef 
+(FeeTypeCd,
+ProdTypeCd)
+values
+('CLP',
+'07')
+
+INSERT INTO 
+dbo.FeeProdXRef 
+(FeeTypeCd,
+ProdTypeCd)
+values
+('CLP',
+'08')
+
+INSERT INTO 
+dbo.FeeProdXRef 
+(FeeTypeCd,
+ProdTypeCd)
+values
+('CLP',
+'09')
+
+
+INSERT INTO 
+dbo.FeeProdXRef 
+(FeeTypeCd,
+ProdTypeCd)
+values
+('CLP',
+'10')
+
+INSERT INTO 
+dbo.FeeProdXRef 
+(FeeTypeCd,
+ProdTypeCd)
+values
+('CLP',
+'13')
+
+INSERT INTO 
+dbo.FeeProdXRef 
+(FeeTypeCd,
+ProdTypeCd)
+values
+('CLP',
+'14')
+
+--Non-Note Rate
+
+INSERT INTO 
+dbo.FeeProdXRef 
+(FeeTypeCd,
+ProdTypeCd)
+values
+('NNR',
+'01')
+
+INSERT INTO 
+dbo.FeeProdXRef 
+(FeeTypeCd,
+ProdTypeCd)
+values
+('NNR',
+'02')
+
+INSERT INTO 
+dbo.FeeProdXRef 
+(FeeTypeCd,
+ProdTypeCd)
+values
+('NNR',
+'03')
+
+INSERT INTO 
+dbo.FeeProdXRef 
+(FeeTypeCd,
+ProdTypeCd)
+values
+('NNR',
+'04')
+
+INSERT INTO 
+dbo.FeeProdXRef 
+(FeeTypeCd,
+ProdTypeCd)
+values
+('NNR',
+'05')
+
+INSERT INTO 
+dbo.FeeProdXRef 
+(FeeTypeCd,
+ProdTypeCd)
+values
+('NNR',
+'06')
+
+INSERT INTO 
+dbo.FeeProdXRef 
+(FeeTypeCd,
+ProdTypeCd)
+values
+('NNR',
+'07')
+
+INSERT INTO 
+dbo.FeeProdXRef 
+(FeeTypeCd,
+ProdTypeCd)
+values
+('NNR',
+'08')
+
+INSERT INTO 
+dbo.FeeProdXRef 
+(FeeTypeCd,
+ProdTypeCd)
+values
+('NNR',
+'09')
+
+
+INSERT INTO 
+dbo.FeeProdXRef 
+(FeeTypeCd,
+ProdTypeCd)
+values
+('NNR',
+'10')
+
+INSERT INTO 
+dbo.FeeProdXRef 
+(FeeTypeCd,
+ProdTypeCd)
+values
+('NNR',
+'11')
+
+INSERT INTO 
+dbo.FeeProdXRef 
+(FeeTypeCd,
+ProdTypeCd)
+values
+('NNR',
+'12')
+
+INSERT INTO 
+dbo.FeeProdXRef 
+(FeeTypeCd,
+ProdTypeCd)
+values
+('NNR',
+'13')
+
+INSERT INTO 
+dbo.FeeProdXRef 
+(FeeTypeCd,
+ProdTypeCd)
+values
+('NNR',
+'14')
+
+INSERT INTO 
+dbo.FeeProdXRef 
+(FeeTypeCd,
+ProdTypeCd)
+values
+('NNR',
+'15')
+
+INSERT INTO 
+dbo.FeeProdXRef 
+(FeeTypeCd,
+ProdTypeCd)
+values
+('NNR',
+'16')
+
+INSERT INTO 
+dbo.FeeProdXRef 
+(FeeTypeCd,
+ProdTypeCd)
+values
+('NNR',
+'17')
+
+INSERT INTO 
+dbo.FeeProdXRef 
+(FeeTypeCd,
+ProdTypeCd)
+values
+('NNR',
+'18')
+
+INSERT INTO 
+dbo.FeeProdXRef 
+(FeeTypeCd,
+ProdTypeCd)
+values
+('NNR',
+'19')
+
+
+
+
+

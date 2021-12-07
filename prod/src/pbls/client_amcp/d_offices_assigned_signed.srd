@@ -1,0 +1,83 @@
+$PBExportHeader$d_offices_assigned_signed.srd
+release 7;
+datawindow(units=0 timer_interval=60000 color=16777215 processing=1 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=184 color="80269524" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=68 color="536870912" )
+table(column=(type=datetime updatewhereclause=yes name=office_begineffdate dbname="Office.BeginEffDate" )
+ column=(type=datetime updatewhereclause=yes name=office_endeffdate dbname="Office.EndEffDate" )
+ column=(type=char(3) updatewhereclause=yes name=office_brand dbname="Office.Brand" )
+ column=(type=char(2) updatewhereclause=yes name=office_state dbname="Office.State" )
+ column=(type=char(2) updatewhereclause=yes name=office_region dbname="Office.Region" )
+ column=(type=char(40) updatewhereclause=yes name=office_city dbname="Office.City" )
+ column=(type=char(11) updatewhereclause=yes name=office_zip dbname="Office.Zip" )
+ column=(type=char(60) updatewhereclause=yes name=office_officename dbname="Office.OfficeName" )
+ column=(type=long updatewhereclause=yes name=office_officeidnum dbname="Office.OfficeIDNum" )
+ column=(type=char(10) updatewhereclause=yes name=office_franchisenum dbname="Office.FranchiseNum" )
+ column=(type=datetime updatewhereclause=yes name=clntfranchise_begineffdate dbname="ClntFranchise.BeginEffDate" )
+ column=(type=datetime updatewhereclause=yes name=clntfranchise_endeffdate dbname="ClntFranchise.EndEffDate" )
+ column=(type=char(7) updatewhereclause=yes name=clntfranchise_clntid dbname="ClntFranchise.ClntID" )
+ column=(type=char(10) updatewhereclause=yes name=clntfranchise_clntfranchisenum dbname="ClntFranchise.ClntFranchiseNum" )
+ column=(type=datetime updatewhereclause=yes name=clientbuscontact_effdate dbname="ClientBusContact.EffDate" )
+ column=(type=datetime updatewhereclause=yes name=clientbuscontact_expdate dbname="ClientBusContact.ExpDate" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"dbo.Office~" )  TABLE(NAME=~"dbo.ClientBusContact~" )  TABLE(NAME=~"dbo.ClntFranchise~" ) COLUMN(NAME=~"dbo.Office.BeginEffDate~") COLUMN(NAME=~"dbo.Office.EndEffDate~") COLUMN(NAME=~"dbo.Office.Brand~") COLUMN(NAME=~"dbo.Office.State~") COLUMN(NAME=~"dbo.Office.Region~") COLUMN(NAME=~"dbo.Office.City~") COLUMN(NAME=~"dbo.Office.Zip~") COLUMN(NAME=~"dbo.Office.OfficeName~") COLUMN(NAME=~"dbo.Office.OfficeIDNum~") COLUMN(NAME=~"dbo.Office.FranchiseNum~") COLUMN(NAME=~"dbo.ClntFranchise.BeginEffDate~") COLUMN(NAME=~"dbo.ClntFranchise.EndEffDate~") COLUMN(NAME=~"dbo.ClntFranchise.ClntID~") COLUMN(NAME=~"dbo.ClntFranchise.ClntFranchiseNum~") COLUMN(NAME=~"dbo.ClientBusContact.EffDate~") COLUMN(NAME=~"dbo.ClientBusContact.ExpDate~")    JOIN (LEFT=~"dbo.ClientBusContact.ClntID~"    OP =~"=~"RIGHT=~"dbo.ClntFranchise.ClntID~" )    JOIN (LEFT=~"dbo.Office.FranchiseNum~"    OP =~"=~"RIGHT=~"dbo.ClntFranchise.ClntFranchiseNum~" )WHERE(    EXP1 =~"dbo.ClientBusContact.PersIDNum~"   OP =~"=~"    EXP2 =~":PersIDNum~" ) ) ARG(NAME = ~"PersIDNum~" TYPE = number) " arguments=(("PersIDNum", number)) )
+text(band=header alignment="2" text="Account Manager Start" border="6" color="0" x="9" y="8" height="168" width="293"  name=obj_74542376  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Account Manager End" border="6" color="0" x="311" y="8" height="168" width="293"  name=obj_74544248  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="
+Client
+ID" border="6" color="0" x="613" y="8" height="168" width="187"  name=t_3  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Franchise
+Number
+Part 1" border="6" color="0" x="809" y="8" height="168" width="274"  name=franchise_number_part_1_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Franchise
+Number
+Part 2" border="6" color="0" x="1093" y="8" height="168" width="270"  name=franchise_number_part_2_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="
+
+Brand" border="6" color="0" x="1371" y="8" height="168" width="160"  name=office_brand_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="
+
+State" border="6" color="0" x="1541" y="8" height="168" width="146"  name=office_state_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="
+
+Region" border="6" color="0" x="1696" y="8" height="168" width="192"  name=office_region_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="
+
+City" border="6" color="0" x="1897" y="8" height="168" width="503"  name=office_city_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="
+
+Zip" border="6" color="0" x="2409" y="8" height="168" width="197"  name=office_zip_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="
+
+Office Name" border="6" color="0" x="2615" y="8" height="168" width="933"  name=office_officename_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Office
+Effective
+Start" border="6" color="0" x="3557" y="8" height="168" width="256"  name=t_2  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Office
+Effective
+End" border="6" color="0" x="3822" y="8" height="168" width="256"  name=t_1  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Assignment
+Effective
+Begin" border="6" color="0" x="4087" y="8" height="168" width="311"  name=t_5  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Assignment
+Effective
+End" border="6" color="0" x="4407" y="8" height="168" width="320"  name=t_4  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=15 alignment="2" tabsequence=32766 border="0" color="0~tif(date(  clientbuscontact_expdate  ) <= today () or date(office_endeffdate) < today (),RGB(250,0,0),RGB(0,0,0))" x="9" y="4" height="60" width="293" format="mm/dd/yyyy"  name=clientbuscontact_effdate edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="2" tabsequence=32766 border="0" color="0~tif(date(  clientbuscontact_expdate  ) <= today () or date(office_endeffdate) < today (),RGB(250,0,0),RGB(0,0,0))" x="4087" y="4" height="60" width="311" format="mm/dd/yyyy"  name=clntfranchise_begineffdate edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="0" color="0~tif(date(  clientbuscontact_expdate  ) <= today () or date(office_endeffdate) < today (),RGB(250,0,0),RGB(0,0,0))" x="2615" y="4" height="60" width="933" format="[general]"  name=office_officename  tag=" " edit.limit=60 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0~tif(date(  clientbuscontact_expdate  ) <= today () or date(office_endeffdate) < today (),RGB(250,0,0),RGB(0,0,0))" x="3822" y="4" height="60" width="256" format="mm/dd/yyyy"  name=office_endeffdate edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0~tif(date(  clientbuscontact_expdate  ) <= today () or date(office_endeffdate) < today (),RGB(250,0,0),RGB(0,0,0))" x="3557" y="4" height="60" width="256" format="mm/dd/yyyy"  name=office_begineffdate edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="0~tif(date(  clientbuscontact_expdate  ) <= today () or date(office_endeffdate) < today (),RGB(250,0,0),RGB(0,0,0))" x="1897" y="4" height="60" width="503" format="[general]"  name=office_city  tag=" " edit.limit=40 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="0" color="0~tif(date(  clientbuscontact_expdate  ) <= today () or date(office_endeffdate) < today (),RGB(250,0,0),RGB(0,0,0))" x="2409" y="4" height="60" width="197" format="[general]"  name=office_zip  tag=" " edit.limit=11 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="0~tif(date(  clientbuscontact_expdate  ) <= today () or date(office_endeffdate) < today (),RGB(250,0,0),RGB(0,0,0))" x="1541" y="4" height="60" width="146" format="[general]"  name=office_state  tag=" " edit.limit=2 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="0~tif(date(  clientbuscontact_expdate  ) <= today () or date(office_endeffdate) < today (),RGB(250,0,0),RGB(0,0,0))" x="1696" y="4" height="60" width="192" format="[general]"  name=office_region  tag=" " edit.limit=2 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="0~tif(date(  clientbuscontact_expdate  ) <= today () or date(office_endeffdate) < today (),RGB(250,0,0),RGB(0,0,0))" x="1371" y="4" height="60" width="160" format="[general]"  name=office_brand  tag=" " edit.limit=3 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="mid( office_franchisenum ,7,5)"border="0" color="0~tif(date(  clientbuscontact_expdate  ) <= today () or date(office_endeffdate) < today (),RGB(250,0,0),RGB(0,0,0))" x="1093" y="4" height="60" width="270" format="[GENERAL]"  name=franchise_number_part_2  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="1" expression="left( office_franchisenum ,6)"border="0" color="0~tif(date(  clientbuscontact_expdate  ) <= today () or date(office_endeffdate) < today (),RGB(250,0,0),RGB(0,0,0))" x="809" y="4" height="60" width="274" format="[GENERAL]"  name=franchise_number_part_1  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=13 alignment="2" tabsequence=32766 border="0" color="0~tif(date(  clientbuscontact_expdate  ) <= today () or date(office_endeffdate) < today (),RGB(250,0,0),RGB(0,0,0))" x="613" y="4" height="60" width="187" format="[general]"  name=clntfranchise_clntid edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=12 alignment="2" tabsequence=32766 border="0" color="0~tif(date(  clientbuscontact_expdate  ) <= today () or date(office_endeffdate) < today (),RGB(250,0,0),RGB(0,0,0))" x="4407" y="4" height="60" width="320" format="mm/dd/yyyy"  name=clntfranchise_endeffdate edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=16 alignment="2" tabsequence=32766 border="0" color="0~tif(date(  clientbuscontact_expdate  ) <= today () or date(office_endeffdate) < today (),RGB(250,0,0),RGB(0,0,0))" x="311" y="4" height="60" width="293" format="mm/dd/yyyy"  name=clientbuscontact_expdate edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )
+ 

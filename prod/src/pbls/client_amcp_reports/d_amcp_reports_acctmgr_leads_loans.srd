@@ -1,0 +1,79 @@
+$PBExportHeader$d_amcp_reports_acctmgr_leads_loans.srd
+release 7;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.documentname="" print.orientation = 1 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=404 color="536870912" )
+summary(height=76 color="536870912" )
+footer(height=72 color="536870912" )
+detail(height=88 color="536870912"  height.autosize=yes)
+table(column=(type=long updatewhereclause=yes name=year dbname="Year" )
+ column=(type=long updatewhereclause=yes name=month dbname="Month" )
+ column=(type=long updatewhereclause=yes name=leadscreated dbname="LeadsCreated" )
+ column=(type=long updatewhereclause=yes name=loansclosed dbname="LoansClosed" )
+ column=(type=char(255) updatewhereclause=yes name=comment dbname="Comment" )
+ column=(type=long updatewhereclause=yes name=persidnum dbname="PersIDNum" )
+ column=(type=datetime updatewhereclause=yes name=datemdfd dbname="DateMdfd" )
+ column=(type=char(10) updatewhereclause=yes name=clntid dbname="ClntID" )
+ column=(type=long updatewhereclause=yes name=clientamcp_leadscreated dbname="LeadsCreated" )
+ column=(type=long updatewhereclause=yes name=clientamcp_loansclosed dbname="LoansClosed" )
+ column=(type=char(255) updatewhereclause=yes name=clientamcp_comment dbname="Comment" )
+ column=(type=char(120) updatewhereclause=yes name=persfullname dbname="PersFullName" )
+ column=(type=datetime updatewhereclause=yes name=effdate dbname="EffDate" )
+ column=(type=datetime updatewhereclause=yes name=expdate dbname="ExpDate" )
+ retrieve="  SELECT ( AcctManagerAMCP.YearMonth / 100 ) as Year,   
+       	AcctManagerAMCP.YearMonth - ( ( AcctManagerAMCP.YearMonth / 100  ) * 100 )   as Month,   
+         AcctManagerAMCP.LeadsCreated,   
+         AcctManagerAMCP.LoansClosed,   
+         AcctManagerAMCP.Comment,   
+         AcctManagerAMCP.PersIDNum,
+			AcctManagerAMCP.DateMdfd,
+			ClientAMCP.ClntID,
+			ClientAMCP.LeadsCreated,
+			ClientAMCP.LoansClosed,
+			ClientAMCP.Comment,
+			Person.PersFullName,
+			ClientBusContact.EffDate,
+			ClientBusContact.ExpDate
+    FROM AcctManagerAMCP,
+			ClientAMCP,
+			ClientBusContact,
+			Person  
+   WHERE AcctManagerAMCP.PersIDNum = :PersIDNum AND
+			AcctManagerAMCP.YearMonth = :YearMonth AND
+			ClientBusContact.PersIDNum = AcctManagerAMCP.PersIDNum AND
+			Person.PersIDNum = AcctManagerAMCP.PersIDNum AND
+			ClientBusContact.EffDate <= :StartDate AND
+			ClientBusContact.ExpDate > :EndDate AND
+			ClientAMCP.ClntID = ClientBusContact.ClntID AND
+			ClientAMCP.YearMonth = :YearMonth
+			" arguments=(("PersIDNum", number),("YearMonth", number),("StartDate", datetime),("EndDate", datetime))  sort="clntid A " )
+compute(band=header alignment="0" expression="'Account Manager Lead / Loan Detail for ' + string (year) + '/' + string (month, '00')"border="0" color="0" x="55" y="20" height="124" width="1545" format="[GENERAL]"  name=compute_1  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=12 alignment="0" tabsequence=32766 border="0" color="0" x="55" y="328" height="56" width="672" format="[general]"  name=persfullname edit.limit=120 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Account Manager Name" border="0" color="0" x="55" y="256" height="56" width="594"  name=persfullname_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Leads Created" border="0" color="0" x="1056" y="256" height="56" width="370"  name=leadscreated_t_1_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=3 alignment="1" tabsequence=32766 border="0" color="0" x="1070" y="328" height="56" width="329" format="[general]"  name=leadscreated edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=4 alignment="1" tabsequence=32766 border="0" color="0" x="1486" y="328" height="56" width="329" format="[general]"  name=loansclosed edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Loans Closed" border="0" color="0" x="1477" y="256" height="56" width="347"  name=loansclosed_t_1_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Assignment Start Date" border="0" color="0" x="1856" y="256" height="124" width="357"  name=effdate_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Assignment End Date" border="0" color="0" x="2240" y="256" height="124" width="357"  name=expdate_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="User Override Comment" border="0" color="0" x="2619" y="108" height="56" width="617"  name=comment_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=5 alignment="0" tabsequence=32766 border="0" color="0" x="2619" y="184" height="200" width="1458" format="[general]"  name=comment edit.limit=255 edit.case=any edit.autoselect=yes edit.autovscroll=yes edit.vscrollbar=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=header x1="46" y1="392" x2="4069" y2="392"  name=l_1 pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+column(band=header id=6 alignment="2" tabsequence=32766 border="0" color="0" x="754" y="328" height="56" width="229" format="[general]"  name=persidnum edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="ID" border="0" color="0" x="841" y="256" height="56" width="55"  name=persidnum_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="1" tabsequence=32766 border="0" color="0" x="1065" y="4" height="56" width="329" format="[general]"  name=clientamcp_leadscreated edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="1" tabsequence=32766 border="0" color="0" x="1486" y="4" height="56" width="329" format="[general]"  name=clientamcp_loansclosed edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Client ID:" border="0" color="0" x="494" y="4" height="56" width="219"  name=clntid_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="0" color="0" x="736" y="4" height="56" width="302" format="[general]"  name=clntid edit.limit=10 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="0" tabsequence=32766 border="0" color="0" x="2619" y="4" height="56" width="1458" format="[general]"  name=clientamcp_comment height.autosize=yes edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=13 alignment="2" tabsequence=32766 border="0" color="0" x="1856" y="4" height="56" width="357" format="mm/dd/yyyy"  name=effdate edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400~tif(date(effdate)<= date(StartDate) ,400,700)"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=14 alignment="2" tabsequence=32766 border="0" color="0" x="2240" y="4" height="56" width="357" format="mm/dd/yyyy"  name=expdate edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400~tif(date(expdate)>Date(EndDate),400,700)"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=summary x1="59" y1="0" x2="4082" y2="0"  name=l_2 pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+text(band=summary alignment="1" text="Client ID Total:" border="0" color="0" x="677" y="12" height="56" width="357"  name=t_1  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum(clientamcp_leadscreated for all)"border="0" color="0" x="1065" y="12" height="56" width="329" format="[general]"  name=compute_2  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum(clientamcp_loansclosed for all)"border="0" color="0" x="1486" y="12" height="56" width="329" format="[general]"  name=compute_3  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=footer alignment="0" expression="today()"border="0" color="0" x="37" y="4" height="64" width="247" format="mm/dd/yyyy"  name=date_1  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=footer alignment="0" expression="'Page ' + page() + ' of ' + pageCount()"border="0" color="0" x="3515" y="4" height="64" width="562" format="[general]"  name=page_1  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+button(band=header text="Reset Display"filename=""action="0" border="1" color="0" x="1765" y="16" height="84" width="617" vtextalign="0" htextalign="0"  name=b_reset visible="1~t0"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )
+ 

@@ -1,0 +1,128 @@
+$PBExportHeader$d_search_client.srd
+release 7;
+datawindow(units=0 timer_interval=0 color=16777215 processing=1 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=184 color="80269524" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=char(7) updatewhereclause=yes name=clientid dbname="Client.ClntID" )
+ column=(type=char(25) updatewhereclause=yes name=officetype dbname="OfficeType.OfficeTypeDesc" )
+ column=(type=char(120) updatewhereclause=yes name=am_persfullname dbname="Person.PersFullName" )
+ column=(type=char(30) updatewhereclause=yes name=person_perslastname dbname="Person.PersLastName" )
+ column=(type=char(90) updatewhereclause=yes name=classification_classdesc dbname="Classification.ClassDesc" )
+ column=(type=char(60) updatewhereclause=yes name=clientshortname dbname="Company.CompShortName" )
+ column=(type=char(20) updatewhereclause=yes name=am_phone dbname="PHHManager.PhoneNbr" )
+ column=(type=char(20) updatewhereclause=yes name=am_fax dbname="PHHManager.FaxNbr" )
+ column=(type=datetime updatewhereclause=yes name=client_begineffdate dbname="Client.BgnEffDate" )
+ column=(type=datetime updatewhereclause=yes name=client_endeffdate dbname="Client.EndEffDate" )
+ retrieve="  SELECT DISTINCT
+			dbo.Client.ClntID,   
+         dbo.OfficeType.OfficeTypeDesc,   
+         dbo.Person.PersFullName,   
+         dbo.Person.PersLastName,   
+         dbo.Classification.ClassDesc,   
+         dbo.Company.CompShortName,   
+         dbo.PHHManager.PhoneNbr,   
+         dbo.PHHManager.FaxNbr,   
+         dbo.Client.BgnEffDate,   
+         dbo.Client.EndEffDate  
+    FROM dbo.Client,   
+         dbo.Person,   
+         dbo.OfficeType,   
+         dbo.BusSrcXRef,   
+         dbo.Classification,   
+         dbo.Company,   
+         dbo.ClientBusContact,   
+         dbo.PHHManager,
+			dbo.ClientPhone  
+   WHERE ( dbo.OfficeType.OfficeTypeCd =* dbo.Client.OfficeTypeCd ) and  
+         ( dbo.Client.ClntID = dbo.BusSrcXRef.ClntID ) and  
+         ( dbo.Client.ClntID = dbo.ClientPhone.ClntID ) and  
+         ( dbo.BusSrcXRef.ClassIDNum = dbo.Classification.ClassIDNum ) and  
+         ( dbo.Client.CompIDNum = dbo.Company.CompIDNum ) and  
+         ( dbo.ClientBusContact.PersIDNum = dbo.PHHManager.PersIDNum ) and  
+         ( dbo.PHHManager.PersIDNum = dbo.Person.PersIDNum ) and 
+			( dbo.PHHManager.ClassIDNum = 1041 ) AND 
+         ( dbo.Client.ClntID = dbo.ClientBusContact.ClntID )  AND  
+         dbo.ClientBusContact.EffDate <= getdate() AND  
+         dbo.ClientBusContact.ExpDate >= getdate() AND
+			dbo.Company.CompShortName like :CompShortName AND
+			dbo.ClientPhone.PhoneNbr like :TollFreeNumber AND
+			dbo.Client.ClntID like :ClntID AND
+			dbo.Person.PersLastName like :PersLastName
+UNION
+  SELECT DISTINCT
+			dbo.Client.ClntID,   
+         dbo.OfficeType.OfficeTypeDesc,   
+         null,   
+         null,   
+         dbo.Classification.ClassDesc,   
+         dbo.Company.CompShortName,   
+         null,   
+         null,   
+         dbo.Client.BgnEffDate,   
+         dbo.Client.EndEffDate  
+    FROM dbo.Client,   
+         dbo.OfficeType,   
+         dbo.BusSrcXRef,   
+         dbo.Classification,   
+         dbo.Company,
+			dbo.ClientPhone
+   WHERE ( dbo.OfficeType.OfficeTypeCd =* dbo.Client.OfficeTypeCd ) and  
+         ( dbo.Client.ClntID = dbo.BusSrcXRef.ClntID ) and   
+         ( dbo.Client.ClntID = dbo.ClientPhone.ClntID ) and  
+         ( dbo.BusSrcXRef.ClassIDNum = dbo.Classification.ClassIDNum ) and  
+         ( dbo.Client.CompIDNum = dbo.Company.CompIDNum )  AND 
+			dbo.Company.CompShortName like :CompShortName AND
+			dbo.ClientPhone.PhoneNbr like :TollFreeNumber AND
+			dbo.Client.ClntID like :ClntID AND
+			dbo.Client.ClntID not in 
+			( SELECT  dbo.ClientBusContact.ClntID 
+				FROM
+					dbo.ClientBusContact,
+					dbo.PHHManager
+ 				WHERE 
+         		dbo.ClientBusContact.PersIDNum = dbo.PHHManager.PersIDNum and 
+					dbo.PHHManager.ClassIDNum = 1041 AND 
+					dbo.ClientBusContact.EffDate <= getdate() AND  
+					dbo.ClientBusContact.ExpDate >= getdate() )
+" arguments=(("ClntID", string),("CompShortName", string),("PersLastName", string),("TollFreeNumber", string)) )
+text(band=header alignment="2" text="
+Client
+ID" border="6" color="0" x="9" y="12" height="168" width="206"  name=clientid_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="
+
+Office Type" border="6" color="0" x="224" y="12" height="168" width="320"  name=officetype_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="0" text="
+
+Client Short Name" border="6" color="0" x="553" y="12" height="168" width="736"  name=clientshortname_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="0" text="
+
+Business Source" border="6" color="0" x="1298" y="12" height="168" width="576"  name=classification_classdesc_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="Account
+Manager
+Name" border="6" color="0" x="1883" y="12" height="168" width="466"  name=am_persfullname_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="Account
+Manager
+Phone" border="6" color="0" x="2359" y="12" height="168" width="338"  name=am_phone_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="Account
+Manager
+Fax" border="6" color="0" x="2706" y="12" height="168" width="352"  name=am_fax_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="Client
+Effective
+Begin" border="6" color="0" x="3067" y="12" height="168" width="261"  name=client_begineffdate_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="Client
+Effective
+End" border="6" color="0" x="3337" y="12" height="168" width="242"  name=client_endeffdate_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=1 alignment="2" tabsequence=32766 border="0" color="0~tif( Date (client_endeffdate) <= Today(), RGB(250,0,0),RGB(0,0,0))  " x="9" y="8" height="60" width="206" format="[general]"  name=clientid edit.limit=7 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="0~tif( Date (client_endeffdate) <= Today(), RGB(250,0,0),RGB(0,0,0))  " x="553" y="8" height="60" width="736" format="[general]"  name=clientshortname edit.limit=60 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="0~tif( Date (client_endeffdate) <= Today(), RGB(250,0,0),RGB(0,0,0))  " x="1883" y="8" height="60" width="466" format="[general]"  name=am_persfullname edit.limit=120 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="0~tif( Date (client_endeffdate) <= Today(), RGB(250,0,0),RGB(0,0,0))  " x="1298" y="8" height="60" width="576" format="[general]"  name=classification_classdesc  tag=" " edit.limit=90 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0~tif( Date (client_endeffdate) <= Today(), RGB(250,0,0),RGB(0,0,0))  " x="224" y="8" height="60" width="320" format="[general]"  name=officetype edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=10 alignment="2" tabsequence=32766 border="0" color="0~tif( Date (client_endeffdate) <= Today(), RGB(250,0,0),RGB(0,0,0))  " x="3337" y="8" height="60" width="242" format="mm/dd/yyyy"  name=client_endeffdate edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=9 alignment="2" tabsequence=32766 border="0" color="0~tif( Date (client_endeffdate) <= Today(), RGB(250,0,0),RGB(0,0,0))  " x="3067" y="8" height="60" width="261" format="mm/dd/yyyy"  name=client_begineffdate edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=8 alignment="2" tabsequence=32766 border="0" color="0~tif( Date (client_endeffdate) <= Today(), RGB(250,0,0),RGB(0,0,0))  " x="2706" y="8" height="60" width="352" format="(@@@) @@@-@@@@"  name=am_fax edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=7 alignment="2" tabsequence=32766 border="0" color="0~tif( Date (client_endeffdate) <= Today(), RGB(250,0,0),RGB(0,0,0))  " x="2359" y="8" height="60" width="338" format="(@@@) @@@-@@@@"  name=am_phone edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )
+ 

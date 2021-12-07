@@ -1,0 +1,60 @@
+$PBExportHeader$d_accountmanager_amcp_override_comment.srd
+release 7;
+datawindow(units=0 timer_interval=0 color=80269524 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=180 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=year dbname="Year" )
+ column=(type=long updatewhereclause=yes name=month dbname="Month" )
+ column=(type=long updatewhereclause=yes name=bcs dbname="AcctManagerAMCP.BCS" )
+ column=(type=long updatewhereclause=yes name=avgbcs3mth dbname="AcctManagerAMCP.AvgBCS3Mth" )
+ column=(type=long updatewhereclause=yes name=avgbcs6mth dbname="AcctManagerAMCP.AvgBCS6Mth" )
+ column=(type=long updatewhereclause=yes name=avgbcs9mth dbname="AcctManagerAMCP.AvgBCS9Mth" )
+ column=(type=long updatewhereclause=yes name=avgbcs12mth dbname="AcctManagerAMCP.AvgBCS12Mth" )
+ column=(type=long updatewhereclause=yes name=leadscreated dbname="AcctManagerAMCP.LeadsCreated" )
+ column=(type=long updatewhereclause=yes name=loansclosed dbname="AcctManagerAMCP.LoansClosed" )
+ column=(type=char(255) updatewhereclause=yes name=comment dbname="AcctManagerAMCP.Comment" )
+ column=(type=long updatewhereclause=yes key=yes name=persidnum dbname="AcctManagerAMCP.PersIDNum" )
+ column=(type=datetime updatewhereclause=yes name=datemdfd dbname="AcctManagerAMCP.DateMdfd" )
+ column=(type=long updatewhereclause=yes name=bcsytd dbname="BCSYTD" )
+ column=(type=long updatewhereclause=yes name=avgbcs3mthytd dbname="AvgBCS3MthYTD" )
+ column=(type=long updatewhereclause=yes name=avgbcs6mthytd dbname="AvgBCS6MthYTD" )
+ column=(type=long updatewhereclause=yes name=avgbcs9mthytd dbname="AvgBCS9MthYTD" )
+ column=(type=long updatewhereclause=yes name=avgbcs12mthytd dbname="AvgBCS12MthYTD" )
+ column=(type=long updatewhereclause=yes name=leadscreatedytd dbname="LeadsCreatedYTD" )
+ column=(type=long updatewhereclause=yes name=loansclosedytd dbname="LoansClosedYTD" )
+ column=(type=long updatewhereclause=yes name=cc_saved dbname="cc_saved" )
+ column=(type=long updatewhereclause=yes key=yes name=yearmonth dbname="AcctManagerAMCP.YearMonth" )
+ retrieve="  SELECT ( dbo.AcctManagerAMCP.YearMonth / 100 ) as Year,   
+       	dbo.AcctManagerAMCP.YearMonth - ( ( dbo.AcctManagerAMCP.YearMonth / 100  ) * 100 )   as Month,   
+         dbo.AcctManagerAMCP.BCS,   
+         dbo.AcctManagerAMCP.AvgBCS3Mth,  
+         dbo.AcctManagerAMCP.AvgBCS6Mth,   
+         dbo.AcctManagerAMCP.AvgBCS9Mth,   
+         dbo.AcctManagerAMCP.AvgBCS12Mth,    
+         dbo.AcctManagerAMCP.LeadsCreated,   
+         dbo.AcctManagerAMCP.LoansClosed,   
+         dbo.AcctManagerAMCP.Comment,   
+         dbo.AcctManagerAMCP.PersIDNum,
+			dbo.AcctManagerAMCP.DateMdfd,
+			0 as BCSYTD,
+			0 as AvgBCS3MthYTD,
+			0 as AvgBCS6MthYTD,
+			0 as AvgBCS9MthYTD,
+			0 as AvgBCS12MthYTD,
+			0 as LeadsCreatedYTD,
+			0 as LoansClosedYTD,
+			1 as cc_saved,
+   		dbo.AcctManagerAMCP.YearMonth
+    FROM dbo.AcctManagerAMCP  
+   WHERE dbo.AcctManagerAMCP.PersIDNum = :PersIDNum   
+ORDER BY dbo.AcctManagerAMCP.YearMonth DESC 
+" update="dbo.AcctManagerAMCP" updatewhere=0 updatekeyinplace=no arguments=(("PersIDNum", number))  sort="year D month D " )
+column(band=detail id=10 alignment="0" tabsequence=10 border="5" color="0" x="1449" y="12" height="144" width="1737" format="[general]"  name=comment  tag=" User entered text describing rationale for user entry of Non-Brands BCS or user entered change to Leads Created or Loans Closed values." edit.limit=255 edit.case=any edit.autoselect=yes edit.nilisnull=yes edit.autovscroll=yes edit.vscrollbar=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=detail alignment="0" expression="string (  year, '0000' ) + '/' + string ( month ,'00')"border="0" color="0" x="933" y="20" height="52" width="480" format="[GENERAL]"  name=cf_yearmonth  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=12 alignment="0" tabsequence=32766 border="0" color="0" x="933" y="92" height="52" width="480" format="mm/dd/yyyy"  name=datemdfd  tag=" " edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Comment for Selected Year/Month:" border="0" color="0" x="27" y="20" height="56" width="887"  name=t_1  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="2" text="Last Modified on:" border="0" color="0" x="27" y="92" height="56" width="434"  name=datemdfd_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )
+ 

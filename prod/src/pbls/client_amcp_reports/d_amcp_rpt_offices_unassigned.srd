@@ -1,0 +1,67 @@
+$PBExportHeader$d_amcp_rpt_offices_unassigned.srd
+release 7;
+datawindow(units=0 timer_interval=60000 color=16777215 processing=1 HTMLDW=no print.documentname="" print.orientation = 1 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=392 color="16777215" )
+summary(height=0 color="536870912" )
+footer(height=68 color="536870912" )
+detail(height=68 color="536870912" )
+table(column=(type=char(3) updatewhereclause=yes name=office_brand dbname="Office.Brand" )
+ column=(type=char(10) updatewhereclause=yes name=office_franchisenum dbname="Office.FranchiseNum" )
+ column=(type=char(60) updatewhereclause=yes name=office_officename dbname="Office.OfficeName" )
+ column=(type=char(40) updatewhereclause=yes name=office_address1 dbname="Office.Address1" )
+ column=(type=char(40) updatewhereclause=yes name=office_city dbname="Office.City" )
+ column=(type=char(2) updatewhereclause=yes name=office_state dbname="Office.State" )
+ column=(type=long updatewhereclause=yes key=yes name=office_officeidnum dbname="Office.OfficeIDNum" )
+ retrieve="  SELECT dbo.Office.Brand,   
+         dbo.Office.FranchiseNum,   
+         dbo.Office.OfficeName,   
+         dbo.Office.Address1,   
+         dbo.Office.City,   
+         dbo.Office.State,   
+         dbo.Office.OfficeIDNum  
+    FROM dbo.Office  
+   WHERE dbo.Office.OfficeIDNum not in (SELECT dbo.OfficeAcctManager.OfficeIDNum 
+                                       FROM dbo.OfficeAcctManager
+                                       WHERE dbo.OfficeAcctManager.BeginEffDate <= getdate( )  
+                                            AND  dbo.OfficeAcctManager.EndEffDate >= getdate( ) )
+   AND  dbo.Office.FranchiseNum not in (SELECT dbo.ClntFranchise.ClntFranchiseNum  
+                                        FROM dbo.ClntFranchise, dbo.Client  
+										WHERE  dbo.ClntFranchise.BeginEffDate <= getdate( )  
+                                            AND dbo.ClntFranchise.EndEffDate > getdate( ) 
+                                            AND	dbo.ClntFranchise.ClntID = dbo.Client.ClntID 
+                                            AND dbo.Client.OfficeTypeCd = 1  )" update="dbo.Office" updatewhere=0 updatekeyinplace=no )
+text(band=header alignment="2" text="Offices" border="0" color="0" x="9" y="12" height="60" width="279"  name=t_3  font.face="Arial" font.height="-9" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Franchise
+Number
+Part 1" border="0" color="0" x="9" y="216" height="168" width="279"  name=franchise_number_part_1_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Franchise
+Number
+Part 2" border="0" color="0" x="297" y="216" height="168" width="251"  name=franchise_number_part_2_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="
+
+Brand" border="0" color="0" x="558" y="216" height="168" width="160"  name=office_brand_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="
+
+State" border="0" color="0" x="727" y="216" height="168" width="146"  name=office_state_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="
+
+City" border="0" color="0" x="882" y="216" height="168" width="503"  name=office_city_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="
+
+Office Name" border="0" color="0" x="1394" y="216" height="168" width="933"  name=office_officename_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="
+
+Office Address " border="0" color="0" x="2336" y="216" height="168" width="923"  name=t_4  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="'Unassigned as of ' + String (today(), 'mm/dd/yyyy')" border="0" color="0" x="1394" y="12" height="192" width="933"  name=t_6  font.face="Arial" font.height="-9" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=detail alignment="1" expression="left( office_franchisenum ,6)"border="0" color="0~tif(date( office_endeffdate ) < today (),RGB(250,0,0),RGB(0,0,0))" x="9" y="4" height="60" width="279" format="[GENERAL]"  name=franchise_number_part_1  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="0~tif(date( office_endeffdate ) < today (),RGB(250,0,0),RGB(0,0,0))" x="882" y="4" height="60" width="503" format="[general]"  name=office_city  tag=" " edit.limit=40 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="0~tif(date( office_endeffdate ) < today (),RGB(250,0,0),RGB(0,0,0))" x="1394" y="4" height="60" width="933" format="[general]"  name=office_officename  tag=" " edit.limit=60 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="0~tif(date( office_endeffdate ) < today (),RGB(250,0,0),RGB(0,0,0))" x="727" y="4" height="60" width="146" format="[general]"  name=office_state  tag=" " edit.limit=2 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0~tif(date( office_endeffdate ) < today (),RGB(250,0,0),RGB(0,0,0))" x="558" y="4" height="60" width="160" format="[general]"  name=office_brand  tag=" " edit.limit=3 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="mid( office_franchisenum ,7,5)"border="0" color="0~tif(date( office_endeffdate ) < today (),RGB(250,0,0),RGB(0,0,0))" x="297" y="4" height="60" width="251" format="[GENERAL]"  name=franchise_number_part_2  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="0" x="2336" y="4" height="60" width="923" format="[general]"  name=office_address1 edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=footer alignment="0" expression="today()"border="0" color="0" x="9" y="4" height="56" width="279" format="[general]"  name=date_1  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=footer alignment="1" expression="'Page ' + page() + ' of ' + pageCount()"border="0" color="0" x="1394" y="4" height="56" width="933" format="[general]"  name=page_1  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )
+ 
